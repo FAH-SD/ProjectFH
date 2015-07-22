@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:id = "@+id/homepage" android:title="@string/homePage" android:background ="#000000"
+        android:icon="@drawable/home50" android:showAsAction="always"/>
+    <item android:id="@+id/family" android:title="@string/family"  android:background="#000000"
+        android:icon="@drawable/family50" android:showAsAction="always"/>
+    <item android:id="@+id/icebox" android:title="@string/icebox" android:background="#000000"
+        android:icon="@drawable/icebox50" android:showAsAction="always"/>
+    <item android:id="@+id/dish" android:title="@string/dish" android:background="#000000"
+        android:icon="@drawable/dish50" android:showAsAction="always"/>
+    <item android:id="@+id/sport" android:title="@string/sport" android:background="#000000"
+        android:icon="@drawable/sport50" android:showAsAction="always"/>
+    <item android:id="@+id/set" android:title="@string/set" android:background="#000000"
+        android:icon="@drawable/set50" android:showAsAction="always"/>
+</menu>

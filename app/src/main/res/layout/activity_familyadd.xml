@@ -1,0 +1,328 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/newmember"
+    android:screenOrientation="portrait">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff7a327b">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon_back2"
+            android:id="@+id/btn_iback"
+            android:layout_weight="44"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="新增家庭成員"
+            android:layout_weight="636"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:textColor="#ffffffff"
+            android:textStyle="bold"
+            android:textSize="26dp"
+            android:id="@+id/newfoooood" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon_true2"
+            android:id="@+id/btn_itrue"
+            android:layout_weight="44"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon_delete"
+            android:id="@+id/btn_idelete"
+            android:layout_weight="44"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="#ffdbdbdb"></LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="成員姓名"
+                    android:textSize="22dp"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_fname"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="22dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe0a9ff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="性別"
+                    android:textSize="22dp"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"/>
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/gender"
+                    android:spinnerMode="dialog"
+                    android:id="@+id/sp_fgender"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="22dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="身高"
+                    android:textSize="22dp"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_fheight"
+                    android:layout_marginLeft="20dp"
+                    android:inputType="number"
+                    android:textSize="22dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22dp"
+                    android:text="公分"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe0a9ff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="體重"
+                    android:textSize="22dp"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_fweight"
+                    android:layout_marginLeft="20dp"
+                    android:inputType="number"
+                    android:textSize="22dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22dp"
+                    android:text="公斤"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出生年"
+                    android:textSize="22dp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22dp"
+                    android:text="西元"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp" />
+
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_fyear"
+                    android:layout_marginLeft="10dp"
+                    android:inputType="number"
+                    android:textSize="22dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22dp"
+                    android:text="年"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffe0a9ff">
+
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="蛋類"
+                            android:id="@+id/egg"
+                            android:textSize="18dp"
+                            android:layout_toRightOf="@+id/allergy" />
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="魚類"
+                            android:id="@+id/fish"
+                            android:textSize="20dp"
+                            android:layout_toRightOf="@+id/egg" />
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="花生"
+                            android:id="@+id/peanut"
+                            android:textSize="18dp"
+                            android:layout_toRightOf="@+id/fish" />
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="堅果"
+                            android:id="@+id/nut"
+                            android:textSize="18dp"
+                            android:layout_toRightOf="@+id/allergy"
+                            android:layout_below="@+id/egg" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="過敏源"
+                            android:textSize="22dp"
+                            android:layout_gravity="center"
+                            android:textStyle="bold"
+                            android:id="@+id/allergy"
+                            android:layout_below="@+id/egg" />
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="貝類"
+                            android:id="@+id/shellfish"
+                            android:textSize="18dp"
+                            android:layout_below="@+id/fish"
+                            android:layout_toRightOf="@+id/nut" />
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="豆類"
+                            android:id="@+id/beans"
+                            android:textSize="18dp"
+                            android:layout_toRightOf="@+id/shellfish"
+                            android:layout_below="@+id/peanut" />
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="奶類"
+                            android:id="@+id/milk"
+                            android:textSize="18dp"
+                            android:layout_below="@+id/nut"
+                            android:layout_toRightOf="@+id/allergy" />
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="雞肉"
+                            android:id="@+id/chicken"
+                            android:textSize="18dp"
+                            android:layout_below="@+id/nut"
+                            android:layout_toRightOf="@+id/milk" />
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="豬肉"
+                            android:id="@+id/pork"
+                            android:textSize="18dp"
+                            android:layout_below="@+id/beans"
+                            android:layout_toRightOf="@+id/chicken" />
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="牛肉"
+                            android:id="@+id/beef"
+                            android:textSize="18dp"
+                            android:layout_toRightOf="@+id/allergy"
+                            android:layout_below="@+id/milk" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+</RelativeLayout>
+

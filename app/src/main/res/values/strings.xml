@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">食健：健康飲食管理</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_newfood_input">newfood_input</string>
+    <string name="title_activity_icebox">icebox</string>
+
+    <string-array name="iceplace">
+        <item>冷凍</item>
+        <item>冷藏</item>
+        <item>常溫</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>男</item>
+        <item>女</item>
+    </string-array>
+
+    <string-array name="unit">
+        <item>公克</item>
+        <item>公斤</item>
+        <item>台斤</item>
+        <item>磅</item>
+        <item>盎司</item>
+        <item>兩</item>
+        <item>錢</item>
+    </string-array>
+
+    <string name="title_activity_newfood_camara">newfood_camara</string>
+    <string name="title_activity_newfood_freezer">newfood_freezer</string>
+    <string name="title_activity_newfood_fidge">newfood_fidge</string>
+    <string name="title_activity_newfood_normal">newfood_normal</string>
+    <string name="title_activity_icebox_normal">icebox_normal</string>
+    <string name="title_activity_newfood_fridge">newfood_fridge</string>
+    <string name="title_activity_newfood_freeze">newfood_freeze</string>
+    <string name="title_activity_icebox_freeze">icebox_freeze</string>
+    <string name="title_activity_icebox_fridge">icebox_fridge</string>
+    <string name="title_activity_newfood1">iceboxdbcreate</string>
+    <string name="title_activity_newfood2">newfood2</string>
+    <string name="title_activity_test">icebox_test</string>
+    <string name="title_activity_familycreate">familycreate</string>
+    <string name="title_activity_family">family</string>
+    <string name="title_homepage">homepage</string>
+    <string name="test">test</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_menu_bottom">menuBottom</string>
+    <string name="title_activity_menu">menu</string>
+
+    <string name="homePage">首頁</string>
+    <string name="family">家庭成員資料</string>
+    <string name="icebox">食材儲藏室</string>
+    <string name="dish">今日菜單</string>
+    <string name="sport">運動消耗計算</string>
+    <string name="set">關於</string>
+    <string name="title_activity_test2">test2</string>
+    <string name="title_activity_dish">dish</string>
+    <string name="title_activity_newdish">newdish</string>
+    <string name="title_activity_set">set</string>
+    <string name="title_activity_test3">test3</string>
+    <string name="title_activity_scroll_view">scrollView</string>
+
+</resources>

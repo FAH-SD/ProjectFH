@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Icebox"
+    android:id="@+id/icebox"
+    android:screenOrientation="portrait">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff306038">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/imageButton"
+            android:background="@drawable/icon_icebox"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="食材儲藏室"
+            android:id="@+id/textView9"
+            android:layout_weight="680"
+            android:gravity="center"
+            android:textColor="#ffffffff"
+            android:textStyle="bold"
+            android:textSize="26dp"
+            android:layout_gravity="center_vertical" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/add"
+            android:textColor="#ffffffff"
+            android:background="@drawable/icon_add2"
+            android:textSize="@dimen/abc_action_bar_stacked_max_height"
+            android:layout_gravity="center_vertical" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="全部"
+            android:id="@+id/all"
+            android:background="#c4ffc307"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="冷凍"
+            android:id="@+id/freezer"
+            android:background="#3e81ff10"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="冷藏"
+            android:id="@+id/fridge"
+            android:background="#ff6cd1a5"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="常溫"
+            android:id="@+id/normal"
+            android:background="#ff24934d"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#c4ffc307">
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@android:id/list" />
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+
+

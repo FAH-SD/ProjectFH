@@ -1,0 +1,156 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/newfood2"
+    android:screenOrientation="portrait">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff306038">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon_back2"
+            android:id="@+id/btn_iback"
+            android:layout_weight="44"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="新增食材"
+            android:layout_weight="680"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:textColor="#ffffffff"
+            android:textStyle="bold"
+            android:textSize="26dp"
+            android:layout_marginRight="100dp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="自行輸入"
+                android:id="@+id/btn_iin1"
+                android:background="#c480db39"
+                android:textSize="22dp"
+                android:textStyle="bold"/>
+
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="條碼掃描"
+                android:id="@+id/btn_iin2"
+                android:background="#3e81ff10"
+                android:textSize="22dp"
+                android:textStyle="bold"/>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#3e81ff10"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="50dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="120dp"
+            android:layout_marginTop="50dp">
+
+
+            <Button
+                android:id="@+id/scan_btn"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:text="使用相機掃描二維條碼"
+                android:layout_gravity="center"
+                android:background="#ff4c9931"
+                android:textColor="#ffffffff"
+                android:textSize="24dp"/>
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText3"
+                android:layout_gravity="center"
+                android:inputType="textUri"
+                android:enabled="false"
+                android:editable="false"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="產銷履歷碼查詢"
+                android:id="@+id/btn_gov"
+                android:layout_gravity="center"
+                android:textColor="#ffffffff"
+                android:background="#ff4c9931"
+                android:textSize="24dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="216dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="輸入產銷履歷追蹤碼"
+                android:layout_gravity="center"
+                android:textSize="24dp" />
+
+            <EditText
+                android:layout_width="197dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText2"
+                android:layout_gravity="center"
+                android:background="#ffffffff"
+                android:textSize="22dp"
+                android:inputType="number"
+                android:numeric="integer" />
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="OK"
+                android:id="@+id/btn_ok"
+                android:layout_gravity="center"
+                android:textColor="#ffffffff"
+                android:background="#ff4c9931"
+                android:textSize="24dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

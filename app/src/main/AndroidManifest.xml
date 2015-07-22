@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.goldas.projectfh" >
+
+    <uses-sdk android:minSdkVersion="7" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <android:uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon_main"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".homepage"
+            android:label="@string/title_homepage" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".icebox_normal"
+            android:label="@string/title_activity_icebox_normal" >
+        </activity>
+        <activity
+            android:name=".icebox_freeze"
+            android:label="@string/title_activity_icebox_freeze" >
+        </activity>
+        <activity
+            android:name=".icebox_fridge"
+            android:label="@string/title_activity_icebox_fridge" >
+        </activity>
+        <activity
+            android:name=".iceboxdbcreate"
+            android:label="@string/title_activity_newfood1" >
+        </activity>
+        <activity
+            android:name=".newfood2"
+            android:label="@string/title_activity_newfood2" >
+        </activity>
+        <activity
+            android:name=".familycreate"
+            android:label="@string/title_activity_familycreate" >
+        </activity>
+        <activity
+            android:name=".family"
+            android:label="@string/title_activity_family" >
+        </activity>
+        <activity
+            android:name=".test"
+            android:label="@string/test" >
+        </activity>
+        <activity
+            android:name=".icebox"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".dish"
+            android:label="@string/title_activity_dish" >
+        </activity>
+        <activity
+            android:name=".newdish"
+            android:label="@string/title_activity_newdish" >
+        </activity>
+        <activity
+            android:name=".set"
+            android:label="@string/title_activity_set" >
+        </activity>
+        <activity
+            android:name=".scrollView"
+            android:label="@string/title_activity_scroll_view" >
+        </activity>
+    </application>
+
+</manifest>
