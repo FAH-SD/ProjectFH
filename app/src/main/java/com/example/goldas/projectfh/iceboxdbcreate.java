@@ -27,7 +27,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -61,8 +60,8 @@ public class iceboxdbcreate extends Activity {
     private Spinner editkind;
     private Spinner edititem;
     private EditText quantity ;
-    private TextView tv_buyday;
-    private TextView tv_limitday;
+    private EditText limitdate;
+    private EditText buyingdate;
     private Spinner editstorage;
     SQLiteDatabase dbrw;
     DBhelper dbhelper;
@@ -160,8 +159,8 @@ public class iceboxdbcreate extends Activity {
         editkind = (Spinner) findViewById(R.id.spinner);
         edititem = (Spinner) findViewById(R.id.spinner2);
         quantity = (EditText) findViewById(R.id.editText);
-        tv_buyday = (TextView) findViewById(R.id.tv_buyday);
-        tv_limitday = (TextView) findViewById(R.id.tv_limitday);
+        buyingdate = (EditText) findViewById(R.id.editText3);
+        limitdate = (EditText) findViewById(R.id.editText4);
         editstorage = (Spinner) findViewById(R.id.sp_iplace);
         btnitrue = (ImageButton) findViewById(R.id.btn_itrue);
 
@@ -176,47 +175,31 @@ public class iceboxdbcreate extends Activity {
 
     }
     class itrue_ButtonClickListener implements OnClickListener{
-        public void onClick(View v) {
-            Calendar c2 = Calendar.getInstance();
-            int thisYear = c2.get(Calendar.YEAR);
-            int thisMonth = c2.get(Calendar.MONTH);
-            int thisDay = c2.get(Calendar.DAY_OF_MONTH);
-            if (buyYear > thisYear) {
-                showAlert("錯誤資訊", "購買日期輸入錯誤");
-                buyYear = buyMonth = buyDay = 0;
-                tv_buyday.setText("");
-            } else if (buyYear == thisYear && buyMonth > thisMonth+1) {
-                showAlert("錯誤資訊", "購買日期輸入錯誤");
-                buyYear = buyMonth = buyDay = 0;
-                tv_buyday.setText("");
-            } else if (buyYear == thisYear && buyMonth == thisMonth+1 && buyDay > thisDay) {
-                showAlert("錯誤資訊", "購買日期輸入錯誤");
-                buyYear = buyMonth = buyDay = 0;
-                tv_buyday.setText("");
-            }
-            else if(limitYear < buyYear){
-                showAlert("錯誤資訊", "有效日期輸入錯誤");
-                limitYear = limitMonth = limitDay = 0;
-                tv_limitday.setText("");}
-            else if(limitYear == buyYear && limitMonth < buyMonth) {
-                showAlert("錯誤資訊", "有效日期輸入錯誤");
-                limitYear = limitMonth = limitDay = 0;
-                tv_limitday.setText("");}
-            else if(limitYear == buyYear && limitMonth == buyMonth && limitDay < buyDay) {
-                showAlert("錯誤資訊", "有效日期輸入錯誤");
-                limitYear = limitMonth = limitDay = 0;
-                tv_limitday.setText("");
-            }
-            else if ("".equals(quantity.getText().toString().trim())) {
+        public void onClick(View v){
+
+            if("".equals(quantity.getText().toString().trim())){
                 showAlert("錯誤資訊", "數量尚未輸入");
-            } else {
-                iceboxAlert("警告","是否確定新增此筆資料？");
+            }else {
+                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                ContentValues values = new ContentValues();
+                values.put(KIND, editkind.getSelectedItem().toString());
+                values.put(ITEM, edititem.getSelectedItem().toString());
+                values.put(QUANTITY, quantity.getText().toString());
+                values.put(BUYINGDATE, buyingdate.getText().toString());
+                values.put(LIMITDATE, limitdate.getText().toString());
+                values.put(STORAGEPLACE, editstorage.getSelectedItem().toString());
+                db.insert(TABLE_NAME, null, values);
+//
+//                        切換頁面
+//                Toast.makeText(v.getContext(), "已新增輸入儲藏資料", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(iceboxdbcreate.this, icebox.class);
+                startActivity(i);
+                finish();
             }
         }
 
     };
 
-    private int buyYear, buyMonth, buyDay;
     public void showDatePickerDialog() {
         // 設定初始日期
         final Calendar c = Calendar.getInstance();
@@ -230,17 +213,14 @@ public class iceboxdbcreate extends Activity {
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
                         // 完成選擇，顯示日期
-                        tv_buyday.setText(year + "/" + (monthOfYear + 1) + "/"
+                        buyingdate.setText(year + "/" + (monthOfYear + 1) + "/"
                                 + dayOfMonth);
-                        buyYear = year;
-                        buyMonth = (monthOfYear + 1);
-                        buyDay = dayOfMonth;
+
                     }
                 }, bYear, bMonth, bDay);
         dpd.show();
     }
 
-    private int limitYear, limitMonth, limitDay;
     public void showDatePickerDialog2() {
         // 設定初始日期
         final Calendar c2 = Calendar.getInstance();
@@ -254,11 +234,9 @@ public class iceboxdbcreate extends Activity {
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
                         // 完成選擇，顯示日期
-                        tv_limitday.setText(year + "/" + (monthOfYear + 1) + "/"
+                        limitdate.setText(year + "/" + (monthOfYear + 1) + "/"
                                 + dayOfMonth);
-                        limitYear = year;
-                        limitMonth = (monthOfYear + 1);
-                        limitDay = dayOfMonth;
+
                     }
                 }, lYear, lMonth, lDay);
         dpd.show();
@@ -354,43 +332,7 @@ public class iceboxdbcreate extends Activity {
         alert.show();
     }
 
-    private void iceboxAlert(String title,String context) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle(title);
-        alert.setMessage(context);
-        alert.setNegativeButton("取消",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // TODO Auto-generated method stub
-                        //按下按鈕後執行的動作，沒寫則退出Dialog
-                    }
-                });
-        alert.setPositiveButton("確定",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // TODO Auto-generated method stub
-                        //按下按鈕後執行的動作，沒寫則退出Dialog
-                        SQLiteDatabase db = dbhelper.getWritableDatabase();
-                        ContentValues values = new ContentValues();
-                        values.put(KIND, editkind.getSelectedItem().toString());
-                        values.put(ITEM, edititem.getSelectedItem().toString());
-                        values.put(QUANTITY, quantity.getText().toString());
-                        values.put(BUYINGDATE, tv_buyday.getText().toString());
-                        values.put(LIMITDATE, tv_limitday.getText().toString());
-                        values.put(STORAGEPLACE, editstorage.getSelectedItem().toString());
-                        db.insert(TABLE_NAME, null, values);
-//
-//                        切換頁面
-//                        Toast.makeText(v.getContext(), "已新增輸入儲藏資料", Toast.LENGTH_LONG).show();
-                        Intent i = new Intent(iceboxdbcreate.this, icebox.class);
-                        startActivity(i);
-                        finish();
-                    }
-                });
-        alert.show();
-    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
