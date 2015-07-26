@@ -60,5 +60,8 @@
     <string name="title_activity_set">set</string>
     <string name="title_activity_test3">test3</string>
     <string name="title_activity_scroll_view">scrollView</string>
+    <string name="title_activity_sport">sport</string>
+    <string name="title_activity_left_fragment">leftFragment</string>
+    <string name="title_activity_right_fragment">rightFragment</string>
 
 </resources>

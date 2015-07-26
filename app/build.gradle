@@ -23,6 +23,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.+'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/jsoup-1.8.2.jar')
+    compile project(':libraries:slidingmenu_library')
 }
 
 repositories {

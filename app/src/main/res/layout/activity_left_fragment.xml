@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id = "@+id/lefthome"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/home50"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/family50"
+        android:id="@+id/leftfamily"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/icebox50"
+        android:id="@+id/lefticebox"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/dish50"
+        android:id="@+id/leftdish"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/sport50"
+        android:id="@+id/leftsport"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/set50"
+        android:id="@+id/leftset"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>
