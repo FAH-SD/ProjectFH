@@ -187,7 +187,8 @@
                     android:spinnerMode="dialog"
                     android:id="@+id/sp_iunit"
                     android:textSize="22dp"
-                    android:layout_marginLeft="10dp" />
+                    android:layout_marginLeft="10dp"
+                    android:theme="@style/Base.AlertDialog.AppCompat"/>
 
             </LinearLayout>
         </LinearLayout>
@@ -291,7 +292,8 @@
                     android:spinnerMode="dialog"
                     android:id="@+id/sp_iplace"
                     android:textSize="22dp"
-                    android:layout_marginLeft="10dp" />
+                    android:layout_marginLeft="10dp"
+                    android:theme="@style/Base.AlertDialog.AppCompat"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
