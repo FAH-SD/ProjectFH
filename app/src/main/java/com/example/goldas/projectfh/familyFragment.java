@@ -10,11 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class leftFragment extends Fragment {
+public class familyFragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.activity_left_fragment, container, false);
+        View view = inflater.inflate(R.layout.forthescience, container, false);
         return  view;
     }
 }

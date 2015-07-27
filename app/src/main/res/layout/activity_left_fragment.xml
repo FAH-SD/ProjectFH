@@ -1,173 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/leftmenu"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+    <Button
+        android:id = "@+id/lefthome"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/home50"
+        android:layout_gravity="center_horizontal" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true" >
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/family50"
+        android:id="@+id/leftfamily"
+        android:layout_gravity="center_horizontal" />
 
-            <ImageView
-                android:id="@+id/lefthome"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/icon_main_color" />
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/icebox50"
+        android:id="@+id/lefticebox"
+        android:layout_gravity="center_horizontal" />
 
-            <TextView
-                android:id="@+id/menutext1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_toRightOf="@id/lefthome"
-                android:text="首頁"
-                android:textSize="20dp" />
-        </RelativeLayout>
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/dish50"
+        android:id="@+id/leftdish"
+        android:layout_gravity="center_horizontal" />
 
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/sport50"
+        android:id="@+id/leftsport"
+        android:layout_gravity="center_horizontal" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true" >
-
-            <ImageView
-                android:id="@+id/leftfamily"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/icon_family_color" />
-
-            <TextView
-                android:id="@+id/menutext2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_toRightOf="@id/leftfamily"
-                android:text="家庭成員"
-                android:textSize="20dp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true" >
-
-            <ImageView
-                android:id="@+id/lefticebox"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/icon_icebox_color" />
-
-            <TextView
-                android:id="@+id/menutext3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_toRightOf="@id/lefticebox"
-                android:text="食材儲藏室"
-                android:textSize="20dp" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true" >
-
-            <ImageView
-                android:id="@+id/leftdish"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/icon_dish_color" />
-
-            <TextView
-                android:id="@+id/menutext4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_toRightOf="@id/leftdish"
-                android:text="今日菜單"
-                android:textSize="20dp" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true" >
-
-            <ImageView
-                android:id="@+id/leftsport"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/icon_sport_color" />
-
-            <TextView
-                android:id="@+id/menutext5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_toRightOf="@id/leftsport"
-                android:text="運動消耗計算"
-                android:textSize="20dp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true" >
-
-            <ImageView
-                android:id="@+id/leftset"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/icon_set_color" />
-
-            <TextView
-                android:id="@+id/menutext6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_toRightOf="@id/leftset"
-                android:text="關於"
-                android:textSize="20dp" />
-        </RelativeLayout>
-    </LinearLayout>
-
-</RelativeLayout>
+    <Button
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/set50"
+        android:id="@+id/leftset"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>

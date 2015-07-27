@@ -1,20 +1,19 @@
 package com.example.goldas.projectfh;
 
 import android.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-public class leftFragment extends Fragment {
+/**
+ * Created by roy on 2015/7/26.
+ */
+public class iceboxFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.activity_left_fragment, container, false);
+        View view = inflater.inflate(R.layout.activity_icebox, container, false);
         return  view;
     }
 }

@@ -55,7 +55,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="50dp"
             android:background="#ffdbdbdb"></LinearLayout>
 
 
@@ -64,8 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp">
+            android:layout_marginRight="20dp">
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -111,8 +110,7 @@
                     android:spinnerMode="dialog"
                     android:id="@+id/sp_fgender"
                     android:layout_marginLeft="10dp"
-                    android:textSize="22dp"
-                    android:theme="@style/Base.AlertDialog.AppCompat"/>
+                    android:textSize="22dp"/>
 
             </LinearLayout>
 

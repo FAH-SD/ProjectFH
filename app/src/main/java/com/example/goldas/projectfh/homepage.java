@@ -3,9 +3,7 @@ package com.example.goldas.projectfh;
 /**
  * Created by Goldas on 2015/6/15.
  */
-import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -29,16 +27,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 
-public class homepage extends Activity implements View.OnClickListener{
-
+public class homepage extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-// 设置侧拉条目布局
 
 //        Button lefthome = (Button)findViewById(R.id.lefthome);
 //        lefthome.setOnClickListener(this);
@@ -91,7 +86,7 @@ public class homepage extends Activity implements View.OnClickListener{
         });
 
         Button sport = (Button) findViewById(R.id.sport);
-        sport.setOnClickListener(new Button.OnClickListener() {
+        dish.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
@@ -121,79 +116,6 @@ public class homepage extends Activity implements View.OnClickListener{
         menu.setFadeDegree(0.35f);
         menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
         menu.setMenu(R.layout.activity_left_fragment);
-
-// 导航打开监听事件
-        menu.setOnOpenListener(new SlidingMenu.OnOpenListener() {
-            @Override
-            public void onOpen() {
-            }
-        });
-        // 导航关闭监听事件
-        menu.setOnClosedListener(new SlidingMenu.OnClosedListener() {
-
-            @Override
-            public void onClosed() {
-            }
-        });
-
-
-    ImageView lefthome = (ImageView)findViewById(R.id.lefthome);
-    lefthome.setOnClickListener(this);
-
-    ImageView leftfamily = (ImageView)findViewById(R.id.leftfamily);
-    leftfamily.setOnClickListener(this);
-
-    ImageView lefticebox = (ImageView)findViewById(R.id.lefticebox);
-    lefticebox.setOnClickListener(this);
-
-    ImageView leftdish = (ImageView)findViewById(R.id.leftdish);
-    leftdish.setOnClickListener(this);
-
-    ImageView leftsport = (ImageView)findViewById(R.id.leftsport);
-    leftsport.setOnClickListener(this);
-
-    ImageView leftset = (ImageView)findViewById(R.id.leftset);
-    leftset.setOnClickListener(this);
-
-}
-
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.lefthome:
-                Intent intenthomepage = new Intent();
-                intenthomepage.setClass(this, homepage.class);
-                startActivity(intenthomepage);
-                break;
-            case R.id.leftfamily:
-                Intent intentfamily = new Intent();
-                intentfamily.setClass(this, family.class);
-                startActivity(intentfamily);
-                break;
-            case R.id.lefticebox:
-                Intent intenticebox = new Intent();
-                intenticebox.setClass(this, icebox.class);
-                startActivity(intenticebox);
-                break;
-            case R.id.leftdish:
-                Intent intentdish = new Intent();
-                intentdish.setClass(this, dish.class);
-                startActivity(intentdish);
-                break;
-            case R.id.leftsport:
-                Intent intentsport = new Intent();
-                intentsport.setClass(this, sport.class);
-                break;
-            case R.id.leftset:
-                Intent intentset = new Intent();
-                intentset.setClass(this, set.class);
-                startActivity(intentset);
-                break;
-            default:
-                break;
-
-        }
-
 
     }
 
@@ -260,37 +182,6 @@ public class homepage extends Activity implements View.OnClickListener{
 //                .setContent(intent);
 //        getTabHost().addTab(spec);
 //    }
-@Override
-public boolean onKeyDown(int keyCode, KeyEvent event) {
-    // TODO Auto-generated method stub
-
-    if (keyCode == KeyEvent.KEYCODE_BACK) { // 攔截返回鍵
-        new AlertDialog.Builder(homepage.this)
-                .setTitle("確認視窗")
-                .setMessage("確定要離開應用程式嗎？")
-                .setIcon(R.drawable.icon_main_s)
-                .setPositiveButton("確定",
-                        new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                finish();
-                            }
-                        })
-                .setNegativeButton("取消",
-                        new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                // TODO Auto-generated method stub
-
-                            }
-                        }).show();
-    }
-    return true;
-}
 
 
 
