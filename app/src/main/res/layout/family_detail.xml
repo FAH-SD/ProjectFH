@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="新增家庭成員"
+            android:text="家庭成員編輯"
             android:layout_weight="636"
             android:gravity="center"
             android:layout_gravity="center_vertical"
@@ -99,12 +99,10 @@
                     android:layout_gravity="center_vertical"
                     android:textStyle="bold"/>
 
-                <Spinner
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/gender"
-                    android:spinnerMode="dialog"
-                    android:id="@+id/sp_fgender"
+                    android:id="@+id/et_fsex"
                     android:layout_marginLeft="10dp" />
 
             </LinearLayout>

@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -33,7 +34,7 @@ import java.lang.reflect.Method;
 /**
  * Created by Goldas on 2015/6/11.
  */
-public class family extends ListActivity implements View.OnClickListener{
+public class family extends Activity implements View.OnClickListener{
     private SQLiteDatabase db = null;
     private Cursor cursor = null;
     private SimpleCursorAdapter adapter = null;
@@ -45,8 +46,20 @@ public class family extends ListActivity implements View.OnClickListener{
         db=(new DBhelper(getApplicationContext()).getWritableDatabase());
         cursor= db.rawQuery("SELECT _id,name from family",null);
         adapter = new SimpleCursorAdapter(this, R.layout.familylist, cursor, new String[]{"name"},new int[]{R.id.fl_name});
-        setListAdapter(adapter);
+        ListView familyview = (ListView)findViewById(R.id.list);
+        familyview.setAdapter(adapter);
 //        registerForContextMenu(getListView());
+
+        familyview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(family.this, familydetail.class);
+                startActivity(i);
+                int member = position;
+                i.putExtra("membername", member);
+
+            }
+        });
 
 
         Button buttonadd = (Button) findViewById(R.id.add);
