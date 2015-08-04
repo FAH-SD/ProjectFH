@@ -53,10 +53,11 @@ public class family extends Activity implements View.OnClickListener{
         familyview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("membername", "123");
                 Intent i = new Intent(family.this, familydetail.class);
+                i.putExtras(bundle1);
                 startActivity(i);
-                int member = position;
-                i.putExtra("membername", member);
 
             }
         });
@@ -183,7 +184,7 @@ public class family extends Activity implements View.OnClickListener{
 //        menu.add(Menu.NONE,,Menu.NONE,"Delete");
 //        super.onCreateContextMenu(menu, v, menuInfo);
 //    }
-//
+//.ㄐ
 //    //步骤 3: ContextMenu的触发操作，例子将触发delete()
 //    public boolean onContextItemSelected(MenuItem item) {
 //        switch(item.getItemId()){

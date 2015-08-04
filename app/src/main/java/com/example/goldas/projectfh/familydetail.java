@@ -19,9 +19,8 @@ public class familydetail extends Activity{
         EditText weight = (EditText) findViewById(R.id.et_fweight);
         EditText year = (EditText) findViewById(R.id.et_fyear);
 
-        Intent intent = getIntent();
-        int a = intent.getIntExtra("membername", 0);
+        Bundle bundle2=this.getIntent().getExtras();
 
-        name.setText(a);
+        name.setText(bundle2.getString("membername"));
     }
 }

@@ -6,7 +6,6 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
@@ -93,13 +92,14 @@
         <activity
             android:name=".sport"
             android:label="@string/title_activity_sport"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".familydetail"
             android:label="@string/title_activity_family_detail"
             android:screenOrientation="portrait" >
         </activity>
+
         <fragment
             android:name=".leftFragment"
             android:label="@string/title_activity_left_fragment" >
@@ -108,6 +108,11 @@
             android:name=".rightFragment"
             android:label="@string/title_activity_right_fragment" >
         </fragment>
+
+        <activity
+            android:name=".foodDetail"
+            android:label="@string/title_activity_food_detail" >
+        </activity>
     </application>
 
 </manifest>

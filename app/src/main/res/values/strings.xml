@@ -64,5 +64,6 @@
     <string name="title_activity_left_fragment">leftFragment</string>
     <string name="title_activity_right_fragment">rightFragment</string>
     <string name="title_activity_family_detail">FamilyDetail</string>
+    <string name="title_activity_food_detail">foodDetail</string>
 
 </resources>

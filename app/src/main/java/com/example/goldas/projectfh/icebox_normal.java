@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -23,9 +24,10 @@ import android.widget.SimpleCursorAdapter;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.lang.reflect.Method;
+import java.sql.SQLException;
 
 
-public class icebox_normal extends ListActivity implements View.OnClickListener{
+public class icebox_normal extends Activity implements View.OnClickListener{
     private SQLiteDatabase db = null;
     private Cursor cursor = null;
     private SimpleCursorAdapter adapter = null;
@@ -37,7 +39,32 @@ public class icebox_normal extends ListActivity implements View.OnClickListener{
         db = (new DBhelper(getApplicationContext()).getWritableDatabase());
         cursor = db.rawQuery("SELECT*FROM icebox WHERE storage =? ", new String[]{"常溫"});
         adapter = new SimpleCursorAdapter(this, R.layout.teest, cursor, new String[]{"kind","item","quantity","buyingdate","limitdate","storage"}, new int[]{R.id.txtkind, R.id.txtitem, R.id.txtquan, R.id.txtbd, R.id.txtld, R.id.txts});
-        setListAdapter(adapter);
+        ListView iceboxview = (ListView)findViewById(R.id.foodlist);
+        iceboxview.setAdapter(adapter);
+        iceboxview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                cursor.moveToPosition(position);
+                try {
+                    Cursor c = get(id);
+                    Bundle bundle1 = new Bundle();
+                    bundle1.putString("foodkind", c.getString(1));
+                    bundle1.putString("foodname", c.getString(2));
+                    bundle1.putString("foodamount", c.getString(3));
+                    bundle1.putString("foodbuyday", c.getString(5));
+                    bundle1.putString("foodlimitday", c.getString(4));
+                    bundle1.putString("foodstroage", c.getString(6));
+                    Intent i = new Intent(icebox_normal.this, foodDetail.class);
+                    i.putExtras(bundle1);
+                    startActivity(i);
+                    icebox_normal.this.finish();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
         Button buttonadd = (Button) findViewById(R.id.add);
         buttonadd.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -123,6 +150,16 @@ public class icebox_normal extends ListActivity implements View.OnClickListener{
 
         ImageView leftset = (ImageView)findViewById(R.id.leftset);
         leftset.setOnClickListener(this);
+
+    }
+
+    public Cursor get(long rowId) throws SQLException{
+        Cursor c = db.rawQuery("SELECT _id,kind,item,quantity,limitdate,buyingdate,storage from icebox WHERE _id="+ rowId, null);
+        if(c.getCount()>0){
+            c.moveToFirst();
+        }
+
+        return c;
 
     }
 
