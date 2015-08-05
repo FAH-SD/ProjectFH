@@ -65,7 +65,7 @@ public class icebox extends Activity implements View.OnClickListener {
                     bundle1.putString("foodamount", c.getString(3));
                     bundle1.putString("foodbuyday", c.getString(5));
                     bundle1.putString("foodlimitday", c.getString(4));
-                    bundle1.putString("foodstroage", c.getString(6));
+                    bundle1.putString("foodstorage", c.getString(6));
                     Intent i = new Intent(icebox.this, foodDetail.class);
                     i.putExtras(bundle1);
                     startActivity(i);
