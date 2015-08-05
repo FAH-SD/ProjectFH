@@ -29,6 +29,7 @@ public class familydetail extends Activity implements View.OnClickListener {
     SQLiteDatabase dbrw;
     DBhelper dbhelper;
     int id;
+    EditText name, height, weight, year;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.family_detail);
@@ -36,11 +37,11 @@ public class familydetail extends Activity implements View.OnClickListener {
         dbhelper = new DBhelper(this);
         dbrw = dbhelper.getWritableDatabase();
 
-        EditText name = (EditText) findViewById(R.id.et_fname);
+        name = (EditText) findViewById(R.id.et_fname);
         EditText sex = (EditText) findViewById(R.id.et_fsex);
-        EditText height = (EditText) findViewById(R.id.et_fheight);
-        EditText weight = (EditText) findViewById(R.id.et_fweight);
-        EditText year = (EditText) findViewById(R.id.et_fyear);
+        height = (EditText) findViewById(R.id.et_fheight);
+        weight = (EditText) findViewById(R.id.et_fweight);
+        year = (EditText) findViewById(R.id.et_fyear);
 
         Bundle bundle4 = this.getIntent().getExtras();
 
@@ -65,7 +66,53 @@ public class familydetail extends Activity implements View.OnClickListener {
         buttondelete.setOnClickListener(new ImageButton.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showAlert("警告", "是否刪除此筆資料？");
+                showAlert("警告", "是否確定刪除此筆資料？");
+            }
+        });
+
+        final ImageButton buttontrue = (ImageButton) findViewById(R.id.btn_ftrue);
+        buttontrue.setOnClickListener(new ImageButton.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ("".equals(name.getText().toString().trim())) {
+                    showAlert2("錯誤資訊", "姓名尚未輸入");
+                }
+
+                try {
+                    int h = Integer.parseInt(height.getText().toString());
+                    if (h > 200 || h < 50) {
+                        showAlert2("錯誤資訊", "身高只能介於50~200公分之間");
+                        height.setText("");
+                    }
+                } catch (NumberFormatException e1) {
+                    showAlert2("錯誤資訊", "身高尚未輸入");
+                }
+
+                try {
+                    int w = Integer.parseInt(weight.getText().toString());
+                    if (w > 200 || w < 10) {
+                        showAlert2("錯誤資訊", "體重只能介於10~200公斤之間");
+                        weight.setText("");
+                    }
+                } catch (NumberFormatException e2) {
+                    showAlert2("錯誤資訊", "體重尚未輸入");
+                }
+
+                if ("".equals(height.getText().toString().trim()) || "".equals(weight.getText().toString().trim()) || "".equals(year.getText().toString().trim()) || "".equals(name.getText().toString().trim())) {
+                } else {
+                    showAlert3("警告", "是否確定編輯此筆資料？");
+                }
+            }
+        });
+
+        ImageButton buttonrevise = (ImageButton)findViewById(R.id.btn_frevise);
+        buttonrevise.setOnClickListener(new ImageButton.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttontrue.setVisibility(View.VISIBLE);
+                name.setEnabled(true);
+                height.setEnabled(true);
+                weight.setEnabled(true);
             }
         });
 
@@ -189,6 +236,52 @@ public class familydetail extends Activity implements View.OnClickListener {
                         SQLiteDatabase db = dbhelper.getWritableDatabase();
                         ContentValues values = new ContentValues();
                         long long1 = db.delete("family", " _id=" + id, null);
+                        Intent i = new Intent(familydetail.this, family.class);
+                        startActivity(i);
+                        finish();
+                    }
+                });
+        alert.show();
+    }
+    private void showAlert2(String title,String context)
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(title);
+        alert.setMessage(context);
+        alert.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                    }
+                });
+        alert.show();
+    }
+    private void showAlert3(String title,String context)
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(title);
+        alert.setMessage(context);
+        alert.setNegativeButton("取消",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                    }
+                });
+        alert.setPositiveButton("確定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        SQLiteDatabase db = dbhelper.getWritableDatabase();
+                        ContentValues values = new ContentValues();
+                        values.put(NAME, name.getText().toString());
+                        values.put(WEIGHT, weight.getText().toString());
+                        values.put(HEIGHT, height.getText().toString());
+                        long long1 = db.update("family", values, "_ID=" + id, null);
                         Intent i = new Intent(familydetail.this, family.class);
                         startActivity(i);
                         finish();

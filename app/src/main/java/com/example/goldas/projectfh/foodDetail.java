@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
+import android.text.Editable;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
@@ -24,10 +25,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class foodDetail extends Activity implements View.OnClickListener {
     SQLiteDatabase db ;
     DBhelper dbhelper;
     int id;
+    EditText amount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +41,7 @@ public class foodDetail extends Activity implements View.OnClickListener {
 
         EditText kind = (EditText) findViewById(R.id.et_ikind);
         EditText name = (EditText) findViewById(R.id.et_iname);
-        EditText amount = (EditText) findViewById(R.id.et_iamount);
+        amount = (EditText) findViewById(R.id.et_iamount);
         EditText unit = (EditText) findViewById(R.id.et_iunit);
         EditText buyday = (EditText) findViewById(R.id.et_ibuyday);
         EditText limitday = (EditText) findViewById(R.id.et_ilimitday);
@@ -106,7 +109,30 @@ public class foodDetail extends Activity implements View.OnClickListener {
         buttondelete.setOnClickListener(new ImageButton.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showAlert("警告", "是否刪除此筆資料？");
+                showAlert("警告", "是否確定刪除此筆資料？");
+            }
+        });
+
+        final ImageButton buttontrue = (ImageButton)findViewById(R.id.btn_itrue);
+        buttontrue.setOnClickListener(new ImageButton.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ("".equals(amount.getText().toString().trim())) {
+                    showAlert2("錯誤資訊", "數量尚未輸入");
+                }else{
+                    showAlert3("警告", "是否確定編輯此筆資料？");
+                }
+            }
+        });
+
+
+        ImageButton buttonrevise = (ImageButton)findViewById(R.id.btn_irevise);
+        buttonrevise.setOnClickListener(new ImageButton.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttontrue.setVisibility(View.VISIBLE);
+                amount.setEnabled(true);
+
             }
         });
 
@@ -229,6 +255,50 @@ public class foodDetail extends Activity implements View.OnClickListener {
                         SQLiteDatabase db = dbhelper.getWritableDatabase();
                         ContentValues values = new ContentValues();
                         long long1 = db.delete("icebox", " _id=" + id, null);
+                        Intent i = new Intent(foodDetail.this, icebox.class);
+                        startActivity(i);
+                        finish();
+                    }
+                });
+        alert.show();
+    }
+    private void showAlert2(String title,String context)
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(title);
+        alert.setMessage(context);
+        alert.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                    }
+                });
+        alert.show();
+    }
+    private void showAlert3(String title,String context)
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(title);
+        alert.setMessage(context);
+        alert.setNegativeButton("取消",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                    }
+                });
+        alert.setPositiveButton("確定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        SQLiteDatabase db = dbhelper.getWritableDatabase();
+                        ContentValues values = new ContentValues();
+                        values.put("quantity",amount.getText().toString());
+                        long long1 = db.update("icebox", values, "_ID=" + id, null);
                         Intent i = new Intent(foodDetail.this, icebox.class);
                         startActivity(i);
                         finish();

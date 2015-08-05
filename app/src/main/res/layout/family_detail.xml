@@ -31,6 +31,12 @@
             android:textSize="26dp"
             android:id="@+id/newfoooood" />
 
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon_true2"
+            android:id="@+id/btn_ftrue"
+            android:visibility="invisible" />
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -83,7 +89,6 @@
                     android:layout_marginLeft="10dp"
                     android:textSize="22dp"
                     android:enabled="false"
-                    android:editable="false"
                     android:gravity="center"
                     android:textColor="#000000"/>
 
@@ -138,7 +143,6 @@
                     android:inputType="number"
                     android:textSize="22dp"
                     android:enabled="false"
-                    android:editable="false"
                     android:gravity="center"
                     android:textColor="#000000"/>
 
@@ -173,7 +177,6 @@
                     android:inputType="number"
                     android:textSize="22dp"
                     android:enabled="false"
-                    android:editable="false"
                     android:gravity="center"
                     android:textColor="#000000"/>
 
