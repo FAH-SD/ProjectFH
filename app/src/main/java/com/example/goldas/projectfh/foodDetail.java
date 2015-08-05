@@ -109,7 +109,7 @@ public class foodDetail extends Activity implements View.OnClickListener {
                 showAlert("警告", "是否刪除此筆資料？");
             }
         });
-        
+
         // configure the SlidingMenu
         SlidingMenu menu = new SlidingMenu(this);
         menu.setMode(SlidingMenu.LEFT);

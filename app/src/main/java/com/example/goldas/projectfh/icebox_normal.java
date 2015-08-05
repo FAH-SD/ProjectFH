@@ -48,12 +48,13 @@ public class icebox_normal extends Activity implements View.OnClickListener{
                 try {
                     Cursor c = get(id);
                     Bundle bundle1 = new Bundle();
+                    bundle1.putInt("foodid", c.getInt(0));
                     bundle1.putString("foodkind", c.getString(1));
                     bundle1.putString("foodname", c.getString(2));
                     bundle1.putString("foodamount", c.getString(3));
                     bundle1.putString("foodbuyday", c.getString(5));
                     bundle1.putString("foodlimitday", c.getString(4));
-                    bundle1.putString("foodstroage", c.getString(6));
+                    bundle1.putString("foodstorage", c.getString(6));
                     Intent i = new Intent(icebox_normal.this, foodDetail.class);
                     i.putExtras(bundle1);
                     startActivity(i);
