@@ -30,6 +30,7 @@ import android.view.View.OnClickListener;
 import android.view.ContextMenu.ContextMenuInfo;
 
 import java.lang.reflect.Method;
+import java.sql.SQLException;
 
 /**
  * Created by Goldas on 2015/6/11.
@@ -53,11 +54,24 @@ public class family extends Activity implements View.OnClickListener{
         familyview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Bundle bundle1 = new Bundle();
-                bundle1.putString("membername", "123");
-                Intent i = new Intent(family.this, familydetail.class);
-                i.putExtras(bundle1);
-                startActivity(i);
+                cursor.moveToPosition(position);
+                try {
+                    Cursor c2 = get(id);
+                    Bundle bundle3 = new Bundle();
+                    bundle3.putInt("memberid", c2.getInt(0));
+                    bundle3.putString("membername", c2.getString(1));
+                    bundle3.putString("membersex", c2.getString(2));
+                    bundle3.putString("memberheight", c2.getString(3));
+                    bundle3.putString("memberweight", c2.getString(4));
+                    bundle3.putString("memberbirthyear", c2.getString(5));
+                    Intent i = new Intent(family.this, familydetail.class);
+                    i.putExtras(bundle3);
+                    startActivity(i);
+                    family.this.finish();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
 
             }
         });
@@ -120,6 +134,16 @@ public class family extends Activity implements View.OnClickListener{
 
         ImageView leftset = (ImageView)findViewById(R.id.leftset);
         leftset.setOnClickListener(this);
+
+    }
+
+    public Cursor get(long rowId) throws SQLException{
+        Cursor c = db.rawQuery("SELECT _id,name,sex,height,weight,birthyear from family WHERE _id="+ rowId, null);
+        if(c.getCount()>0){
+            c.moveToFirst();
+        }
+
+        return c;
 
     }
 

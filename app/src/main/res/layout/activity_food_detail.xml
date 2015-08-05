@@ -89,7 +89,10 @@
                     android:id="@+id/et_ikind"
                     android:layout_marginLeft="10dp"
                     android:textSize="22dp"
-                    android:editable="false"/>
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000" />
 
             </LinearLayout>
         </LinearLayout>
@@ -120,7 +123,10 @@
                     android:id="@+id/et_iname"
                     android:layout_marginLeft="10dp"
                     android:textSize="22dp"
-                    android:editable="false"/>
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
             </LinearLayout>
         </LinearLayout>
@@ -152,7 +158,10 @@
                     android:inputType="number"
                     android:layout_marginLeft="20dp"
                     android:textSize="26dp"
-                    android:editable="false"/>
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
                 <EditText
                     android:layout_width="80dp"
@@ -160,7 +169,10 @@
                     android:id="@+id/et_iunit"
                     android:layout_marginLeft="10dp"
                     android:textSize="22dp"
-                    android:editable="false"/>
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
             </LinearLayout>
         </LinearLayout>
@@ -191,7 +203,10 @@
                     android:id="@+id/et_ibuyday"
                     android:layout_marginLeft="10dp"
                     android:textSize="22dp"
-                    android:editable="false"/>
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -222,7 +237,10 @@
                     android:id="@+id/et_ilimitday"
                     android:layout_marginLeft="10dp"
                     android:textSize="22dp"
-                    android:editable="false"/>
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -253,7 +271,10 @@
                     android:id="@+id/et_iplace"
                     android:layout_marginLeft="10dp"
                     android:textSize="22dp"
-                    android:editable="false"/>
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
             </LinearLayout>
 
@@ -277,7 +298,10 @@
                     android:id="@+id/et_icondition"
                     android:layout_marginLeft="10dp"
                     android:textSize="22dp"
-                    android:editable="false"/>
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
             </LinearLayout>
         </LinearLayout>

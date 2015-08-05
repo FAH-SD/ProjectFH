@@ -59,6 +59,7 @@ public class icebox extends Activity implements View.OnClickListener {
                 try {
                     Cursor c = get(id);
                     Bundle bundle1 = new Bundle();
+                    bundle1.putInt("foodid", c.getInt(0));
                     bundle1.putString("foodkind", c.getString(1));
                     bundle1.putString("foodname", c.getString(2));
                     bundle1.putString("foodamount", c.getString(3));

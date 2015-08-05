@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/icon_back2"
-            android:id="@+id/btn_iback"
+            android:id="@+id/btn_fback"
             android:layout_weight="44"/>
 
         <TextView
@@ -36,14 +36,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/icon_revise"
-            android:id="@+id/btn_irevise"
+            android:id="@+id/btn_frevise"
             android:layout_weight="44"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/icon_delete"
-            android:id="@+id/btn_idelete"
+            android:id="@+id/btn_fdelete"
             android:layout_weight="44"/>
 
     </LinearLayout>
@@ -81,7 +81,11 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/et_fname"
                     android:layout_marginLeft="10dp"
-                    android:textSize="22dp"/>
+                    android:textSize="22dp"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
             </LinearLayout>
 
@@ -104,7 +108,11 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/et_fsex"
                     android:layout_marginLeft="10dp"
-                    android:textSize="22dp"/>
+                    android:textSize="22dp"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
             </LinearLayout>
 
@@ -128,14 +136,18 @@
                     android:id="@+id/et_fheight"
                     android:layout_marginLeft="20dp"
                     android:inputType="number"
-                    android:textSize="22dp"/>
+                    android:textSize="22dp"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="22dp"
                     android:text="公分"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
 
@@ -159,7 +171,11 @@
                     android:id="@+id/et_fweight"
                     android:layout_marginLeft="20dp"
                     android:inputType="number"
-                    android:textSize="22dp"/>
+                    android:textSize="22dp"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -198,7 +214,11 @@
                     android:id="@+id/et_fyear"
                     android:layout_marginLeft="10dp"
                     android:inputType="number"
-                    android:textSize="22dp"/>
+                    android:textSize="22dp"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -222,7 +242,11 @@
                     android:text="蛋類"
                     android:id="@+id/egg"
                     android:textSize="18dp"
-                    android:layout_toRightOf="@+id/allergy" />
+                    android:layout_toRightOf="@+id/allergy"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -230,7 +254,11 @@
                     android:text="魚類"
                     android:id="@+id/fish"
                     android:textSize="20dp"
-                    android:layout_toRightOf="@+id/egg" />
+                    android:layout_toRightOf="@+id/egg"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -238,7 +266,11 @@
                     android:text="花生"
                     android:id="@+id/peanut"
                     android:textSize="18dp"
-                    android:layout_toRightOf="@+id/fish" />
+                    android:layout_toRightOf="@+id/fish"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -247,7 +279,11 @@
                     android:id="@+id/nut"
                     android:textSize="18dp"
                     android:layout_toRightOf="@+id/allergy"
-                    android:layout_below="@+id/egg" />
+                    android:layout_below="@+id/egg"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
 
                 <TextView
@@ -267,7 +303,11 @@
                     android:id="@+id/shellfish"
                     android:textSize="18dp"
                     android:layout_below="@+id/fish"
-                    android:layout_toRightOf="@+id/nut" />
+                    android:layout_toRightOf="@+id/nut"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -276,7 +316,11 @@
                     android:id="@+id/beans"
                     android:textSize="18dp"
                     android:layout_toRightOf="@+id/shellfish"
-                    android:layout_below="@+id/peanut" />
+                    android:layout_below="@+id/peanut"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -285,7 +329,11 @@
                     android:id="@+id/milk"
                     android:textSize="18dp"
                     android:layout_below="@+id/nut"
-                    android:layout_toRightOf="@+id/allergy" />
+                    android:layout_toRightOf="@+id/allergy"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -294,7 +342,11 @@
                     android:id="@+id/chicken"
                     android:textSize="18dp"
                     android:layout_below="@+id/nut"
-                    android:layout_toRightOf="@+id/milk" />
+                    android:layout_toRightOf="@+id/milk"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -303,7 +355,11 @@
                     android:id="@+id/pork"
                     android:textSize="18dp"
                     android:layout_below="@+id/beans"
-                    android:layout_toRightOf="@+id/chicken" />
+                    android:layout_toRightOf="@+id/chicken"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -312,7 +368,11 @@
                     android:id="@+id/beef"
                     android:textSize="18dp"
                     android:layout_toRightOf="@+id/allergy"
-                    android:layout_below="@+id/milk" />
+                    android:layout_below="@+id/milk"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
 
             </RelativeLayout>
 
