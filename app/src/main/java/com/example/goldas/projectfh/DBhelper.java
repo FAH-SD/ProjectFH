@@ -12,12 +12,22 @@ import static com.example.goldas.projectfh.DBconstant.LIMITDATE;
 import static com.example.goldas.projectfh.DBconstant.QUANTITY;
 import static com.example.goldas.projectfh.DBconstant.STORAGEPLACE;
 import static com.example.goldas.projectfh.DBconstant.TABLE_NAME;
+import static com.example.goldas.projectfh.FDBconstant.ALLERGY1;
+import static com.example.goldas.projectfh.FDBconstant.ALLERGY2;
+import static com.example.goldas.projectfh.FDBconstant.ALLERGY3;
+import static com.example.goldas.projectfh.FDBconstant.ALLERGY4;
+import static com.example.goldas.projectfh.FDBconstant.ALLERGY5;
+import static com.example.goldas.projectfh.FDBconstant.ALLERGY6;
+import static com.example.goldas.projectfh.FDBconstant.ALLERGY7;
+import static com.example.goldas.projectfh.FDBconstant.ALLERGY8;
+import static com.example.goldas.projectfh.FDBconstant.ALLERGY9;
+import static com.example.goldas.projectfh.FDBconstant.ALLERGY10;
 import static com.example.goldas.projectfh.FDBconstant.BIRTHYEAR;
 import static com.example.goldas.projectfh.FDBconstant.FTABLE_NAME;
 import static com.example.goldas.projectfh.FDBconstant.HEIGHT;
 import static com.example.goldas.projectfh.FDBconstant.NAME;
-import static com.example.goldas.projectfh.FDBconstant.WEIGHT;
 import static com.example.goldas.projectfh.FDBconstant.SEX;
+import static com.example.goldas.projectfh.FDBconstant.WEIGHT;
 public class DBhelper extends SQLiteOpenHelper {
 
     private final static String DATABASE_NAME = "icebox.db";
@@ -45,7 +55,17 @@ public class DBhelper extends SQLiteOpenHelper {
                 SEX + " CHAR, " +
                 WEIGHT + " interger no null, " +
                 HEIGHT + " interger no null, " +
-                BIRTHYEAR + " interger no null );";
+                BIRTHYEAR + " interger no null, "+
+                ALLERGY1 + " CHAR, "+
+                ALLERGY2 + " CHAR, "+
+                ALLERGY3 + " CHAR, "+
+                ALLERGY4 + " CHAR, "+
+                ALLERGY5 + " CHAR, "+
+                ALLERGY6 + " CHAR, "+
+                ALLERGY7 + " CHAR, "+
+                ALLERGY8 + " CHAR, "+
+                ALLERGY9 + " CHAR, "+
+                ALLERGY10+"CHAR);";
         db.execSQL(INIT_TABLE1);}
 
     @Override

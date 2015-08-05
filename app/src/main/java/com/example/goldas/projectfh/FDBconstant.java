@@ -13,5 +13,17 @@ public interface FDBconstant extends BaseColumns {
     public static final String HEIGHT = "height";
     public static final String WEIGHT = "weight";
     public static final String BIRTHYEAR = "birthyear";
+    public static final String ALLERGY1 = "allergy1";
+    public static final String ALLERGY2 = "allergy2";
+    public static final String ALLERGY3 = "allergy3";
+    public static final String ALLERGY4 = "allergy4";
+    public static final String ALLERGY5 = "allergy5";
+    public static final String ALLERGY6 = "allergy6";
+    public static final String ALLERGY7 = "allergy7";
+    public static final String ALLERGY8 = "allergy8";
+    public static final String ALLERGY9 = "allergy9";
+    public static final String ALLERGY10 = "allergy10";
+
+
 
 }
