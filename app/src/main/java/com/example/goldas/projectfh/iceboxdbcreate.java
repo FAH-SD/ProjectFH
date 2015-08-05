@@ -307,7 +307,7 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
             else if ("".equals(quantity.getText().toString().trim())) {
                 showAlert("錯誤資訊", "數量尚未輸入");
             } else {
-                iceboxAlert("警告","是否確定新增此筆資料？");
+                iceboxAlert("提醒視窗","是否確定新增此筆資料？");
             }
         }
 

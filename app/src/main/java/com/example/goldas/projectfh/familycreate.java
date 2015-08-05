@@ -221,7 +221,7 @@ public class familycreate extends Activity  implements View.OnClickListener {
 
             if ("".equals(height.getText().toString().trim()) ||  "".equals(weight.getText().toString().trim()) || "".equals(birthyear.getText().toString().trim()) || "".equals(name.getText().toString().trim())) {
             }else{
-                familyAlert("警告","是否確定新增此筆資料？");
+                familyAlert("提醒視窗","是否確定新增此筆資料？");
             }
         }
 

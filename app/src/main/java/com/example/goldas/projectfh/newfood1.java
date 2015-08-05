@@ -44,6 +44,7 @@ public class newfood1 extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newfood1);
+
         ImageButton buttonback = (ImageButton)findViewById(R.id.btn_iback);
 buttonback.setOnClickListener(new ImageButton.OnClickListener() {
 @Override

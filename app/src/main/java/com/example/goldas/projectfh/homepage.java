@@ -112,7 +112,7 @@ public class homepage extends Activity implements View.OnClickListener{
         });
 
         // configure the SlidingMenu
-        SlidingMenu menu = new SlidingMenu(this);
+        final SlidingMenu menu = new SlidingMenu(this);
         menu.setMode(SlidingMenu.LEFT);
         menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
         menu.setShadowWidthRes(R.dimen.shadow_width);
@@ -121,6 +121,15 @@ public class homepage extends Activity implements View.OnClickListener{
         menu.setFadeDegree(0.35f);
         menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
         menu.setMenu(R.layout.activity_left_fragment);
+
+        ImageButton homemenu = (ImageButton) findViewById(R.id.homemenu);
+        homemenu.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                menu.showMenu();
+            }
+        });
 
 // 导航打开监听事件
         menu.setOnOpenListener(new SlidingMenu.OnOpenListener() {
@@ -183,6 +192,7 @@ public class homepage extends Activity implements View.OnClickListener{
             case R.id.leftsport:
                 Intent intentsport = new Intent();
                 intentsport.setClass(this, sport.class);
+                startActivity(intentsport);
                 break;
             case R.id.leftset:
                 Intent intentset = new Intent();

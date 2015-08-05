@@ -19,8 +19,8 @@
             <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:id="@+id/imageButton"
-                android:background="@drawable/icon_main"/>
+                android:id="@+id/homemenu"
+                android:background="@drawable/icon_main" />
 
             <TextView
                 android:layout_width="wrap_content"
