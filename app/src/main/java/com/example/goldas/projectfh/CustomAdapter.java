@@ -16,13 +16,13 @@ public class CustomAdapter extends ArrayAdapter {
     private ListViewItem[] objects;
     @Override
     public int getViewTypeCount() {
-        return 4;
+        return 2;
     }
     @Override
     public int getItemViewType(int position) {
         return objects[position].getType();
     }
-    public CustomAdapter(Context context, int txtitem, int txtquan, int txtunit, int resource, ListViewItem[] objects) {
+    public CustomAdapter(Context context, int resource, ListViewItem[] objects) {
         super(context, resource, objects);
         this.objects = objects;
     }

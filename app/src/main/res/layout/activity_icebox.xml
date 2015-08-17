@@ -116,6 +116,36 @@
             android:id="@+id/btn_ok" />
     </LinearLayout>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#c4e7f4e0">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_expired"
+            android:layout_marginLeft="20dp"
+            android:inputType="number"
+            android:textSize="20dp"
+            android:visibility="gone"
+            android:textColor="#ff0000"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview"
+            android:text="項食材已過期"
+            android:textSize="20dp"
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:textColor="#ff0000" />
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -128,8 +158,4 @@
 
     </RelativeLayout>
 
-
 </LinearLayout>
-
-
-

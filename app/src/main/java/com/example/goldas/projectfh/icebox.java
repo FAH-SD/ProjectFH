@@ -45,37 +45,69 @@ import java.util.Date;
 
 public class icebox extends Activity implements View.OnClickListener {
     private SQLiteDatabase db = null;
-    private Cursor cursor = null;
-    private SimpleCursorAdapter adapter = null;
+    Cursor cursor;
+    SimpleCursorAdapter adapter = null;
     Spinner type;
-    private ListView iceboxview;
+    ListView iceboxview;
     String choose ="";
+    int a = 0;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_icebox);
+        setContentView(R.layout.activity_iceboxtest);
         iceboxview = (ListView) findViewById(R.id.foodlist);
         type = (Spinner)findViewById(R.id.type);
         db = (new DBhelper(getApplicationContext()).getWritableDatabase());
-        
+        cursor = db.rawQuery("SELECT _id, kind, item, quantity, limitdate, buyingdate, storage, unit from icebox", null);
+        String ld;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        Date dt=new Date();
+        String dts=sdf.format(dt);
+        TextView tv_expired = (TextView) findViewById(R.id.tv_expired);
+        TextView textview = (TextView) findViewById(R.id.textview);
 
-        Button btn_ok = (Button) findViewById(R.id.btn_ok);
-        btn_ok.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                if(type.getSelectedItemPosition()==0){
-                    choose ="";
-                }
-                else{
-                    choose = " WHERE kind = " + type.getSelectedItem().toString();
-                }
+        final ListViewItem[] items = new ListViewItem[cursor.getCount()];
 
+
+
+        int rows_num = cursor.getCount();
+        if(rows_num != 0) {
+            //將指標移至第一筆資料
+            cursor.moveToFirst();
+
+            for(int i=0; i<rows_num; i++) {
+                ld = cursor.getString(4);
+                try {
+                    Date dt2 = sdf.parse(ld);
+                    Long ut2=dt2.getTime();
+                    Date dt3 = sdf.parse(dts);
+                    Long ut3=dt3.getTime();
+                    Long timeP2=ut2-ut3;//毫秒差
+                    Long day2=timeP2/1000*60*60*24;//日差
+                    if(day2<0){
+                        items[i] = new ListViewItem(cursor.getString(2), cursor.getString(3),cursor.getString(7),cursor.getString(4), CustomAdapter.TYPE_EXPIRED);
+                        a++;
+                    }else{
+                        items[i] = new ListViewItem(cursor.getString(2), cursor.getString(3),cursor.getString(7),cursor.getString(4), CustomAdapter.TYPE_FRESH);
+                    }
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                //將指標移至下一筆資料
+                cursor.moveToNext();
             }
-        });
-        cursor = db.rawQuery("SELECT * from icebox  " + choose, null);
-        adapter = new SimpleCursorAdapter(this, R.layout.teest, cursor, new String[]{"item","quantity","unit","limitdate"}, new int[]{ R.id.txtitem, R.id.txtquan,R.id.txtunit, R.id.txtld});
-        iceboxview.setAdapter(adapter);
+        }
+
+
+        if(a>0){
+            tv_expired.setVisibility(View.VISIBLE);
+            textview.setVisibility(View.VISIBLE);
+            tv_expired.setText(String.valueOf(a));
+        }
+
+        CustomAdapter customAdapter = new CustomAdapter(this, R.id.txtitem, items);
+        iceboxview.setAdapter(customAdapter);
         iceboxview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -95,13 +127,13 @@ public class icebox extends Activity implements View.OnClickListener {
                     i.putExtras(bundle1);
                     startActivity(i);
                     icebox.this.finish();
-
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
 
             }
         });
+
 
         ImageButton buttonback = (ImageButton) findViewById(R.id.btn_back);
         buttonback.setOnClickListener(new Button.OnClickListener() {
@@ -183,8 +215,6 @@ public class icebox extends Activity implements View.OnClickListener {
         });
 
 
-
-
         ImageView lefthome = (ImageView)findViewById(R.id.lefthome);
         lefthome.setOnClickListener(this);
 
@@ -210,7 +240,9 @@ public class icebox extends Activity implements View.OnClickListener {
         if(c.getCount()>0){
             c.moveToFirst();
         }
+
         return c;
+
     }
 
 
@@ -259,6 +291,8 @@ public class icebox extends Activity implements View.OnClickListener {
     }
 
 
+
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -267,25 +301,25 @@ public class icebox extends Activity implements View.OnClickListener {
     }
 
 
-    public static void setListViewHeightBasedOnChildren(ListView listView) {
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null) {
-            // pre-condition
-            return;
-        }
-
-        int totalHeight = listView.getPaddingTop() + listView.getPaddingBottom();
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            View listItem = listAdapter.getView(i, null, listView);
-            if (listItem instanceof ViewGroup) {
-                listItem.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, AbsListView.LayoutParams.WRAP_CONTENT));
-            }
-            listItem.measure(0, 0);
-            totalHeight += listItem.getMeasuredHeight();
-        }
-
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-        listView.setLayoutParams(params);
-    }
+//    public static void setListViewHeightBasedOnChildren(ListView listView) {
+//        ListAdapter listAdapter = listView.getAdapter();
+//        if (listAdapter == null) {
+//            // pre-condition
+//            return;
+//        }
+//
+//        int totalHeight = listView.getPaddingTop() + listView.getPaddingBottom();
+//        for (int i = 0; i < listAdapter.getCount(); i++) {
+//            View listItem = listAdapter.getView(i, null, listView);
+//            if (listItem instanceof ViewGroup) {
+//                listItem.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, AbsListView.LayoutParams.WRAP_CONTENT));
+//            }
+//            listItem.measure(0, 0);
+//            totalHeight += listItem.getMeasuredHeight();
+//        }
+//
+//        ViewGroup.LayoutParams params = listView.getLayoutParams();
+//        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+//        listView.setLayoutParams(params);
+//    }
 }

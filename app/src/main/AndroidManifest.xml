@@ -124,10 +124,6 @@
             android:label="@string/title_activity_dish_member"
             android:screenOrientation="portrait" >
         </activity>
-        <activity
-            android:name=".iceboxtest"
-            android:label="@string/title_activity_iceboxtest" >
-        </activity>
     </application>
 
 </manifest>

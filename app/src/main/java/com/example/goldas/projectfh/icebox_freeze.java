@@ -20,17 +20,26 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class icebox_freeze extends Activity implements View.OnClickListener{
     private SQLiteDatabase db = null;
     private Cursor cursor = null;
-    private SimpleCursorAdapter adapter = null;
+    SimpleCursorAdapter adapter = null;
+    Spinner type;
+    ListView iceboxview;
+    String choose ="";
+    int a = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +48,55 @@ public class icebox_freeze extends Activity implements View.OnClickListener{
 
         db = (new DBhelper(getApplicationContext()).getWritableDatabase());
         cursor = db.rawQuery("SELECT*FROM icebox WHERE storage =? ", new String[]{"冷凍"});
-        adapter = new SimpleCursorAdapter(this, R.layout.teest, cursor, new String[]{"item","quantity","unit","limitdate"}, new int[]{ R.id.txtitem, R.id.txtquan,R.id.txtunit, R.id.txtld});
-        ListView iceboxview = (ListView)findViewById(R.id.foodlist);
-        iceboxview.setAdapter(adapter);
+        String ld;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        Date dt=new Date();
+        String dts=sdf.format(dt);
+        TextView tv_expired = (TextView) findViewById(R.id.tv_expired);
+        TextView textview = (TextView) findViewById(R.id.textview);
 
+        final ListViewItem[] items = new ListViewItem[cursor.getCount()];
+
+
+
+        int rows_num = cursor.getCount();
+        if(rows_num != 0) {
+            //將指標移至第一筆資料
+            cursor.moveToFirst();
+
+            for(int i=0; i<rows_num; i++) {
+                ld = cursor.getString(4);
+                try {
+                    Date dt2 = sdf.parse(ld);
+                    Long ut2=dt2.getTime();
+                    Date dt3 = sdf.parse(dts);
+                    Long ut3=dt3.getTime();
+                    Long timeP2=ut2-ut3;//毫秒差
+                    Long day2=timeP2/1000*60*60*24;//日差
+                    if(day2<0){
+                        items[i] = new ListViewItem(cursor.getString(2), cursor.getString(3),cursor.getString(7),cursor.getString(4), CustomAdapter.TYPE_EXPIRED);
+                        a++;
+                    }else{
+                        items[i] = new ListViewItem(cursor.getString(2), cursor.getString(3),cursor.getString(7),cursor.getString(4), CustomAdapter.TYPE_FRESH);
+                    }
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                //將指標移至下一筆資料
+                cursor.moveToNext();
+            }
+        }
+
+
+        if(a>0){
+            tv_expired.setVisibility(View.VISIBLE);
+            textview.setVisibility(View.VISIBLE);
+            tv_expired.setText(String.valueOf(a));
+        }
+
+        CustomAdapter customAdapter = new CustomAdapter(this, R.id.txtitem, items);
+        iceboxview.setAdapter(customAdapter);
         iceboxview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -68,7 +122,6 @@ public class icebox_freeze extends Activity implements View.OnClickListener{
 
             }
         });
-
         ImageButton buttonback = (ImageButton) findViewById(R.id.btn_back);
         buttonback.setOnClickListener(new Button.OnClickListener() {
             @Override
