@@ -1,7 +1,18 @@
 package com.example.goldas.projectfh;
 
         import static android.provider.BaseColumns._ID;
+        import static com.example.goldas.projectfh.FDBconstant.ALLERGY1;
+        import static com.example.goldas.projectfh.FDBconstant.ALLERGY10;
+        import static com.example.goldas.projectfh.FDBconstant.ALLERGY2;
+        import static com.example.goldas.projectfh.FDBconstant.ALLERGY3;
+        import static com.example.goldas.projectfh.FDBconstant.ALLERGY4;
+        import static com.example.goldas.projectfh.FDBconstant.ALLERGY5;
+        import static com.example.goldas.projectfh.FDBconstant.ALLERGY6;
+        import static com.example.goldas.projectfh.FDBconstant.ALLERGY7;
+        import static com.example.goldas.projectfh.FDBconstant.ALLERGY8;
+        import static com.example.goldas.projectfh.FDBconstant.ALLERGY9;
         import static com.example.goldas.projectfh.FDBconstant.FTABLE_NAME;
+        import static com.example.goldas.projectfh.FDBconstant.HABIT;
         import static com.example.goldas.projectfh.FDBconstant.NAME;
         import static com.example.goldas.projectfh.FDBconstant.WEIGHT;
         import static com.example.goldas.projectfh.FDBconstant.HEIGHT;
@@ -23,6 +34,7 @@ package com.example.goldas.projectfh;
         import android.view.WindowManager;
         import android.view.View.OnClickListener;
         import android.widget.Button;
+        import android.widget.CheckBox;
         import android.widget.EditText;
         import android.widget.ImageButton;
         import android.widget.ImageView;
@@ -38,10 +50,12 @@ package com.example.goldas.projectfh;
 public class familycreate extends Activity  implements View.OnClickListener {
     static String tablename = "family";
     private EditText name, height, weight, birthyear;
-    private Spinner sex;
+    private Spinner sex, habit;
     private ImageButton submit, reset, back;
+    private CheckBox egg, fish, peanut, nut, shellfish, beans, milk, chicken, pork, beef;
     SQLiteDatabase dbrw;
     DBhelper dbhelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,9 +117,6 @@ public class familycreate extends Activity  implements View.OnClickListener {
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.lefthome:
-                Intent intenthomepage = new Intent();
-                intenthomepage.setClass(this, homepage.class);
-                startActivity(intenthomepage);
                 this.finish();
                 break;
             case R.id.leftfamily:
@@ -174,6 +185,18 @@ public class familycreate extends Activity  implements View.OnClickListener {
         submit = (ImageButton)findViewById(R.id.btn_itrue);
         reset = (ImageButton)findViewById(R.id.btn_idelete);
         back = (ImageButton)findViewById(R.id.btn_iback);
+        habit =(Spinner)findViewById(R.id.sp_fhabit);
+
+        egg = (CheckBox)findViewById(R.id.egg);
+        fish = (CheckBox)findViewById(R.id.fish);
+        peanut = (CheckBox)findViewById(R.id. peanut);
+        nut = (CheckBox)findViewById(R.id.nut);
+        shellfish = (CheckBox)findViewById(R.id.shellfish);
+        beans = (CheckBox)findViewById(R.id.beans);
+        milk = (CheckBox)findViewById(R.id.milk);
+        chicken = (CheckBox)findViewById(R.id.chicken);
+        pork = (CheckBox)findViewById(R.id.pork);
+        beef = (CheckBox)findViewById(R.id.beef);
     }
     private void setListeners(){
         submit.setOnClickListener(new submit_ButtonClickListener());
@@ -182,6 +205,8 @@ public class familycreate extends Activity  implements View.OnClickListener {
         back.setOnClickListener(new back_ButtonClickListener());
     }
 
+
+    String a1, a2, a3, a4, a5, a6, a7, a8, a9, a10;
     class submit_ButtonClickListener implements OnClickListener{
         public void onClick(View v) {
 
@@ -218,7 +243,56 @@ public class familycreate extends Activity  implements View.OnClickListener {
             } catch (NumberFormatException e3) {
                 showAlert("錯誤資訊", "出生年尚未輸入");
             }
-
+            if(egg.isChecked()){
+                a1 = "1";
+            }else{
+                a1 = "0";
+            }
+            if(fish.isChecked()){
+                a2 = "1";
+            }else{
+                a2 = "0";
+            }
+            if(peanut.isChecked()){
+                a3 = "1";
+            }else{
+                a3 = "0";
+            }
+            if(nut.isChecked()){
+                a4 = "1";
+            }else{
+                a4 = "0";
+            }
+            if(shellfish.isChecked()){
+                a5 = "1";
+            }else{
+                a5 = "0";
+            }
+            if(beans.isChecked()){
+                a6 = "1";
+            }else{
+                a6 = "0";
+            }
+            if(milk.isChecked()){
+                a7 = "1";
+            }else{
+                a7 = "0";
+            }
+            if(chicken.isChecked()){
+                a8 = "1";
+            }else{
+                a8 = "0";
+            }
+            if(pork.isChecked()){
+                a9 = "1";
+            }else{
+                a9 = "0";
+            }
+            if(beef.isChecked()){
+                a10 = "1";
+            }else{
+                a10 = "0";
+            }
             if ("".equals(height.getText().toString().trim()) ||  "".equals(weight.getText().toString().trim()) || "".equals(birthyear.getText().toString().trim()) || "".equals(name.getText().toString().trim())) {
             }else{
                 familyAlert("提醒視窗","是否確定新增此筆資料？");
@@ -323,6 +397,17 @@ public class familycreate extends Activity  implements View.OnClickListener {
                         values.put(WEIGHT, weight.getText().toString());
                         values.put(HEIGHT, height.getText().toString());
                         values.put(BIRTHYEAR, birthyear.getText().toString());
+                        values.put(ALLERGY1, a1);
+                        values.put(ALLERGY2, a2);
+                        values.put(ALLERGY3, a3);
+                        values.put(ALLERGY4, a4);
+                        values.put(ALLERGY5, a5);
+                        values.put(ALLERGY6, a6);
+                        values.put(ALLERGY7, a7);
+                        values.put(ALLERGY8, a8);
+                        values.put(ALLERGY9, a9);
+                        values.put(ALLERGY10, a10);
+                        values.put(HABIT, habit.getSelectedItem().toString());
                         db.insert(FTABLE_NAME, null, values);
 //                        切換頁面
 //                        Toast.makeText(v.getContext(), "已新增輸入家庭資料", Toast.LENGTH_LONG).show();

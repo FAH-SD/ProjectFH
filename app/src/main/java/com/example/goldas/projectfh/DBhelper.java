@@ -12,6 +12,7 @@ import static com.example.goldas.projectfh.DBconstant.LIMITDATE;
 import static com.example.goldas.projectfh.DBconstant.QUANTITY;
 import static com.example.goldas.projectfh.DBconstant.STORAGEPLACE;
 import static com.example.goldas.projectfh.DBconstant.TABLE_NAME;
+import static com.example.goldas.projectfh.DBconstant.UNIT;
 import static com.example.goldas.projectfh.FDBconstant.ALLERGY1;
 import static com.example.goldas.projectfh.FDBconstant.ALLERGY2;
 import static com.example.goldas.projectfh.FDBconstant.ALLERGY3;
@@ -24,6 +25,7 @@ import static com.example.goldas.projectfh.FDBconstant.ALLERGY9;
 import static com.example.goldas.projectfh.FDBconstant.ALLERGY10;
 import static com.example.goldas.projectfh.FDBconstant.BIRTHYEAR;
 import static com.example.goldas.projectfh.FDBconstant.FTABLE_NAME;
+import static com.example.goldas.projectfh.FDBconstant.HABIT;
 import static com.example.goldas.projectfh.FDBconstant.HEIGHT;
 import static com.example.goldas.projectfh.FDBconstant.NAME;
 import static com.example.goldas.projectfh.FDBconstant.SEX;
@@ -46,7 +48,8 @@ public class DBhelper extends SQLiteOpenHelper {
                 QUANTITY + " interger no null, " +
                 BUYINGDATE + " DATE no null, " +
                 LIMITDATE + " DATE no null, " +
-                STORAGEPLACE + " CHAR );";
+                STORAGEPLACE + " CHAR, " +
+                UNIT + " CHAR );";
         db.execSQL(INIT_TABLE);
 
         final String INIT_TABLE1 = "CREATE TABLE " + FTABLE_NAME + " (" +
@@ -65,7 +68,8 @@ public class DBhelper extends SQLiteOpenHelper {
                 ALLERGY7 + " CHAR, "+
                 ALLERGY8 + " CHAR, "+
                 ALLERGY9 + " CHAR, "+
-                ALLERGY10+"CHAR);";
+                ALLERGY10 + " CHAR,"+
+                HABIT + " CHAR); ";
         db.execSQL(INIT_TABLE1);}
 
     @Override

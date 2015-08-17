@@ -23,6 +23,7 @@ public interface FDBconstant extends BaseColumns {
     public static final String ALLERGY8 = "allergy8";
     public static final String ALLERGY9 = "allergy9";
     public static final String ALLERGY10 = "allergy10";
+    public static final String HABIT = "habit";
 
 
 

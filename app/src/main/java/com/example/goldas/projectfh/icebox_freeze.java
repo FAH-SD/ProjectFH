@@ -39,7 +39,7 @@ public class icebox_freeze extends Activity implements View.OnClickListener{
 
         db = (new DBhelper(getApplicationContext()).getWritableDatabase());
         cursor = db.rawQuery("SELECT*FROM icebox WHERE storage =? ", new String[]{"冷凍"});
-        adapter = new SimpleCursorAdapter(this, R.layout.teest, cursor, new String[]{"kind","item","quantity","buyingdate","limitdate","storage"}, new int[]{R.id.txtkind, R.id.txtitem, R.id.txtquan, R.id.txtbd, R.id.txtld, R.id.txts});
+        adapter = new SimpleCursorAdapter(this, R.layout.teest, cursor, new String[]{"item","quantity","unit","limitdate"}, new int[]{ R.id.txtitem, R.id.txtquan,R.id.txtunit, R.id.txtld});
         ListView iceboxview = (ListView)findViewById(R.id.foodlist);
         iceboxview.setAdapter(adapter);
 
@@ -57,6 +57,7 @@ public class icebox_freeze extends Activity implements View.OnClickListener{
                     bundle1.putString("foodbuyday", c.getString(5));
                     bundle1.putString("foodlimitday", c.getString(4));
                     bundle1.putString("foodstorage", c.getString(6));
+                    bundle1.putString("foodunit", c.getString(7));
                     Intent i = new Intent(icebox_freeze.this, foodDetail.class);
                     i.putExtras(bundle1);
                     startActivity(i);
@@ -65,6 +66,15 @@ public class icebox_freeze extends Activity implements View.OnClickListener{
                     e.printStackTrace();
                 }
 
+            }
+        });
+
+        ImageButton buttonback = (ImageButton) findViewById(R.id.btn_back);
+        buttonback.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                icebox_freeze.this.finish();
             }
         });
 
@@ -158,7 +168,7 @@ public class icebox_freeze extends Activity implements View.OnClickListener{
     }
 
     public Cursor get(long rowId) throws SQLException{
-        Cursor c = db.rawQuery("SELECT _id,kind,item,quantity,limitdate,buyingdate,storage from icebox WHERE _id="+ rowId, null);
+        Cursor c = db.rawQuery("SELECT _id,kind,item,quantity,limitdate,buyingdate,storage,unit from icebox WHERE _id="+ rowId, null);
         if(c.getCount()>0){
             c.moveToFirst();
         }
@@ -171,9 +181,6 @@ public class icebox_freeze extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.lefthome:
-                Intent intenthomepage = new Intent();
-                intenthomepage.setClass(this, homepage.class);
-                startActivity(intenthomepage);
                 this.finish();
                 break;
             case R.id.leftfamily:

@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -21,6 +23,16 @@ public class set extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set);
+
+
+        ImageButton buttonback = (ImageButton) findViewById(R.id.btn_back);
+        buttonback.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                set.this.finish();
+            }
+        });
 
         // configure the SlidingMenu
         SlidingMenu menu = new SlidingMenu(this);
@@ -72,9 +84,6 @@ public class set extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.lefthome:
-                Intent intenthomepage = new Intent();
-                intenthomepage.setClass(this, homepage.class);
-                startActivity(intenthomepage);
                 this.finish();
                 break;
             case R.id.leftfamily:

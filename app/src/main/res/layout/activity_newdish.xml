@@ -11,10 +11,10 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff8993c">
+        android:background="#fff87a40">
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@drawable/icon_back2"
             android:id="@+id/btn_back"
             android:layout_weight="44"/>
@@ -51,17 +51,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="成員"
-            android:id="@+id/textView6"
             android:layout_marginLeft="20dp"
             android:textSize="24dp"/>
 
         <Button
-            android:layout_width="45dp"
+            android:layout_width="90dp"
             android:layout_height="40dp"
-            android:text="+"
-            android:id="@+id/button"
+            android:text="+選取"
+            android:id="@+id/btn_member"
             android:background="#fffff57d"
             android:textSize="26dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="共"
+            android:layout_marginLeft="50dp"
+            android:textSize="24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="24dp"
+            android:id="@+id/tv_amount" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="人"
+            android:textSize="24dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -73,9 +92,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/member"
+            android:id="@+id/tv_member"
             android:layout_marginLeft="20dp"
-            android:text="尚無成員"
+            android:text="尚未選取成員"
             android:textSize="24dp"
             android:textStyle="bold"/>
     </LinearLayout>

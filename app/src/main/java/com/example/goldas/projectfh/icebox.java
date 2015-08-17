@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -24,34 +25,57 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.view.View.OnClickListener;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class icebox extends Activity implements View.OnClickListener {
     private SQLiteDatabase db = null;
     private Cursor cursor = null;
     private SimpleCursorAdapter adapter = null;
-
-
+    Spinner type;
+    private ListView iceboxview;
+    String choose ="";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_icebox);
+        iceboxview = (ListView) findViewById(R.id.foodlist);
+        type = (Spinner)findViewById(R.id.type);
         db = (new DBhelper(getApplicationContext()).getWritableDatabase());
-        cursor = db.rawQuery("SELECT _id,kind,item,quantity,limitdate,buyingdate,storage from icebox", null);
-        adapter = new SimpleCursorAdapter(this, R.layout.teest, cursor, new String[]{"kind","item","quantity","buyingdate","limitdate","storage"}, new int[]{R.id.txtkind, R.id.txtitem, R.id.txtquan, R.id.txtbd, R.id.txtld, R.id.txts});
-        ListView iceboxview = (ListView)findViewById(R.id.foodlist);
+        
+
+        Button btn_ok = (Button) findViewById(R.id.btn_ok);
+        btn_ok.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                if(type.getSelectedItemPosition()==0){
+                    choose ="";
+                }
+                else{
+                    choose = " WHERE kind = " + type.getSelectedItem().toString();
+                }
+
+            }
+        });
+        cursor = db.rawQuery("SELECT * from icebox  " + choose, null);
+        adapter = new SimpleCursorAdapter(this, R.layout.teest, cursor, new String[]{"item","quantity","unit","limitdate"}, new int[]{ R.id.txtitem, R.id.txtquan,R.id.txtunit, R.id.txtld});
         iceboxview.setAdapter(adapter);
-
-
         iceboxview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -66,6 +90,7 @@ public class icebox extends Activity implements View.OnClickListener {
                     bundle1.putString("foodbuyday", c.getString(5));
                     bundle1.putString("foodlimitday", c.getString(4));
                     bundle1.putString("foodstorage", c.getString(6));
+                    bundle1.putString("foodunit", c.getString(7));
                     Intent i = new Intent(icebox.this, foodDetail.class);
                     i.putExtras(bundle1);
                     startActivity(i);
@@ -78,6 +103,14 @@ public class icebox extends Activity implements View.OnClickListener {
             }
         });
 
+        ImageButton buttonback = (ImageButton) findViewById(R.id.btn_back);
+        buttonback.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                icebox.this.finish();
+            }
+        });
 
         Button buttonadd = (Button) findViewById(R.id.add);
         buttonadd.setOnClickListener(new Button.OnClickListener() {
@@ -150,6 +183,8 @@ public class icebox extends Activity implements View.OnClickListener {
         });
 
 
+
+
         ImageView lefthome = (ImageView)findViewById(R.id.lefthome);
         lefthome.setOnClickListener(this);
 
@@ -171,22 +206,18 @@ public class icebox extends Activity implements View.OnClickListener {
     }
 
     public Cursor get(long rowId) throws SQLException{
-        Cursor c = db.rawQuery("SELECT _id,kind,item,quantity,limitdate,buyingdate,storage from icebox WHERE _id="+ rowId, null);
+        Cursor c = db.rawQuery("SELECT _id,kind,item,quantity,limitdate,buyingdate,storage,unit from icebox WHERE _id="+ rowId, null);
         if(c.getCount()>0){
             c.moveToFirst();
         }
-
         return c;
-
     }
+
 
     @Override
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.lefthome:
-                Intent intenthomepage = new Intent();
-                intenthomepage.setClass(this, homepage.class);
-                startActivity(intenthomepage);
                 this.finish();
                 break;
             case R.id.leftfamily:

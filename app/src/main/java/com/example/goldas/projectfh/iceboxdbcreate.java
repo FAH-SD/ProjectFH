@@ -55,6 +55,7 @@ import static com.example.goldas.projectfh.DBconstant.LIMITDATE;
 import static com.example.goldas.projectfh.DBconstant.QUANTITY;
 import static com.example.goldas.projectfh.DBconstant.STORAGEPLACE;
 import static com.example.goldas.projectfh.DBconstant.TABLE_NAME;
+import static com.example.goldas.projectfh.DBconstant.UNIT;
 
 public class iceboxdbcreate extends Activity implements View.OnClickListener{
     private int bYear, bMonth, bDay;
@@ -67,6 +68,7 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
     private TextView tv_buyday;
     private TextView tv_limitday;
     private Spinner editstorage;
+    private Spinner unit;
     SQLiteDatabase dbrw;
     DBhelper dbhelper;
     private ImageButton btnitrue;
@@ -189,9 +191,6 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.lefthome:
-                Intent intenthomepage = new Intent();
-                intenthomepage.setClass(this, homepage.class);
-                startActivity(intenthomepage);
                 this.finish();
                 break;
             case R.id.leftfamily:
@@ -261,6 +260,7 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
         tv_limitday = (TextView) findViewById(R.id.tv_limitday);
         editstorage = (Spinner) findViewById(R.id.sp_iplace);
         btnitrue = (ImageButton) findViewById(R.id.btn_itrue);
+        unit = (Spinner) findViewById(R.id.sp_iunit);
 
         //btnUpdate = (Button) findViewById(R.id.btnUpdate);
 //        btnitrue.setOnClickListener(this);
@@ -477,6 +477,7 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
                         values.put(BUYINGDATE, tv_buyday.getText().toString());
                         values.put(LIMITDATE, tv_limitday.getText().toString());
                         values.put(STORAGEPLACE, editstorage.getSelectedItem().toString());
+                        values.put(UNIT, unit.getSelectedItem().toString());
                         db.insert(TABLE_NAME, null, values);
 //
 //                        切換頁面

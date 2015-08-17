@@ -12,13 +12,13 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff8993c">
+        android:background="#fff87a40">
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/imageButton"
-            android:background="@drawable/icon_dishes"/>
+            android:id="@+id/btn_back"
+            android:background="@drawable/icon_back2"/>
 
         <TextView
             android:layout_width="wrap_content"

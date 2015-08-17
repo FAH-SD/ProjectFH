@@ -16,6 +16,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,6 +24,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -64,6 +66,17 @@ public class family extends Activity implements View.OnClickListener{
                     bundle3.putString("memberheight", c2.getString(3));
                     bundle3.putString("memberweight", c2.getString(4));
                     bundle3.putString("memberbirthyear", c2.getString(5));
+                    bundle3.putString("allergyegg", c2.getString(6));
+                    bundle3.putString("allergyfish", c2.getString(7));
+                    bundle3.putString("allergypeanut", c2.getString(8));
+                    bundle3.putString("allergynut", c2.getString(9));
+                    bundle3.putString("allergyshellfish", c2.getString(10));
+                    bundle3.putString("allergybeans", c2.getString(11));
+                    bundle3.putString("allergymilk", c2.getString(12));
+                    bundle3.putString("allergychicken", c2.getString(13));
+                    bundle3.putString("allergypork", c2.getString(14));
+                    bundle3.putString("allergybeef", c2.getString(15));
+                    bundle3.putString("memberhabit", c2.getString(16));
                     Intent i = new Intent(family.this, familydetail.class);
                     i.putExtras(bundle3);
                     startActivity(i);
@@ -90,7 +103,14 @@ public class family extends Activity implements View.OnClickListener{
         });
 
 
-
+        ImageButton buttonback = (ImageButton) findViewById(R.id.btn_back);
+        buttonback.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                family.this.finish();
+            }
+        });
         // configure the SlidingMenu
         SlidingMenu menu = new SlidingMenu(this);
         menu.setMode(SlidingMenu.LEFT);
@@ -138,7 +158,7 @@ public class family extends Activity implements View.OnClickListener{
     }
 
     public Cursor get(long rowId) throws SQLException{
-        Cursor c = db.rawQuery("SELECT _id,name,sex,height,weight,birthyear from family WHERE _id="+ rowId, null);
+        Cursor c = db.rawQuery("SELECT _id,name,sex,height,weight,birthyear,allergy1,allergy2,allergy3,allergy4,allergy5,allergy6,allergy7,allergy8,allergy9,allergy10,habit from family WHERE _id="+ rowId, null);
         if(c.getCount()>0){
             c.moveToFirst();
         }
@@ -151,9 +171,6 @@ public class family extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.lefthome:
-                Intent intenthomepage = new Intent();
-                intenthomepage.setClass(this, homepage.class);
-                startActivity(intenthomepage);
                 this.finish();
                 break;
             case R.id.leftfamily:

@@ -17,8 +17,8 @@
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/imageButton"
-            android:background="@drawable/icon_icebox"/>
+            android:id="@+id/btn_back"
+            android:background="@drawable/icon_back2"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -56,9 +56,10 @@
             android:layout_height="wrap_content"
             android:text="全部"
             android:id="@+id/all"
-            android:background="#c4ffc307"
+            android:background="#c4b8f4bc"
             android:textSize="18dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="#ff5b9d" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -66,9 +67,8 @@
             android:layout_height="wrap_content"
             android:text="冷凍"
             android:id="@+id/freezer"
-            android:background="#3e81ff10"
-            android:textSize="18dp"
-            android:textStyle="bold"/>
+            android:background="#c4b1ebff"
+            android:textSize="18dp" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -76,9 +76,8 @@
             android:layout_height="wrap_content"
             android:text="冷藏"
             android:id="@+id/fridge"
-            android:background="#ff6cd1a5"
-            android:textSize="18dp"
-            android:textStyle="bold"/>
+            android:background="#fcecae"
+            android:textSize="18dp" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -86,16 +85,41 @@
             android:layout_height="wrap_content"
             android:text="常溫"
             android:id="@+id/normal"
-            android:background="#ff24934d"
-            android:textSize="18dp"
-            android:textStyle="bold"/>
+            android:background="#ffd6f2"
+            android:textSize="18dp" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#c4e7f4e0">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="種類："
+            android:textSize="22dp"
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp" />
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/type"
+            android:entries="@array/type"/>
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="OK"
+            android:id="@+id/btn_ok" />
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#c4ffc307">
+        android:background="#c4e7f4e0">
 
         <ListView
             android:layout_width="wrap_content"
@@ -103,6 +127,7 @@
             android:id="@+id/foodlist" />
 
     </RelativeLayout>
+
 
 </LinearLayout>
 

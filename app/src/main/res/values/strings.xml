@@ -28,6 +28,23 @@
         <item>錢</item>
     </string-array>
 
+    <string-array name="habit">
+        <item>葷食</item>
+        <item>全素</item>
+        <item>蛋素</item>
+        <item>奶素</item>
+        <item>蛋奶素</item>
+    </string-array>
+    <string-array name="type">
+        <item>全部</item>
+        <item>五穀根莖類</item>
+        <item>蛋豆魚肉類</item>
+        <item>蔬菜類</item>
+        <item>水果類</item>
+        <item>奶類</item>
+        <item>油脂類</item>
+    </string-array>
+
     <string name="title_activity_newfood_camara">newfood_camara</string>
     <string name="title_activity_newfood_freezer">newfood_freezer</string>
     <string name="title_activity_newfood_fidge">newfood_fidge</string>
@@ -65,5 +82,11 @@
     <string name="title_activity_right_fragment">rightFragment</string>
     <string name="title_activity_family_detail">FamilyDetail</string>
     <string name="title_activity_food_detail">foodDetail</string>
+    <string name="title_activity_newsport1">newsport1</string>
+    <string name="title_activity_newsport2">newsport2</string>
+    <string name="title_activity_eating_member">EatingMember</string>
+    <string name="title_activity_dish_menber">DishMenber</string>
+    <string name="title_activity_dish_member">DishMember</string>
+    <string name="title_activity_iceboxtest">iceboxtest</string>
 
 </resources>

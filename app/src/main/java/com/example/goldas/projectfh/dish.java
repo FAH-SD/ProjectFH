@@ -24,12 +24,25 @@ public class dish extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dish);
 
+        ImageButton buttonback = (ImageButton) findViewById(R.id.btn_back);
+        buttonback.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                dish.this.finish();
+            }
+        });
+
         Button buttonadd = (Button)findViewById(R.id.add);
         buttonadd.setOnClickListener(new ImageButton.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent();
                 intent1.setClass(dish.this, newdish.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("member","尚未選取成員");
+                bundle.putString("amount","0");
+                intent1.putExtras(bundle);
                 startActivity(intent1);
                 dish.this.finish();
             }
@@ -86,9 +99,6 @@ public class dish extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.lefthome:
-                Intent intenthomepage = new Intent();
-                intenthomepage.setClass(this, homepage.class);
-                startActivity(intenthomepage);
                 this.finish();
                 break;
             case R.id.leftfamily:

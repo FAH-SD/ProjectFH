@@ -14,4 +14,5 @@ public interface DBconstant extends BaseColumns {
     public static final String LIMITDATE = "limitdate";
     public static final String BUYINGDATE = "buyingdate";
     public static final String STORAGEPLACE = "storage";
+    public static final String UNIT = "unit";
 }

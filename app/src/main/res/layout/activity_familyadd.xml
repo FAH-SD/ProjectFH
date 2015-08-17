@@ -217,11 +217,36 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe0a9ff">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="飲食習慣"
+                    android:textSize="22dp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"/>
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/habit"
+                    android:spinnerMode="dialog"
+                    android:id="@+id/sp_fhabit"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="22dp"
+                    android:theme="@style/Base.AlertDialog.AppCompat"/>
+
+
+            </LinearLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#ffe0a9ff">
+                    android:background="#ffe9e9e9">
 
 
                         <CheckBox

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
@@ -24,6 +25,11 @@ public class newdish extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newdish);
         ImageButton btnback = (ImageButton)findViewById(R.id.btn_back);
+        TextView tv_member = (TextView)findViewById(R.id.tv_member);
+        TextView tv_amount = (TextView)findViewById(R.id.tv_amount);
+        Bundle bundle2 = this.getIntent().getExtras();
+        tv_member.setText(bundle2.getString("member"));
+        tv_amount.setText(bundle2.getString("amount"));
         btnback.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,6 +39,20 @@ public class newdish extends Activity implements View.OnClickListener{
                 newdish.this.finish();
             }
         });
+
+        Button btn_member = (Button)findViewById(R.id.btn_member);
+        btn_member.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent();
+                intent1.setClass(newdish.this, DishMember.class);
+                startActivity(intent1);
+                newdish.this.finish();
+            }
+        });
+
+
+
 
         // configure the SlidingMenu
         SlidingMenu menu = new SlidingMenu(this);
@@ -84,9 +104,6 @@ public class newdish extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.lefthome:
-                Intent intenthomepage = new Intent();
-                intenthomepage.setClass(this, homepage.class);
-                startActivity(intenthomepage);
                 this.finish();
                 break;
             case R.id.leftfamily:

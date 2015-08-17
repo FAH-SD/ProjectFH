@@ -18,12 +18,18 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
 import android.text.Editable;
+import android.widget.Spinner;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.jar.Attributes;
+
+import static com.example.goldas.projectfh.DBconstant.QUANTITY;
+import static com.example.goldas.projectfh.DBconstant.STORAGEPLACE;
+import static com.example.goldas.projectfh.DBconstant.UNIT;
 
 
 public class foodDetail extends Activity implements View.OnClickListener {
@@ -31,6 +37,7 @@ public class foodDetail extends Activity implements View.OnClickListener {
     DBhelper dbhelper;
     int id;
     EditText amount;
+    Spinner sp_unit, sp_place;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +49,13 @@ public class foodDetail extends Activity implements View.OnClickListener {
         EditText kind = (EditText) findViewById(R.id.et_ikind);
         EditText name = (EditText) findViewById(R.id.et_iname);
         amount = (EditText) findViewById(R.id.et_iamount);
-        EditText unit = (EditText) findViewById(R.id.et_iunit);
+        final EditText unit = (EditText) findViewById(R.id.et_iunit);
         EditText buyday = (EditText) findViewById(R.id.et_ibuyday);
         EditText limitday = (EditText) findViewById(R.id.et_ilimitday);
-        EditText place = (EditText) findViewById(R.id.et_iplace);
+        final EditText place = (EditText) findViewById(R.id.et_iplace);
         EditText condition = (EditText) findViewById(R.id.et_icondition);
-
+        sp_unit = (Spinner)findViewById(R.id.sp_iunit);
+        sp_place = (Spinner)findViewById(R.id.sp_iplace);
         Bundle bundle2=this.getIntent().getExtras();
 
         kind.setText(bundle2.getString("foodkind"));
@@ -57,6 +65,7 @@ public class foodDetail extends Activity implements View.OnClickListener {
         buyday.setText(bundle2.getString("foodbuyday"));
         limitday.setText(bundle2.getString("foodlimitday"));
         place.setText(bundle2.getString("foodstorage"));
+        unit.setText(bundle2.getString("foodunit"));
         id = bundle2.getInt("foodid");
         //定義時間格式
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
@@ -131,6 +140,10 @@ public class foodDetail extends Activity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 buttontrue.setVisibility(View.VISIBLE);
+                sp_unit.setVisibility(View.VISIBLE);
+                sp_place.setVisibility(View.VISIBLE);
+                unit.setVisibility(View.GONE);
+                place.setVisibility(View.GONE);
                 amount.setEnabled(true);
 
             }
@@ -193,9 +206,6 @@ public class foodDetail extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.lefthome:
-                Intent intenthomepage = new Intent();
-                intenthomepage.setClass(this, homepage.class);
-                startActivity(intenthomepage);
                 this.finish();
                 break;
             case R.id.leftfamily:
@@ -297,7 +307,9 @@ public class foodDetail extends Activity implements View.OnClickListener {
                         // TODO Auto-generated method stub
                         SQLiteDatabase db = dbhelper.getWritableDatabase();
                         ContentValues values = new ContentValues();
-                        values.put("quantity",amount.getText().toString());
+                        values.put(QUANTITY, amount.getText().toString());
+                        values.put(UNIT, sp_unit.getSelectedItem().toString());
+                        values.put(STORAGEPLACE, sp_place.getSelectedItem().toString());
                         long long1 = db.update("icebox", values, "_ID=" + id, null);
                         Intent i = new Intent(foodDetail.this, icebox.class);
                         startActivity(i);

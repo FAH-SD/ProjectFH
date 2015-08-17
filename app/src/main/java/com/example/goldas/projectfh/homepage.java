@@ -74,7 +74,7 @@ public class homepage extends Activity implements View.OnClickListener{
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 Intent intent2 = new Intent();
-                intent2.setClass(homepage.this, icebox.class);
+                intent2.setClass(homepage.this, iceboxtest.class);
                 startActivity(intent2);
             }
         });
@@ -170,9 +170,6 @@ public class homepage extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.lefthome:
-                Intent intenthomepage = new Intent();
-                intenthomepage.setClass(this, homepage.class);
-                startActivity(intenthomepage);
                 break;
             case R.id.leftfamily:
                 Intent intentfamily = new Intent();
