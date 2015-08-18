@@ -54,14 +54,14 @@ public class icebox extends Activity implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_iceboxtest);
+        setContentView(R.layout.activity_icebox);
         iceboxview = (ListView) findViewById(R.id.foodlist);
         type = (Spinner)findViewById(R.id.type);
         db = (new DBhelper(getApplicationContext()).getWritableDatabase());
         cursor = db.rawQuery("SELECT _id, kind, item, quantity, limitdate, buyingdate, storage, unit from icebox", null);
         String ld;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        Date dt=new Date();
+        Date dt=new Date(); //今日時間
         String dts=sdf.format(dt);
         TextView tv_expired = (TextView) findViewById(R.id.tv_expired);
         TextView textview = (TextView) findViewById(R.id.textview);
@@ -105,15 +105,14 @@ public class icebox extends Activity implements View.OnClickListener {
             textview.setVisibility(View.VISIBLE);
             tv_expired.setText(String.valueOf(a));
         }
-
         CustomAdapter customAdapter = new CustomAdapter(this, R.id.txtitem, items);
+
         iceboxview.setAdapter(customAdapter);
         iceboxview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                cursor.moveToPosition(position);
+            public void onItemClick(AdapterView adapterView, View view, int position, long id) {
                 try {
-                    Cursor c = get(id);
+                    Cursor c = get(id+1);
                     Bundle bundle1 = new Bundle();
                     bundle1.putInt("foodid", c.getInt(0));
                     bundle1.putString("foodkind", c.getString(1));
