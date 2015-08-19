@@ -69,6 +69,7 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
     private TextView tv_limitday;
     private Spinner editstorage;
     private Spinner unit;
+    private Spinner unit2;
     SQLiteDatabase dbrw;
     DBhelper dbhelper;
     private ImageButton btnitrue;
@@ -78,6 +79,7 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
     InputStream is=null;
     String result=null;
     String line=null;
+    String liquid;
 
     String[] roll_no,name;
 
@@ -249,7 +251,7 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
         editstorage = (Spinner) findViewById(R.id.sp_iplace);
         btnitrue = (ImageButton) findViewById(R.id.btn_itrue);
         unit = (Spinner) findViewById(R.id.sp_iunit);
-
+        unit2 = (Spinner) findViewById(R.id.sp_iunit2);
         //btnUpdate = (Button) findViewById(R.id.btnUpdate);
 //        btnitrue.setOnClickListener(this);
         //btnDel.setOnClickListener(this);
@@ -465,7 +467,11 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
                         values.put(BUYINGDATE, tv_buyday.getText().toString());
                         values.put(LIMITDATE, tv_limitday.getText().toString());
                         values.put(STORAGEPLACE, editstorage.getSelectedItem().toString());
-                        values.put(UNIT, unit.getSelectedItem().toString());
+                        if(unit.getVisibility() == View.VISIBLE ) {
+                            values.put(UNIT, unit.getSelectedItem().toString());
+                        }else{
+                            values.put(UNIT, unit2.getSelectedItem().toString());
+                        }
                         db.insert(TABLE_NAME, null, values);
 //
 //                        切換頁面
@@ -520,6 +526,16 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
 // TODO Auto-generated method stub
 
                 editkind.setSelection(position);
+
+                liquid = edititem.getSelectedItem().toString();
+                if(liquid.contains("脂鮮乳")||liquid.contains("養樂多")||liquid.contains("優酪乳")||(liquid.contains("牛油")||liquid.contains("豬油")||liquid.contains("雞油")||liquid.contains("花生油")||liquid.contains("葵花油")||liquid.contains("玉米油")||liquid.contains("沙拉油")||liquid.contains("橄欖油")||liquid.contains("辣椒油")||liquid.contains("椰子油")|liquid.contains("芝麻油"))){
+                    unit.setVisibility(View.GONE);
+                    unit2.setVisibility(View.VISIBLE);
+                }else{
+                    unit2.setVisibility(View.GONE);
+                    unit.setVisibility(View.VISIBLE);
+                }
+
 
             }
 

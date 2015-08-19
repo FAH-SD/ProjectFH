@@ -60,6 +60,7 @@ public class icebox extends Activity implements View.OnClickListener {
     Long day2 = Long.valueOf(0);
     TextView tv_expired;
     TextView textview;
+    String strtype = "全部";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +77,7 @@ public class icebox extends Activity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                String strtype = sp_type.getSelectedItem().toString();
+                strtype = sp_type.getSelectedItem().toString();
                 if (sp_type.getSelectedItemPosition() == 0) {
                     cursor = getAll();
                     UpdateAdapter(cursor);
@@ -106,8 +107,7 @@ public class icebox extends Activity implements View.OnClickListener {
                 try {
                     cursor.moveToPosition(position);
                     results.clear();
-                    String strtype = sp_type.getSelectedItem().toString();
-                    if (sp_type.getSelectedItemPosition() == 0) {
+                    if (strtype.equals("全部")) {
                         cursor = getAll();
                         UpdateAdapter(cursor);
                     } else {

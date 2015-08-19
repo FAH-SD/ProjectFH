@@ -1,8 +1,10 @@
 package com.example.goldas.projectfh;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,9 +26,10 @@ public class newsport2 extends Activity implements View.OnClickListener{
 
         EditText name = (EditText)findViewById(R.id.et_sname);
         EditText height = (EditText)findViewById(R.id.et_sheight);
-        EditText weight = (EditText)findViewById(R.id.et_sweight);
+        final EditText weight = (EditText)findViewById(R.id.et_sweight);
         EditText BMI = (EditText)findViewById(R.id.et_sBMI);
         EditText level = (EditText)findViewById(R.id.et_slevel);
+        final EditText calorie = (EditText)findViewById(R.id.et_calorie);
 
         Bundle bundle3 = this.getIntent().getExtras();
         name.setText(bundle3.getString("name"));
@@ -69,7 +72,30 @@ public class newsport2 extends Activity implements View.OnClickListener{
         });
 
 
+        Button btn_ok = (Button)findViewById(R.id.btn_ok);
+        btn_ok.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                int c = Integer.parseInt(calorie.getText().toString());
+                if("".equals(calorie.getText().toString())) {
+                    showAlert("錯誤資訊","尚未輸入卡路里");
 
+                }else if(c>1000 || c<0) {
+                    showAlert("錯誤資訊","輸入值0~1000大卡為限");
+                }else
+                {
+                        Intent intent2 = new Intent();
+                        intent2.setClass(newsport2.this, SportList.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("kcal", calorie.getText().toString());
+                        bundle.putString("weight", weight.getText().toString());
+                        intent2.putExtras(bundle);
+                        startActivity(intent2);
+                        newsport2.this.finish();
+                    }
+                }
+        });
 
     // configure the SlidingMenu
     SlidingMenu menu = new SlidingMenu(this);
@@ -158,6 +184,22 @@ public class newsport2 extends Activity implements View.OnClickListener{
 
         }
 
+    }
+
+    private void showAlert(String title,String context){
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(title);
+        alert.setMessage(context);
+        alert.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                    }
+                });
+        alert.show();
     }
 
 }

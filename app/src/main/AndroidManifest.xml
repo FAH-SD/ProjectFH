@@ -124,6 +124,11 @@
             android:label="@string/title_activity_dish_member"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".SportList"
+            android:label="@string/title_activity_sport_list"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

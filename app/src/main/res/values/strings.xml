@@ -28,6 +28,13 @@
         <item>錢</item>
     </string-array>
 
+    <string-array name="unit2">
+        <item>毫升</item>
+        <item>公升</item>
+        <item>加侖</item>
+        <item>杯</item>
+    </string-array>
+
     <string-array name="habit">
         <item>葷食</item>
         <item>全素</item>
@@ -84,8 +91,7 @@
     <string name="title_activity_food_detail">foodDetail</string>
     <string name="title_activity_newsport1">newsport1</string>
     <string name="title_activity_newsport2">newsport2</string>
-    <string name="title_activity_eating_member">EatingMember</string>
-    <string name="title_activity_dish_menber">DishMenber</string>
     <string name="title_activity_dish_member">DishMember</string>
+    <string name="title_activity_sport_list">SportList</string>
 
 </resources>

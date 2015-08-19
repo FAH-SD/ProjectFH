@@ -36,8 +36,9 @@ public class foodDetail extends Activity implements View.OnClickListener {
     SQLiteDatabase db ;
     DBhelper dbhelper;
     int id;
-    EditText amount;
-    Spinner sp_unit, sp_place;
+    EditText amount, name;
+    Spinner sp_unit,sp_unit2, sp_place;
+    String liquid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +48,7 @@ public class foodDetail extends Activity implements View.OnClickListener {
         db = dbhelper.getWritableDatabase();
 
         final EditText kind = (EditText) findViewById(R.id.et_ikind);
-        EditText name = (EditText) findViewById(R.id.et_iname);
+        name = (EditText) findViewById(R.id.et_iname);
         amount = (EditText) findViewById(R.id.et_iamount);
         final EditText unit = (EditText) findViewById(R.id.et_iunit);
         EditText buyday = (EditText) findViewById(R.id.et_ibuyday);
@@ -55,6 +56,7 @@ public class foodDetail extends Activity implements View.OnClickListener {
         final EditText place = (EditText) findViewById(R.id.et_iplace);
         EditText condition = (EditText) findViewById(R.id.et_icondition);
         sp_unit = (Spinner)findViewById(R.id.sp_iunit);
+        sp_unit2 = (Spinner)findViewById(R.id.sp_iunit2);
         sp_place = (Spinner)findViewById(R.id.sp_iplace);
         Bundle bundle2=this.getIntent().getExtras();
 
@@ -140,9 +142,16 @@ public class foodDetail extends Activity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 buttontrue.setVisibility(View.VISIBLE);
-                sp_unit.setVisibility(View.VISIBLE);
+                liquid = name.getText().toString();
+                if(liquid.contains("脂鮮乳")||liquid.contains("養樂多")||liquid.contains("優酪乳")||(liquid.contains("牛油")||liquid.contains("豬油")||liquid.contains("雞油")||liquid.contains("花生油")||liquid.contains("葵花油")||liquid.contains("玉米油")||liquid.contains("沙拉油")||liquid.contains("橄欖油")||liquid.contains("辣椒油")||liquid.contains("椰子油")|liquid.contains("芝麻油"))){
+                    sp_unit.setVisibility(View.GONE);
+                    sp_unit2.setVisibility(View.VISIBLE);
+                }else{
+                    sp_unit2.setVisibility(View.GONE);
+                    sp_unit.setVisibility(View.VISIBLE);
+                }
+
                 sp_place.setVisibility(View.VISIBLE);
-                kind.setEnabled(true);
                 unit.setVisibility(View.GONE);
                 place.setVisibility(View.GONE);
                 amount.setEnabled(true);
@@ -309,7 +318,11 @@ public class foodDetail extends Activity implements View.OnClickListener {
                         SQLiteDatabase db = dbhelper.getWritableDatabase();
                         ContentValues values = new ContentValues();
                         values.put(QUANTITY, amount.getText().toString());
-                        values.put(UNIT, sp_unit.getSelectedItem().toString());
+                        if(sp_unit.getVisibility() == View.VISIBLE ) {
+                            values.put(UNIT, sp_unit.getSelectedItem().toString());
+                        }else{
+                            values.put(UNIT, sp_unit2.getSelectedItem().toString());
+                        }
                         values.put(STORAGEPLACE, sp_place.getSelectedItem().toString());
                         long long1 = db.update("icebox", values, "_ID=" + id, null);
                         Intent i = new Intent(foodDetail.this, icebox.class);

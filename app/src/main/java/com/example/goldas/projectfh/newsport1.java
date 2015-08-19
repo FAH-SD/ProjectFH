@@ -2,12 +2,14 @@ package com.example.goldas.projectfh;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,6 +43,13 @@ import java.util.List;
 
 
 public class newsport1 extends Activity implements View.OnClickListener {
+    private Spinner sports, sp_caloric, kind;
+    InputStream is=null;
+    String result=null;
+    String line=null;
+
+
+    String[] sport_name,caloric,sport_kind;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +57,14 @@ public class newsport1 extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_newsport1);
         EditText name = (EditText)findViewById(R.id.et_sname);
         EditText height = (EditText)findViewById(R.id.et_sheight);
-        EditText weight = (EditText)findViewById(R.id.et_sweight);
+        final EditText weight = (EditText)findViewById(R.id.et_sweight);
         EditText BMI = (EditText)findViewById(R.id.et_sBMI);
         EditText level = (EditText)findViewById(R.id.et_slevel);
+        sports =(Spinner)findViewById(R.id.sp_name);
+        kind =(Spinner)findViewById(R.id.sp_type);
+        sp_caloric =(Spinner)findViewById(R.id.sp_caloric);
+        final EditText et_calorie = (EditText)findViewById(R.id.et_calorie);
+        final EditText et_time = (EditText)findViewById(R.id.et_time);
 
         Bundle bundle2 = this.getIntent().getExtras();
         name.setText(bundle2.getString("name"));
@@ -92,9 +106,29 @@ public class newsport1 extends Activity implements View.OnClickListener {
             }
         });
 
+        Button btn_ok = (Button)findViewById(R.id.btn_ok);
+        btn_ok.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                if("".equals(et_time.getText().toString())) {
+                    showAlert("錯誤資訊","尚未輸入時間");
 
+                }else {
+                    Float w = Float.valueOf(weight.getText().toString());
+                    Float min = Float.valueOf(et_time.getText().toString());
+                    Float hr = min / 60;
+                    String temp = sp_caloric.getSelectedItem().toString();
+                    temp = temp.replace(" ", "");
+                    Float kcal = Float.valueOf(temp);
+                    Float totalkcal = w * hr * kcal;
+                    et_calorie.setText(String.format("%.2f", totalkcal));
+                }
+            }
+        });
 
-
+        
+        new NetworkTask().execute();
     // configure the SlidingMenu
     SlidingMenu menu = new SlidingMenu(this);
     menu.setMode(SlidingMenu.LEFT);
@@ -184,4 +218,160 @@ public class newsport1 extends Activity implements View.OnClickListener {
 
     }
 
+    private void showAlert(String title,String context){
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(title);
+        alert.setMessage(context);
+        alert.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                    }
+                });
+        alert.show();
+    }
+
+    class NetworkTask extends AsyncTask<String, Void, String> {
+        ProgressDialog dialog = new ProgressDialog(newsport1.this);
+        @Override
+        protected void onPreExecute() {
+            dialog.setTitle("讀取中..");
+            dialog.setMessage("正在讀取中..");
+            dialog.show();
+//            dialog.show(newfood2.this,"讀取中..","正在讀取中..");
+        }
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost("http://163.13.201.82/tes2t.php");
+                HttpResponse response = httpclient.execute(httppost);
+                Log.e("Fail 1", "3");
+
+                HttpEntity entity = response.getEntity();
+                Log.e("Fail 1", "4");
+
+                is = entity.getContent();
+                Log.e("Pass 1", "connection success ");
+            } catch (Exception e) {
+                Log.e("Fail 1", e.toString());
+//                Toast.makeText(getApplicationContext(), "Invalid IP Address", Toast.LENGTH_LONG).show();
+                finish();
+            }
+
+
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
+                StringBuilder sb = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                is.close();
+                result = sb.toString();
+            } catch (Exception e) {
+                Log.e("Fail 2", e.toString());
+            }
+
+
+            try {
+                JSONArray JA = new JSONArray(result);
+                JSONObject json = null;
+                caloric = new String[JA.length()];
+                sport_name = new String[JA.length()];
+                sport_kind = new String[JA.length()];
+                for (int i = 0; i < JA.length(); i++) {
+                    json = JA.getJSONObject(i);
+                    sport_name[i] = json.getString("s_sport");
+                    sport_kind[i] = json.getString("s_kind");
+                    caloric[i] = json.getString("s_caloric");
+
+                }
+//                Toast.makeText(getApplicationContext(), "sss", Toast.LENGTH_LONG).show();
+
+                for (int i = 0; i < sport_name.length; i++) {
+                    List<String> list1 = new ArrayList<String>();
+                    List<String> list2 = new ArrayList<String>();
+                    List<String> list3 = new ArrayList<String>();
+                    list1.add(sport_name[i]);
+                    list2.add(caloric[i]);
+                    list3.add(sport_kind[i]);
+//                    Log.d("test", "roll_no = " + roll_no[i] + ", name = " + name[i]);
+                }
+
+
+
+            } catch (Exception e) {
+
+                Log.e("Fail 3", e.toString());
+//login.this.finish();
+
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(String number) {
+            dialog.cancel();
+            spinner_fn();
+
+
+        }
+    }
+    private void spinner_fn() {
+// TODO Auto-generated method stub
+
+        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(getApplicationContext(),
+                R.layout.spinnerlayout, sport_name);
+        dataAdapter1.setDropDownViewResource(R.layout.spinnerlayout);
+        sports.setAdapter(dataAdapter1);
+
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(),
+                R.layout.spinnerlayout, caloric);
+        dataAdapter2.setDropDownViewResource(R.layout.spinnerlayout);
+        sp_caloric.setAdapter(dataAdapter2);
+
+        ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(getApplicationContext(),
+                R.layout.spinnerlayout, sport_kind);
+        dataAdapter3.setDropDownViewResource(R.layout.spinnerlayout);
+        kind.setAdapter(dataAdapter3);
+
+        sports.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+// TODO Auto-generated method stub
+                kind.setSelection(position);
+                sp_caloric.setSelection(position);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+// TODO Auto-generated method stub
+            }
+
+        });
+
+        kind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,int position, long id)
+            {
+// TODO Auto-generated method stub
+                sports.setSelection(position);
+                sp_caloric.setSelection(position);
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0)
+            {
+// TODO Auto-generated method stub
+            }
+
+        });
+
+
+    }
 }
+
