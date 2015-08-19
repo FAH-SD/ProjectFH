@@ -91,13 +91,12 @@
                     android:textStyle="bold"/>
 
                 <EditText
-                    android:layout_width="180dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/et_ikind"
                     android:layout_marginLeft="10dp"
                     android:textSize="22dp"
                     android:enabled="false"
-                    android:editable="false"
                     android:gravity="center"
                     android:textColor="#000000" />
 

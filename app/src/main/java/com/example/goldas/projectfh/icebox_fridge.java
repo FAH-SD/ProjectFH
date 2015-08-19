@@ -20,34 +20,90 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.lang.reflect.Method;
 import java.sql.SQLException;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class icebox_fridge extends Activity implements View.OnClickListener{
     private SQLiteDatabase db = null;
     private Cursor cursor = null;
-    private SimpleCursorAdapter adapter = null;
-
+    SimpleCursorAdapter adapter = null;
+    Spinner type;
+    ListView iceboxview;
+    String choose ="";
+    int a = 0;
+    ArrayList results = new ArrayList();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    String ld = null;
+    Date dt=new Date(); //今日時間
+    String dts=sdf.format(dt);
+    Long day2 = Long.valueOf(0);
+    TextView tv_expired;
+    TextView textview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_icebox_fridge);
+        iceboxview = (ListView) findViewById(R.id.foodlist);
         db = (new DBhelper(getApplicationContext()).getWritableDatabase());
-        cursor = db.rawQuery("SELECT*FROM icebox WHERE storage =? ", new String[]{"冷藏"});
-        adapter = new SimpleCursorAdapter(this, R.layout.teest, cursor, new String[]{"item","quantity","unit","limitdate"}, new int[]{ R.id.txtitem, R.id.txtquan,R.id.txtunit, R.id.txtld});
-        ListView iceboxview = (ListView)findViewById(R.id.foodlist);
-        iceboxview.setAdapter(adapter);
+        cursor=getAll();
+        UpdateAdapter(cursor);
+
+        final ListViewItem[] items = new ListViewItem[cursor.getCount()];
+
+        tv_expired = (TextView) findViewById(R.id.tv_expired);
+        textview = (TextView) findViewById(R.id.textview);
+
+        if(a>0){
+            tv_expired.setVisibility(View.VISIBLE);
+            textview.setVisibility(View.VISIBLE);
+            tv_expired.setText(String.valueOf(a));
+            a = 0;
+        }
+
+        final Spinner sp_type = (Spinner) findViewById(R.id.type);
+        Button btn_ok = (Button) findViewById(R.id.btn_ok);
+        btn_ok.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+
+                String strtype = sp_type.getSelectedItem().toString();
+                if (sp_type.getSelectedItemPosition() == 0) {
+                    cursor = getAll();
+                    UpdateAdapter(cursor);
+                } else {
+                    cursor = getKind(strtype);
+                    UpdateAdapter(cursor);
+                }
+            }
+        });
 
         iceboxview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 cursor.moveToPosition(position);
                 try {
-                    Cursor c = get(id);
+                    results.clear();
+                    String strtype = sp_type.getSelectedItem().toString();
+                    if (sp_type.getSelectedItemPosition() == 0) {
+                        cursor = getAll();
+                        UpdateAdapter(cursor);
+                    } else {
+                        cursor = getKind(strtype);
+                        UpdateAdapter(cursor);
+                    }
+                    Food clickedCategory = (Food) results.get(position);
+                    int foodid = clickedCategory.getId();
+                    Cursor c = get(foodid);
                     Bundle bundle1 = new Bundle();
                     bundle1.putInt("foodid", c.getInt(0));
                     bundle1.putString("foodkind", c.getString(1));
@@ -61,14 +117,12 @@ public class icebox_fridge extends Activity implements View.OnClickListener{
                     i.putExtras(bundle1);
                     startActivity(i);
                     icebox_fridge.this.finish();
-
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
 
             }
         });
-
         ImageButton buttonback = (ImageButton) findViewById(R.id.btn_back);
         buttonback.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -107,7 +161,8 @@ public class icebox_fridge extends Activity implements View.OnClickListener{
                 intentnormal.setClass(icebox_fridge.this, icebox_normal.class);
                 startActivity(intentnormal);
                 icebox_fridge.this.finish();
-            }});
+            }
+        });
         Button buttonfreeze = (Button) findViewById(R.id.freezer);
         buttonfreeze.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -118,7 +173,6 @@ public class icebox_fridge extends Activity implements View.OnClickListener{
                 startActivity(intentfreeze);
                 icebox_fridge.this.finish();
             }});
-
 
         // configure the SlidingMenu
         SlidingMenu menu = new SlidingMenu(this);
@@ -166,7 +220,7 @@ public class icebox_fridge extends Activity implements View.OnClickListener{
 
     }
 
-    public Cursor get(long rowId) throws SQLException {
+    public Cursor get(long rowId) throws SQLException{
         Cursor c = db.rawQuery("SELECT _id,kind,item,quantity,limitdate,buyingdate,storage,unit from icebox WHERE _id="+ rowId, null);
         if(c.getCount()>0){
             c.moveToFirst();
@@ -174,6 +228,69 @@ public class icebox_fridge extends Activity implements View.OnClickListener{
 
         return c;
 
+    }
+    public Cursor getAll(){ // 查詢所有資料
+
+        Cursor c = db.rawQuery("SELECT _id, kind, item, quantity, limitdate, buyingdate, storage, unit from icebox WHERE storage = '冷藏' ", null);
+        return c;
+    }
+
+    public Cursor getKind(String strkind){ // 查詢Kind
+        Cursor c = db.rawQuery("SELECT _id, kind, item, quantity, limitdate, buyingdate, storage, unit FROM icebox WHERE kind LIKE '%" + strkind + "%' AND storage = '冷藏' ", null);
+        return c;
+    }
+
+    public void UpdateAdapter(Cursor cursor){
+//當cursor有東西 並且數量 >=0
+        if (cursor != null && cursor.getCount() >= 0){
+            ListViewItem[] items = new ListViewItem[cursor.getCount()];
+            int rows_num = cursor.getCount();
+            if(rows_num != 0) {
+                //將指標移至第一筆資料
+                cursor.moveToFirst();
+
+                for(int i=0; i<rows_num; i++) {
+                    String ld = cursor.getString(4);
+                    results.add(new Food(cursor.getInt(0), cursor.getString(1), cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7)));
+                    try {
+                        if("".equals(ld)) {
+                            day2 = Long.valueOf(0);
+                        }else{
+                            Date dt2 = sdf.parse(ld);
+                            Long ut2 = dt2.getTime();
+                            Date dt3 = sdf.parse(dts);
+                            Long ut3 = dt3.getTime();
+                            Long timeP2 = ut2 - ut3;//毫秒差
+                            day2 = timeP2 / 1000 * 60 * 60 * 24;//日差
+                        }
+                        if(day2<0){
+                            items[i] = new ListViewItem(cursor.getString(2), cursor.getString(3),cursor.getString(7),cursor.getString(4), CustomAdapter.TYPE_EXPIRED);
+                            a++;
+                        }else{
+                            items[i] = new ListViewItem(cursor.getString(2), cursor.getString(3),cursor.getString(7),cursor.getString(4), CustomAdapter.TYPE_FRESH);
+                        }
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    //將指標移至下一筆資料
+                    cursor.moveToNext();
+                }
+            }
+            CustomAdapter customAdapter = new CustomAdapter(this, R.id.txtitem, items);
+            iceboxview.setAdapter(customAdapter); // 將adapter增加到listview01中
+            tv_expired = (TextView) findViewById(R.id.tv_expired);
+            textview = (TextView) findViewById(R.id.textview);
+            tv_expired.setText(String.valueOf(a));
+            if(a>0){
+                tv_expired.setVisibility(View.VISIBLE);
+                textview.setVisibility(View.VISIBLE);
+                tv_expired.setText(String.valueOf(a));
+            }else{
+                tv_expired.setVisibility(View.GONE);
+                textview.setVisibility(View.GONE);
+            } a = 0;
+        }
     }
 
     @Override
@@ -221,15 +338,12 @@ public class icebox_fridge extends Activity implements View.OnClickListener{
     }
 
 
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         cursor.close();
         db.close();
     }
-
 
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {

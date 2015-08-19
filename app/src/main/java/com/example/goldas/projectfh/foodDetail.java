@@ -46,7 +46,7 @@ public class foodDetail extends Activity implements View.OnClickListener {
         dbhelper = new DBhelper(this);
         db = dbhelper.getWritableDatabase();
 
-        EditText kind = (EditText) findViewById(R.id.et_ikind);
+        final EditText kind = (EditText) findViewById(R.id.et_ikind);
         EditText name = (EditText) findViewById(R.id.et_iname);
         amount = (EditText) findViewById(R.id.et_iamount);
         final EditText unit = (EditText) findViewById(R.id.et_iunit);
@@ -142,6 +142,7 @@ public class foodDetail extends Activity implements View.OnClickListener {
                 buttontrue.setVisibility(View.VISIBLE);
                 sp_unit.setVisibility(View.VISIBLE);
                 sp_place.setVisibility(View.VISIBLE);
+                kind.setEnabled(true);
                 unit.setVisibility(View.GONE);
                 place.setVisibility(View.GONE);
                 amount.setEnabled(true);

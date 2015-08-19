@@ -82,9 +82,6 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
     String[] roll_no,name;
 
 
-
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,9 +90,6 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
         dbrw = dbhelper.getWritableDatabase();
 
         goToinit();
-
-
-
 
         Button buyDate = (Button) findViewById(R.id.buydate);
 
@@ -136,9 +130,6 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
         });
 
             new NetworkTask().execute();
-
-
-
 
 
         // configure the SlidingMenu
@@ -227,9 +218,6 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
                 break;
 
         }
-
-
-
 
 
     }
