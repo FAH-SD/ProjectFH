@@ -215,7 +215,7 @@
         android:id="@+id/button3"
         android:textSize="20dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:background="#ff2a3a79"
         android:textColor="#ffffffff"
         android:textStyle="bold"
@@ -233,5 +233,20 @@
         android:textColor="#ffffffff"
         android:textStyle="bold"
         android:visibility="invisible" />
+
+
+    <Button
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:text="查詢過往記錄"
+        android:id="@+id/btn_record"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="#ff2a3a79"
+        android:textColor="#ffffffff"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
 
 </LinearLayout>

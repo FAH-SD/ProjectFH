@@ -13,7 +13,9 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -44,6 +46,7 @@ import java.util.List;
 
 public class newsport1 extends Activity implements View.OnClickListener {
     private Spinner sports, sp_caloric, kind;
+    int userid;
     InputStream is=null;
     String result=null;
     String line=null;
@@ -56,10 +59,10 @@ public class newsport1 extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsport1);
         EditText name = (EditText)findViewById(R.id.et_sname);
-        EditText height = (EditText)findViewById(R.id.et_sheight);
+        final EditText height = (EditText)findViewById(R.id.et_sheight);
         final EditText weight = (EditText)findViewById(R.id.et_sweight);
-        EditText BMI = (EditText)findViewById(R.id.et_sBMI);
-        EditText level = (EditText)findViewById(R.id.et_slevel);
+        final EditText BMI = (EditText)findViewById(R.id.et_sBMI);
+        final EditText level = (EditText)findViewById(R.id.et_slevel);
         sports =(Spinner)findViewById(R.id.sp_name);
         kind =(Spinner)findViewById(R.id.sp_type);
         sp_caloric =(Spinner)findViewById(R.id.sp_caloric);
@@ -67,6 +70,7 @@ public class newsport1 extends Activity implements View.OnClickListener {
         final EditText et_time = (EditText)findViewById(R.id.et_time);
 
         Bundle bundle2 = this.getIntent().getExtras();
+        userid = bundle2.getInt("userid");
         name.setText(bundle2.getString("name"));
         height.setText(bundle2.getString("height"));
         weight.setText(bundle2.getString("weight"));
@@ -99,8 +103,15 @@ public class newsport1 extends Activity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
+                Bundle bundle3 = new Bundle();
+                bundle3.putInt("userid", userid);
+                bundle3.putString("height", height.getText().toString());
+                bundle3.putString("weight", weight.getText().toString());
+                bundle3.putString("BMI", BMI.getText().toString());
+                bundle3.putString("level", level.getText().toString());
                 Intent intent1 = new Intent();
                 intent1.setClass(newsport1.this, sport.class);
+                intent1.putExtras(bundle3);
                 startActivity(intent1);
                 newsport1.this.finish();
             }
@@ -217,6 +228,17 @@ public class newsport1 extends Activity implements View.OnClickListener {
         }
 
     }
+
+    // 點擊空白區域 自動隱藏鍵盤
+    public boolean onTouchEvent(MotionEvent event) {
+        if(null != this.getCurrentFocus()){
+
+            InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            return mInputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+        }
+        return super .onTouchEvent(event);
+    }
+
 
     private void showAlert(String title,String context){
 

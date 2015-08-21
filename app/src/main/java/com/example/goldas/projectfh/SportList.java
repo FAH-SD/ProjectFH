@@ -22,9 +22,6 @@ public class SportList extends Activity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Intent intent1 = new Intent();
-                intent1.setClass(SportList.this, sport.class);
-                startActivity(intent1);
                 SportList.this.finish();
             }
         });

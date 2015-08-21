@@ -30,6 +30,15 @@ import static com.example.goldas.projectfh.FDBconstant.HEIGHT;
 import static com.example.goldas.projectfh.FDBconstant.NAME;
 import static com.example.goldas.projectfh.FDBconstant.SEX;
 import static com.example.goldas.projectfh.FDBconstant.WEIGHT;
+import static com.example.goldas.projectfh.SDBconstant.S_USERNAME;
+import static com.example.goldas.projectfh.SDBconstant.S_HEIGHT;
+import static com.example.goldas.projectfh.SDBconstant.S_WEIGHT;
+import static com.example.goldas.projectfh.SDBconstant.S_BMI;
+import static com.example.goldas.projectfh.SDBconstant.S_SPORTNAME;
+import static com.example.goldas.projectfh.SDBconstant.S_SPORTTIME;
+import static com.example.goldas.projectfh.SDBconstant.S_CALORIES;
+import static com.example.goldas.projectfh.SDBconstant.S_DATE;
+
 public class DBhelper extends SQLiteOpenHelper {
 
     private final static String DATABASE_NAME = "icebox.db";
@@ -58,7 +67,7 @@ public class DBhelper extends SQLiteOpenHelper {
                 SEX + " CHAR, " +
                 WEIGHT + " interger no null, " +
                 HEIGHT + " interger no null, " +
-                BIRTHYEAR + " interger no null, "+
+                BIRTHYEAR+ "CHAR," +
                 ALLERGY1 + " CHAR, "+
                 ALLERGY2 + " CHAR, "+
                 ALLERGY3 + " CHAR, "+
@@ -70,7 +79,19 @@ public class DBhelper extends SQLiteOpenHelper {
                 ALLERGY9 + " CHAR, "+
                 ALLERGY10 + " CHAR,"+
                 HABIT + " CHAR); ";
-        db.execSQL(INIT_TABLE1);}
+        db.execSQL(INIT_TABLE1);
+
+        final String INIT_TABLE2 = "CREATE TABLE " + FTABLE_NAME + " (" +
+                _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                S_USERNAME + " CHAR, " +
+                S_HEIGHT + " interger no null, " +
+                S_WEIGHT + " interger no null, " +
+                S_BMI + " CHAR, "+
+                S_SPORTNAME + " CHAR, "+
+                S_SPORTTIME + " CHAR, "+
+                S_CALORIES + " CHAR, "+
+                S_DATE + " CHAR); ";
+        db.execSQL(INIT_TABLE2);}
 
     @Override
     public void onOpen(SQLiteDatabase db){

@@ -97,6 +97,12 @@ public class homepage extends Activity implements View.OnClickListener{
                 // TODO Auto-generated method stub
                 Intent intent5 = new Intent();
                 intent5.setClass(homepage.this, sport.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt("userid", 0);
+                bundle1.putString("height", "");
+                bundle1.putString("weight", "");
+                bundle1.putString("BMI", "");
+                intent5.putExtras(bundle1);
                 startActivity(intent5);
             }
         });

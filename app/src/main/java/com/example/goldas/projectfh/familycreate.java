@@ -29,10 +29,12 @@ package com.example.goldas.projectfh;
         import android.view.Menu;
         import android.view.MenuInflater;
         import android.view.MenuItem;
+        import android.view.MotionEvent;
         import android.view.View;
         import android.view.Window;
         import android.view.WindowManager;
         import android.view.View.OnClickListener;
+        import android.view.inputmethod.InputMethodManager;
         import android.widget.Button;
         import android.widget.CheckBox;
         import android.widget.EditText;
@@ -323,38 +325,18 @@ public class familycreate extends Activity  implements View.OnClickListener {
         birthyear.setText("");
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.mymenu, menu);
-        setIconEnable(menu, true);
 
-        return true;
-    }
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu)
-    {
-        // TODO Auto-generated method stub
-        return super.onPrepareOptionsMenu(menu);
-    }
 
-    //enable为true时，菜单添加图标有效，enable为false时无效。4.0系统默认无效
-    private void setIconEnable(Menu menu, boolean enable)
-    {
-        try
-        {
-            Class<?> clazz = Class.forName("com.android.internal.view.menu.MenuBuilder");
-            Method m = clazz.getDeclaredMethod("setOptionalIconsVisible", boolean.class);
-            m.setAccessible(true);
+    // 點擊空白區域 自動隱藏鍵盤
+    public boolean onTouchEvent(MotionEvent event) {
+        if(null != this.getCurrentFocus()){
 
-            //MenuBuilder实现Menu接口，创建菜单时，传进来的menu其实就是MenuBuilder对象(java的多态特征)
-            m.invoke(menu, enable);
-
-        } catch (Exception e)
-        {
-            e.printStackTrace();
+            InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            return mInputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
         }
+        return super .onTouchEvent(event);
     }
+
 
     private void showAlert(String title,String context)
     {

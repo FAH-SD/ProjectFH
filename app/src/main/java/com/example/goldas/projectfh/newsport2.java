@@ -9,7 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -18,20 +20,21 @@ import android.widget.ImageView;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public class newsport2 extends Activity implements View.OnClickListener{
-
+    int userid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsport2);
 
         EditText name = (EditText)findViewById(R.id.et_sname);
-        EditText height = (EditText)findViewById(R.id.et_sheight);
+        final EditText height = (EditText)findViewById(R.id.et_sheight);
         final EditText weight = (EditText)findViewById(R.id.et_sweight);
-        EditText BMI = (EditText)findViewById(R.id.et_sBMI);
-        EditText level = (EditText)findViewById(R.id.et_slevel);
+        final EditText BMI = (EditText)findViewById(R.id.et_sBMI);
+        final EditText level = (EditText)findViewById(R.id.et_slevel);
         final EditText calorie = (EditText)findViewById(R.id.et_calorie);
 
-        Bundle bundle3 = this.getIntent().getExtras();
+        final Bundle bundle3 = this.getIntent().getExtras();
+        userid = bundle3.getInt("userid");
         name.setText(bundle3.getString("name"));
         height.setText(bundle3.getString("height"));
         weight.setText(bundle3.getString("weight"));
@@ -64,8 +67,15 @@ public class newsport2 extends Activity implements View.OnClickListener{
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
+                Bundle bundle4 = new Bundle();
+                bundle4.putInt("userid", userid);
+                bundle4.putString("height", height.getText().toString());
+                bundle4.putString("weight", weight.getText().toString());
+                bundle4.putString("BMI", BMI.getText().toString());
+                bundle4.putString("level", level.getText().toString());
                 Intent intent1 = new Intent();
                 intent1.setClass(newsport2.this, sport.class);
+                intent1.putExtras(bundle4);
                 startActivity(intent1);
                 newsport2.this.finish();
             }
@@ -77,14 +87,16 @@ public class newsport2 extends Activity implements View.OnClickListener{
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                int c = Integer.parseInt(calorie.getText().toString());
+
                 if("".equals(calorie.getText().toString())) {
                     showAlert("錯誤資訊","尚未輸入卡路里");
 
-                }else if(c>1000 || c<0) {
-                    showAlert("錯誤資訊","輸入值0~1000大卡為限");
-                }else
-                {
+                }else{
+                    int c = Integer.parseInt(calorie.getText().toString());
+                    if(c>1000 || c<0) {
+                        calorie.setText("");
+                        showAlert("錯誤資訊","輸入值0~1000大卡為限");
+                    }else {
                         Intent intent2 = new Intent();
                         intent2.setClass(newsport2.this, SportList.class);
                         Bundle bundle = new Bundle();
@@ -92,7 +104,7 @@ public class newsport2 extends Activity implements View.OnClickListener{
                         bundle.putString("weight", weight.getText().toString());
                         intent2.putExtras(bundle);
                         startActivity(intent2);
-                        newsport2.this.finish();
+                    }
                     }
                 }
         });
@@ -184,6 +196,17 @@ public class newsport2 extends Activity implements View.OnClickListener{
 
         }
 
+    }
+
+
+    // 點擊空白區域 自動隱藏鍵盤
+    public boolean onTouchEvent(MotionEvent event) {
+        if(null != this.getCurrentFocus()){
+
+            InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            return mInputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+        }
+        return super .onTouchEvent(event);
     }
 
     private void showAlert(String title,String context){
