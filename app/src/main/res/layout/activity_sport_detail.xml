@@ -1,0 +1,299 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff0f1792">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/btn_back"
+            android:background="@drawable/icon_back2"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="運動詳細記錄"
+                android:id="@+id/textView9"
+                android:gravity="center"
+                android:textColor="#ffffffff"
+                android:textStyle="bold"
+                android:textSize="26dp"
+                android:layout_gravity="center" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#b7e2ff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="姓名"
+                    android:textSize="22dp"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_name"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="22dp"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="當時身高"
+                    android:textSize="22dp"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_height"
+                    android:layout_marginLeft="20dp"
+                    android:inputType="number"
+                    android:textSize="22dp"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22dp"
+                    android:text="公分"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#b7e2ff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="當時體重"
+                    android:textSize="22dp"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_weight"
+                    android:layout_marginLeft="20dp"
+                    android:inputType="number"
+                    android:textSize="22dp"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22dp"
+                    android:text="公斤"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="當時BMI"
+                    android:textSize="22dp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_BMI"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="22dp"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#b7e2ff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="運動名稱"
+                    android:textSize="22dp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_sportname"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="22dp"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="運動時間"
+                    android:textSize="22dp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_sporttime"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="22dp"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22dp"
+                    android:text="分鐘"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#b7e2ff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="運動消耗卡路里"
+                    android:textSize="22dp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_sprotcalories"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="22dp"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22dp"
+                    android:text="大卡"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="運動日期"
+                    android:textSize="22dp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_date"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="22dp"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

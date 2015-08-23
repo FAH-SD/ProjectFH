@@ -38,6 +38,7 @@ import static com.example.goldas.projectfh.SDBconstant.S_SPORTNAME;
 import static com.example.goldas.projectfh.SDBconstant.S_SPORTTIME;
 import static com.example.goldas.projectfh.SDBconstant.S_CALORIES;
 import static com.example.goldas.projectfh.SDBconstant.S_DATE;
+import static com.example.goldas.projectfh.SDBconstant.STABLE_NAME;
 
 public class DBhelper extends SQLiteOpenHelper {
 
@@ -67,7 +68,7 @@ public class DBhelper extends SQLiteOpenHelper {
                 SEX + " CHAR, " +
                 WEIGHT + " interger no null, " +
                 HEIGHT + " interger no null, " +
-                BIRTHYEAR+ "CHAR," +
+                BIRTHYEAR + " interger no null, "+
                 ALLERGY1 + " CHAR, "+
                 ALLERGY2 + " CHAR, "+
                 ALLERGY3 + " CHAR, "+
@@ -81,7 +82,7 @@ public class DBhelper extends SQLiteOpenHelper {
                 HABIT + " CHAR); ";
         db.execSQL(INIT_TABLE1);
 
-        final String INIT_TABLE2 = "CREATE TABLE " + FTABLE_NAME + " (" +
+        final String INIT_TABLE2 = "CREATE TABLE " + STABLE_NAME + " (" +
                 _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 S_USERNAME + " CHAR, " +
                 S_HEIGHT + " interger no null, " +

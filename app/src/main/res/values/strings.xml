@@ -93,5 +93,7 @@
     <string name="title_activity_newsport2">newsport2</string>
     <string name="title_activity_dish_member">DishMember</string>
     <string name="title_activity_sport_list">SportList</string>
+    <string name="title_activity_sport_record">SportRecord</string>
+    <string name="title_activity_sport_detail">SportDetail</string>
 
 </resources>

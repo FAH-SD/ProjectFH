@@ -188,6 +188,24 @@ public class sport extends Activity implements View.OnClickListener{
             }
         });
 
+        btn_record.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle4 = new Bundle();
+                bundle4.putInt("userid", userid);
+                bundle4.putString("name", stringname);
+                bundle4.putString("height", height.getText().toString());
+                bundle4.putString("weight", weight.getText().toString());
+                bundle4.putString("BMI", BMI.getText().toString());
+                bundle4.putString("level", level.getText().toString());
+                Intent intent1 = new Intent();
+                intent1.setClass(sport.this, SportRecord.class);
+                intent1.putExtras(bundle4);
+                startActivity(intent1);
+                sport.this.finish();
+            }
+        });
+
         Button btn_ok = (Button) findViewById(R.id.btn_ok);
         btn_ok.setOnClickListener(new Button.OnClickListener() {
             @Override

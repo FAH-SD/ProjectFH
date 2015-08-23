@@ -1,7 +1,18 @@
 package com.example.goldas.projectfh;
 
+import static android.provider.BaseColumns._ID;
+import static com.example.goldas.projectfh.SDBconstant.S_USERNAME;
+import static com.example.goldas.projectfh.SDBconstant.S_HEIGHT;
+import static com.example.goldas.projectfh.SDBconstant.S_WEIGHT;
+import static com.example.goldas.projectfh.SDBconstant.S_BMI;
+import static com.example.goldas.projectfh.SDBconstant.S_SPORTNAME;
+import static com.example.goldas.projectfh.SDBconstant.S_SPORTTIME;
+import static com.example.goldas.projectfh.SDBconstant.S_CALORIES;
+import static com.example.goldas.projectfh.SDBconstant.S_DATE;
+import static com.example.goldas.projectfh.SDBconstant.STABLE_NAME;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -40,12 +51,15 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 public class newsport1 extends Activity implements View.OnClickListener {
     private Spinner sports, sp_caloric, kind;
+    private Button btn_recordadd;
     int userid;
     InputStream is=null;
     String result=null;
@@ -54,11 +68,13 @@ public class newsport1 extends Activity implements View.OnClickListener {
 
     String[] sport_name,caloric,sport_kind;
 
+    SQLiteDatabase dbsport;
+    DBhelper dbhelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsport1);
-        EditText name = (EditText)findViewById(R.id.et_sname);
+        final EditText name = (EditText)findViewById(R.id.et_sname);
         final EditText height = (EditText)findViewById(R.id.et_sheight);
         final EditText weight = (EditText)findViewById(R.id.et_sweight);
         final EditText BMI = (EditText)findViewById(R.id.et_sBMI);
@@ -68,6 +84,12 @@ public class newsport1 extends Activity implements View.OnClickListener {
         sp_caloric =(Spinner)findViewById(R.id.sp_caloric);
         final EditText et_calorie = (EditText)findViewById(R.id.et_calorie);
         final EditText et_time = (EditText)findViewById(R.id.et_time);
+        btn_recordadd = (Button)findViewById(R.id.btn_recordadd);
+
+        //定義時間格式
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        Date dt=new Date();
+        final String dts=sdf.format(dt);
 
         Bundle bundle2 = this.getIntent().getExtras();
         userid = bundle2.getInt("userid");
@@ -76,6 +98,9 @@ public class newsport1 extends Activity implements View.OnClickListener {
         weight.setText(bundle2.getString("weight"));
         BMI.setText(bundle2.getString("BMI"));
         level.setText(bundle2.getString("level"));
+
+        dbhelper = new DBhelper(this);
+        dbsport = dbhelper.getWritableDatabase();
 
         float fbmi = Float.parseFloat(BMI.getText().toString());
         if (fbmi < 18.5) {
@@ -134,11 +159,31 @@ public class newsport1 extends Activity implements View.OnClickListener {
                     Float kcal = Float.valueOf(temp);
                     Float totalkcal = w * hr * kcal;
                     et_calorie.setText(String.format("%.2f", totalkcal));
+                    btn_recordadd.setVisibility(View.VISIBLE);
                 }
             }
         });
 
-        
+        btn_recordadd.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                ContentValues values = new ContentValues();
+                values.put(S_USERNAME, name.getText().toString());
+                values.put(S_HEIGHT, height.getText().toString());
+                values.put(S_WEIGHT, weight.getText().toString());
+                values.put(S_BMI, BMI.getText().toString());
+                values.put(S_SPORTNAME, sports.getSelectedItem().toString());
+                values.put(S_SPORTTIME, et_time.getText().toString());
+                values.put(S_CALORIES, et_calorie.getText().toString());
+                values.put(S_DATE, dts);
+                db.insert(STABLE_NAME, null, values);
+                showAlert("新增成功","已成功記錄此項運動");
+
+            }
+        });
+
         new NetworkTask().execute();
     // configure the SlidingMenu
     SlidingMenu menu = new SlidingMenu(this);
@@ -228,6 +273,8 @@ public class newsport1 extends Activity implements View.OnClickListener {
         }
 
     }
+
+
 
     // 點擊空白區域 自動隱藏鍵盤
     public boolean onTouchEvent(MotionEvent event) {
@@ -375,24 +422,32 @@ public class newsport1 extends Activity implements View.OnClickListener {
 
         });
 
-        kind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
+        kind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,int position, long id)
-            {
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
 // TODO Auto-generated method stub
                 sports.setSelection(position);
                 sp_caloric.setSelection(position);
 
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> arg0)
-            {
+            public void onNothingSelected(AdapterView<?> arg0) {
 // TODO Auto-generated method stub
             }
 
         });
 
+
+    }
+
+
+    //關閉資料庫
+    @Override
+    protected void onStop() {
+        // TODO Auto-generated method stub
+        super.onStop();
+        dbsport.close();
 
     }
 }

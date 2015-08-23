@@ -127,7 +127,15 @@
         <activity
             android:name=".SportList"
             android:label="@string/title_activity_sport_list"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".SportRecord"
+            android:label="@string/title_activity_sport_record" >
+        </activity>
+        <activity
+            android:name=".SportDetail"
+            android:label="@string/title_activity_sport_detail" >
         </activity>
     </application>
 
