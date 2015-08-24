@@ -176,7 +176,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/editText"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:layout_marginLeft="20dp"
                     android:textSize="26dp" />
 

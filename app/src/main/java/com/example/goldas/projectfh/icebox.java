@@ -239,7 +239,7 @@ public class icebox extends Activity implements View.OnClickListener {
     }
 
     public Cursor get(long rowId) throws SQLException{
-        Cursor c = db.rawQuery("SELECT _id,kind,item,quantity,limitdate,buyingdate,storage,unit from icebox WHERE _id="+ rowId, null);
+        Cursor c = db.rawQuery("SELECT _id,kind,item,quantity,limitdate,buyingdate,storage,unit from icebox WHERE _id="+ rowId+" ORDER BY item", null);
         if(c.getCount()>0){
             c.moveToFirst();
         }
@@ -250,12 +250,12 @@ public class icebox extends Activity implements View.OnClickListener {
 
     public Cursor getAll(){ // 查詢所有資料
 
-        Cursor c = db.rawQuery("SELECT _id, kind, item, quantity, limitdate, buyingdate, storage, unit from icebox", null);
+        Cursor c = db.rawQuery("SELECT _id, kind, item, quantity, limitdate, buyingdate, storage, unit from icebox ORDER BY item", null);
         return c;
     }
 
     public Cursor getKind(String strkind){ // 查詢Kind
-        Cursor c = db.rawQuery("SELECT _id, kind, item, quantity, limitdate, buyingdate, storage, unit FROM icebox WHERE kind LIKE '%" + strkind + "%' ", null);
+        Cursor c = db.rawQuery("SELECT _id, kind, item, quantity, limitdate, buyingdate, storage, unit FROM icebox WHERE kind LIKE '%" + strkind + "%'  ORDER BY item", null);
         return c;
     }
 

@@ -30,7 +30,7 @@ public class SportRecord extends Activity {
         final EditText weight = (EditText)findViewById(R.id.et_sweight);
         final EditText BMI = (EditText)findViewById(R.id.et_sBMI);
         final EditText level = (EditText)findViewById(R.id.et_slevel);
-        Bundle bundle2 = this.getIntent().getExtras();
+        final Bundle bundle2 = this.getIntent().getExtras();
         userid = bundle2.getInt("userid");
         name.setText(bundle2.getString("name"));
         height.setText(bundle2.getString("height"));
@@ -90,7 +90,7 @@ public class SportRecord extends Activity {
                 try {
                     Cursor c2 = get(id);
                     Bundle bundle2 = new Bundle();
-                    bundle2.putInt("memberid", c2.getInt(0));
+                    bundle2.putInt("id", c2.getInt(0));
                     bundle2.putString("name", c2.getString(1));
                     bundle2.putString("height", c2.getString(2));
                     bundle2.putString("weight", c2.getString(3));
@@ -99,9 +99,12 @@ public class SportRecord extends Activity {
                     bundle2.putString("sporttime", c2.getString(6));
                     bundle2.putString("calories", c2.getString(7));
                     bundle2.putString("date", c2.getString(8));
+                    bundle2.putInt("userid", userid);
+                    bundle2.putString("level", level.getText().toString());
                     Intent i = new Intent(SportRecord.this, SportDetail.class);
                     i.putExtras(bundle2);
                     startActivity(i);
+                    SportRecord.this.finish();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

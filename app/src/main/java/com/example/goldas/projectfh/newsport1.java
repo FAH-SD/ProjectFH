@@ -168,18 +168,33 @@ public class newsport1 extends Activity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                SQLiteDatabase db = dbhelper.getWritableDatabase();
-                ContentValues values = new ContentValues();
-                values.put(S_USERNAME, name.getText().toString());
-                values.put(S_HEIGHT, height.getText().toString());
-                values.put(S_WEIGHT, weight.getText().toString());
-                values.put(S_BMI, BMI.getText().toString());
-                values.put(S_SPORTNAME, sports.getSelectedItem().toString());
-                values.put(S_SPORTTIME, et_time.getText().toString());
-                values.put(S_CALORIES, et_calorie.getText().toString());
-                values.put(S_DATE, dts);
-                db.insert(STABLE_NAME, null, values);
-                showAlert("新增成功","已成功記錄此項運動");
+                if("".equals(et_time.getText().toString())) {
+                    showAlert("錯誤資訊","尚未輸入時間");
+
+                }else {
+                    Float w = Float.valueOf(weight.getText().toString());
+                    Float min = Float.valueOf(et_time.getText().toString());
+                    Float hr = min / 60;
+                    String temp = sp_caloric.getSelectedItem().toString();
+                    temp = temp.replace(" ", "");
+                    Float kcal = Float.valueOf(temp);
+                    Float totalkcal = w * hr * kcal;
+                    et_calorie.setText(String.format("%.2f", totalkcal));
+
+                    SQLiteDatabase db = dbhelper.getWritableDatabase();
+                    ContentValues values = new ContentValues();
+                    values.put(S_USERNAME, name.getText().toString());
+                    values.put(S_HEIGHT, height.getText().toString());
+                    values.put(S_WEIGHT, weight.getText().toString());
+                    values.put(S_BMI, BMI.getText().toString());
+                    values.put(S_SPORTNAME, sports.getSelectedItem().toString());
+                    values.put(S_SPORTTIME, et_time.getText().toString());
+                    values.put(S_CALORIES, et_calorie.getText().toString());
+                    values.put(S_DATE, dts);
+                    db.insert(STABLE_NAME, null, values);
+                    showAlert("新增成功","已成功記錄此項運動");
+                }
+
 
             }
         });
