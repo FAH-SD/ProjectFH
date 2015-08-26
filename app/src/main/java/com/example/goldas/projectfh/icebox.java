@@ -5,7 +5,6 @@ package com.example.goldas.projectfh;
 import com.example.goldas.projectfh.R;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
-import android.accounts.NetworkErrorException;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -15,10 +14,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.net.NetworkRequest;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.NetworkOnMainThreadException;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -155,10 +152,10 @@ public class icebox extends Activity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                    Intent intent1 = new Intent();
-                    intent1.setClass(icebox.this, iceboxdbcreate.class);
-                    startActivity(intent1);
-                    icebox.this.finish();
+                Intent intent1 = new Intent();
+                intent1.setClass(icebox.this, iceboxdbcreate.class);
+                startActivity(intent1);
+                icebox.this.finish();
             }
         });
         Button buttonfreeze = (Button) findViewById(R.id.freezer);
@@ -360,21 +357,7 @@ public class icebox extends Activity implements View.OnClickListener {
     }
 
 
-    private void showAlert(String title,String context)
-    {
-        android.support.v7.app.AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(this);
-        alert.setTitle(title);
-        alert.setMessage(context);
-        alert.setPositiveButton("OK",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // TODO Auto-generated method stub
-                        //按下按鈕後執行的動作，沒寫則退出Dialog
-                    }
-                });
-        alert.show();
-    }
+
 
     @Override
     protected void onDestroy() {

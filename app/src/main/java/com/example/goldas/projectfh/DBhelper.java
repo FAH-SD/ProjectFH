@@ -39,38 +39,6 @@ import static com.example.goldas.projectfh.SDBconstant.S_SPORTTIME;
 import static com.example.goldas.projectfh.SDBconstant.S_CALORIES;
 import static com.example.goldas.projectfh.SDBconstant.S_DATE;
 import static com.example.goldas.projectfh.SDBconstant.STABLE_NAME;
-import static com.example.goldas.projectfh.DDBconstant.DTABLE_NAME;
-import static com.example.goldas.projectfh.DDBconstant.D_DISHNAME;
-import static com.example.goldas.projectfh.DDBconstant.D_MQUANTITY;
-import static com.example.goldas.projectfh.DDBconstant.D_MEMBER;
-import static com.example.goldas.projectfh.DDBconstant.D_FOOD1;
-import static com.example.goldas.projectfh.DDBconstant.D_QFOOD1;
-import static com.example.goldas.projectfh.DDBconstant.D_UFOOD1;
-import static com.example.goldas.projectfh.DDBconstant.D_FOOD2;
-import static com.example.goldas.projectfh.DDBconstant.D_QFOOD2;
-import static com.example.goldas.projectfh.DDBconstant.D_UFOOD2;
-import static com.example.goldas.projectfh.DDBconstant.D_FOOD3;
-import static com.example.goldas.projectfh.DDBconstant.D_QFOOD3;
-import static com.example.goldas.projectfh.DDBconstant.D_UFOOD3;
-import static com.example.goldas.projectfh.DDBconstant.D_FOOD4;
-import static com.example.goldas.projectfh.DDBconstant.D_QFOOD4;
-import static com.example.goldas.projectfh.DDBconstant.D_UFOOD4;
-import static com.example.goldas.projectfh.DDBconstant.D_FOOD5;
-import static com.example.goldas.projectfh.DDBconstant.D_QFOOD5;
-import static com.example.goldas.projectfh.DDBconstant.D_UFOOD5;
-import static com.example.goldas.projectfh.DDBconstant.D_FOOD6;
-import static com.example.goldas.projectfh.DDBconstant.D_QFOOD6;
-import static com.example.goldas.projectfh.DDBconstant.D_UFOOD6;
-import static com.example.goldas.projectfh.DDBconstant.D_FOOD7;
-import static com.example.goldas.projectfh.DDBconstant.D_QFOOD7;
-import static com.example.goldas.projectfh.DDBconstant.D_UFOOD7;
-import static com.example.goldas.projectfh.DDBconstant.D_FOOD8;
-import static com.example.goldas.projectfh.DDBconstant.D_QFOOD8;
-import static com.example.goldas.projectfh.DDBconstant.D_UFOOD8;
-import static com.example.goldas.projectfh.DDBconstant.D_FOOD9;
-import static com.example.goldas.projectfh.DDBconstant.D_QFOOD9;
-import static com.example.goldas.projectfh.DDBconstant.D_UFOOD9;
-
 
 public class DBhelper extends SQLiteOpenHelper {
 
@@ -124,41 +92,7 @@ public class DBhelper extends SQLiteOpenHelper {
                 S_SPORTTIME + " CHAR, "+
                 S_CALORIES + " CHAR, "+
                 S_DATE + " CHAR); ";
-        db.execSQL(INIT_TABLE2);
-
-        final String INIT_TABLE3 = "CREATE TABLE " + DTABLE_NAME + " (" +
-                _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                D_DISHNAME + " CHAR, " +
-                D_MEMBER + " CHAR, " +
-                D_MQUANTITY + " CHAR, " +
-                D_FOOD1 + " CHAR, " +
-                D_QFOOD1 + " CHAR, "+
-                D_UFOOD1 + " CHAR, "+
-                D_FOOD2 + " CHAR, " +
-                D_QFOOD2 + " CHAR, "+
-                D_UFOOD2 + " CHAR, "+
-                D_FOOD3 + " CHAR, " +
-                D_QFOOD3 + " CHAR, "+
-                D_UFOOD3 + " CHAR, "+
-                D_FOOD4 + " CHAR, " +
-                D_QFOOD4 + " CHAR, "+
-                D_UFOOD4 + " CHAR, "+
-                D_FOOD5 + " CHAR, " +
-                D_QFOOD5 + " CHAR, "+
-                D_UFOOD5 + " CHAR, "+
-                D_FOOD6 + " CHAR, " +
-                D_QFOOD6 + " CHAR, "+
-                D_UFOOD6 + " CHAR, "+
-                D_FOOD7 + " CHAR, " +
-                D_QFOOD7 + " CHAR, "+
-                D_UFOOD7 + " CHAR, "+
-                D_FOOD8 + " CHAR, " +
-                D_QFOOD8 + " CHAR, "+
-                D_UFOOD8 + " CHAR, "+
-                D_FOOD9 + " CHAR, " +
-                D_QFOOD9 + " CHAR, "+
-                D_UFOOD9 + " CHAR); ";
-        db.execSQL(INIT_TABLE3);}
+        db.execSQL(INIT_TABLE2);}
 
     @Override
     public void onOpen(SQLiteDatabase db){

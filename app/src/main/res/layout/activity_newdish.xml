@@ -36,7 +36,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/icon_true2"
-            android:id="@+id/btn_true"
+            android:id="@+id/btn_itrue"
             android:layout_weight="44"/>
     </LinearLayout>
 
@@ -127,353 +127,30 @@
 
             <EditText
                 android:layout_height="wrap_content"
-                android:id="@+id/dishname"
+                android:id="@+id/foodname"
                 android:background="#ffffffff"
                 android:layout_gravity="center"
                 android:layout_width="200dp"
                 android:layout_marginLeft="15dp" />
 
         </LinearLayout>
-        <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            >
+
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="175dp"
             android:background="#ffffe788"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginRight="20dp">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="新增食材1"
-                    android:id="@+id/btn_food1" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_food1"
-                    android:textSize="20dp"
-                    android:text=""/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_qfood1"
-                    android:textSize="20dp"
-                    android:text=""/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_ufood1"
-                    android:textSize="20dp"
-                    android:text=""/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="新增食材2"
-                    android:id="@+id/btn_food2"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_food2"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""/>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_qfood2"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""/>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_ufood2"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="新增食材3"
-                    android:id="@+id/btn_food3"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_food3"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_qfood3"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_ufood3"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="新增食材4"
-                    android:id="@+id/btn_food4"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_food4"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_qfood4"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_ufood4"
-                    android:visibility="gone"
-                    android:textSize="20dp"
-                    android:text=""/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="新增食材5"
-                    android:id="@+id/btn_food5"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_food5"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_qfood5"
-                    android:visibility="gone"
-                    android:textSize="20dp"
-                    android:text=""/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_ufood5"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="新增食材6"
-                    android:id="@+id/btn_food6"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_food6"
-                    android:visibility="gone"
-                    android:textSize="20dp"
-                    android:text=""/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_qfood6"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_ufood6"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="新增食材7"
-                    android:id="@+id/btn_food7"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_food7"
-                    android:visibility="gone"
-                    android:textSize="20dp"
-                    android:text=""/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_qfood7"
-                    android:visibility="gone"
-                    android:textSize="20dp"
-                    android:text=""/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_ufood7"
-                    android:visibility="gone"
-                    android:textSize="20dp"
-                    android:text=""/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="新增食材8"
-                    android:id="@+id/btn_food8"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_food8"
-                    android:visibility="gone"
-                    android:textSize="20dp"
-                    android:text=""/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_qfood8"
-                    android:visibility="gone"
-                    android:textSize="20dp"
-                    android:text=""/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_ufood8"
-                    android:visibility="gone"
-                    android:textSize="20dp"
-                    android:text=""/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="新增食材9"
-                    android:id="@+id/btn_food9"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_food9"
-                    android:visibility="gone"
-                    android:textSize="20dp"
-                    android:text=""/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_qfood9"
-                    android:visibility="gone"
-                    android:textSize="20dp"
-                    android:text=""/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_ufood9"
-                    android:visibility="gone"
-                    android:textSize="20dp"
-                    android:text=""/>
-            </LinearLayout>
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="65dp"
+                android:background="@drawable/icon_newdish"
+                android:id="@+id/button2"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp" />
         </LinearLayout>
-        </ScrollView>
     </LinearLayout>
 
 

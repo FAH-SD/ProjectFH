@@ -13,7 +13,6 @@
         <item>常溫</item>
     </string-array>
 
-
     <string-array name="gender">
         <item>男</item>
         <item>女</item>
@@ -96,7 +95,5 @@
     <string name="title_activity_sport_list">SportList</string>
     <string name="title_activity_sport_record">SportRecord</string>
     <string name="title_activity_sport_detail">SportDetail</string>
-    <string name="title_activity_dish_food">DishFood</string>
-    <string name="title_activity_dish_detail">DishDetail</string>
 
 </resources>
