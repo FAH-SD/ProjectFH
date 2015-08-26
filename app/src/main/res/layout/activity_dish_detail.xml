@@ -4,26 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Icebox"
-    android:id="@+id/icebox"
     android:screenOrientation="portrait">
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff87a40">
+
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/icon_back2"
             android:id="@+id/btn_back"
-            android:layout_weight="44"/>
+            android:background="@drawable/icon_back2"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="菜單編成"
+            android:text="菜單詳細資料"
             android:id="@+id/textView9"
             android:layout_weight="680"
             android:gravity="center"
@@ -32,162 +31,170 @@
             android:textSize="26dp"
             android:layout_gravity="center_vertical" />
 
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/icon_true2"
-            android:id="@+id/btn_true"
-            android:layout_weight="44"/>
     </LinearLayout>
-
-
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="成員"
-            android:layout_marginLeft="20dp"
-            android:textSize="24dp"/>
-
-        <Button
-            android:layout_width="90dp"
-            android:layout_height="40dp"
-            android:text="+選取"
-            android:id="@+id/btn_member"
-            android:background="#fffff57d"
-            android:textSize="26dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="共"
-            android:layout_marginLeft="50dp"
-            android:textSize="24dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textSize="24dp"
-            android:id="@+id/tv_amount" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="人"
-            android:textSize="24dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffe788">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_member"
-            android:layout_marginLeft="20dp"
-            android:text="尚未選取成員"
-            android:textSize="24dp"
-            android:textStyle="bold"/>
-    </LinearLayout>
-
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="false">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:background="#ffffcb64"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="菜名"
-                android:id="@+id/textView14"
-                android:layout_gravity="center"
-                android:textColor="#ffffffff"
-                android:textSize="24dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp" />
-
-            <EditText
-                android:layout_height="wrap_content"
-                android:id="@+id/dishname"
-                android:background="#ffffffff"
-                android:layout_gravity="center"
-                android:layout_width="200dp"
-                android:layout_marginLeft="15dp" />
-
-        </LinearLayout>
-        <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            >
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#ffffe788"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginTop="20dp">
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
 
-                <Button
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="新增食材1"
-                    android:id="@+id/btn_food1" />
+                    android:text="菜名"
+                    android:textSize="22dp"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_dishname"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="22dp"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffdace">
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="成員"-->
+                    <!--android:textSize="22dp"-->
+                    <!--android:layout_gravity="center_vertical"-->
+                    <!--android:textStyle="bold"/>-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="100dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/et_member"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:textSize="22dp"-->
+                    <!--android:enabled="false"-->
+                    <!--android:editable="false"-->
+                    <!--android:gravity="center"-->
+                    <!--android:textColor="#000000"/>-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="人數"
+                    android:textSize="22dp"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_amount"
+                    android:layout_marginLeft="20dp"
+                    android:inputType="number"
+                    android:textSize="22dp"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22dp"
+                    android:text="人"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffdace">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="食材1"
+                    android:id="@+id/food1"
+                    android:textSize="22dp"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_food1"
                     android:textSize="20dp"
-                    android:text=""/>
+                    android:visibility="visible"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_qfood1"
                     android:textSize="20dp"
+                    android:visibility="visible"
                     android:text=""/>
+
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_ufood1"
                     android:textSize="20dp"
+                    android:visibility="visible"
                     android:text=""/>
+
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
 
-                <Button
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="新增食材2"
-                    android:id="@+id/btn_food2"
+                    android:text="食材2"
+                    android:textSize="22dp"
+                    android:id="@+id/food2"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
                     android:visibility="gone" />
 
                 <TextView
@@ -196,7 +203,8 @@
                     android:id="@+id/tv_food2"
                     android:textSize="20dp"
                     android:visibility="gone"
-                    android:text=""/>
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
 
 
                 <TextView
@@ -215,27 +223,32 @@
                     android:textSize="20dp"
                     android:visibility="gone"
                     android:text=""/>
+
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:background="#ffdace">
 
-                <Button
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="新增食材3"
-                    android:id="@+id/btn_food3"
+                    android:text="食材3"
+                    android:textSize="22dp"
+                    android:id="@+id/food3"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
                     android:visibility="gone" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_food3"
                     android:textSize="20dp"
                     android:visibility="gone"
-                    android:text=""/>
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -252,27 +265,32 @@
                     android:textSize="20dp"
                     android:visibility="gone"
                     android:text=""/>
+
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
 
-                <Button
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="新增食材4"
-                    android:id="@+id/btn_food4"
+                    android:text="食材4"
+                    android:textSize="22dp"
+                    android:id="@+id/food4"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
                     android:visibility="gone" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_food4"
                     android:textSize="20dp"
                     android:visibility="gone"
-                    android:text=""/>
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -295,22 +313,26 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:background="#ffdace">
 
-                <Button
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="新增食材5"
-                    android:id="@+id/btn_food5"
+                    android:text="食材5"
+                    android:textSize="22dp"
+                    android:id="@+id/food5"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
                     android:visibility="gone" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_food5"
                     android:textSize="20dp"
                     android:visibility="gone"
-                    android:text=""/>
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -331,13 +353,17 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
 
-                <Button
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="新增食材6"
-                    android:id="@+id/btn_food6"
+                    android:text="食材6"
+                    android:textSize="22dp"
+                    android:id="@+id/food6"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
                     android:visibility="gone" />
 
                 <TextView
@@ -346,7 +372,8 @@
                     android:id="@+id/tv_food6"
                     android:visibility="gone"
                     android:textSize="20dp"
-                    android:text=""/>
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -362,19 +389,25 @@
                     android:textSize="20dp"
                     android:visibility="gone"
                     android:text=""/>
+
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:background="#ffdace">
 
-                <Button
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="新增食材7"
-                    android:id="@+id/btn_food7"
+                    android:text="食材7"
+                    android:textSize="22dp"
+                    android:id="@+id/food7"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
                     android:visibility="gone" />
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -382,7 +415,8 @@
                     android:id="@+id/tv_food7"
                     android:visibility="gone"
                     android:textSize="20dp"
-                    android:text=""/>
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -399,18 +433,23 @@
                     android:visibility="gone"
                     android:textSize="20dp"
                     android:text=""/>
+
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
 
-                <Button
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="新增食材8"
-                    android:id="@+id/btn_food8"
+                    android:text="食材8"
+                    android:textSize="22dp"
+                    android:id="@+id/food8"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
                     android:visibility="gone" />
 
                 <TextView
@@ -419,7 +458,8 @@
                     android:id="@+id/tv_food8"
                     android:visibility="gone"
                     android:textSize="20dp"
-                    android:text=""/>
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -436,18 +476,22 @@
                     android:textSize="20dp"
                     android:text=""/>
             </LinearLayout>
-
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:background="#ffdace">
 
-                <Button
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="新增食材9"
-                    android:id="@+id/btn_food9"
+                    android:text="食材9"
+                    android:textSize="22dp"
+                    android:id="@+id/food9"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
                     android:visibility="gone" />
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -455,7 +499,8 @@
                     android:id="@+id/tv_food9"
                     android:visibility="gone"
                     android:textSize="20dp"
-                    android:text=""/>
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -472,9 +517,10 @@
                     android:textSize="20dp"
                     android:text=""/>
             </LinearLayout>
+
+
         </LinearLayout>
-        </ScrollView>
+
     </LinearLayout>
-
-
-</LinearLayout>
+    </ScrollView>
+    </LinearLayout>
