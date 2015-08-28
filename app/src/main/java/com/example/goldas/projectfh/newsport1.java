@@ -59,6 +59,7 @@ import java.util.List;
 
 public class newsport1 extends Activity implements View.OnClickListener {
     private Spinner sports, sp_caloric, kind;
+    private Spinner type;
     private Button btn_recordadd;
     int userid;
     InputStream is=null;
@@ -85,6 +86,7 @@ public class newsport1 extends Activity implements View.OnClickListener {
         final EditText et_calorie = (EditText)findViewById(R.id.et_calorie);
         final EditText et_time = (EditText)findViewById(R.id.et_time);
         btn_recordadd = (Button)findViewById(R.id.btn_recordadd);
+        type = (Spinner) findViewById(R.id.sp_type2);
 
         //定義時間格式
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
@@ -441,6 +443,19 @@ public class newsport1 extends Activity implements View.OnClickListener {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
 // TODO Auto-generated method stub
+
+                String text = kind.getSelectedItem().toString();
+                text = text.replace(" ","");
+                if (text.equals("休閒運動")) {
+                    type.setSelection(0);
+                }
+                if (text.equals("健康運動")) {
+                    type.setSelection(1);
+                }
+                if (text.equals("球類運動")) {
+                    type.setSelection(2);
+
+                }
                 sports.setSelection(position);
                 sp_caloric.setSelection(position);
 
@@ -451,6 +466,69 @@ public class newsport1 extends Activity implements View.OnClickListener {
 // TODO Auto-generated method stub
             }
 
+        });
+
+        type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
+// TODO Auto-generated method stub
+                int k1 = 0,k2 = 0,k3 = 0,k4 = 0,k5 = 0,k6 = 0;
+                int t1=-1,t2=-1,t3=-1,t4=-1,t5=-1,t6 = -1;
+                for(int i=0;i<kind.getCount();i++){
+                    String temp = sport_kind[i];
+                    if(temp.contains("休閒")){
+                        k1 = i;
+                        t1++;
+                    }
+                    if(temp.contains("健康")){
+                        k2 = i;
+                        t2++;
+                    }
+                    if(temp.contains("球類")){
+                        k3 = i;
+                        t3++;
+                    }
+                    if(temp.contains("油脂")){
+                        k4 = i;
+                        t4++;
+                    }
+                    if(temp.contains("蔬菜")){
+                        k5 = i;
+                        t5++;
+                    }
+                    if(temp.contains("蛋豆")){
+                        k6 = i;
+                        t6++;
+                    }
+                }
+
+
+
+                if (type.getSelectedItemPosition() == 0) {
+                    kind.setSelection(k1-t1);
+                }
+                if (type.getSelectedItemPosition() == 1) {
+                    kind.setSelection(k2-t2);
+                }
+                if (type.getSelectedItemPosition() == 2) {
+                    kind.setSelection(k3-t3);
+                }
+                if (type.getSelectedItemPosition() == 3) {
+                    kind.setSelection(k4-t4);
+                }
+                if (type.getSelectedItemPosition() == 4) {
+                    kind.setSelection(k5-t5);
+                }
+                if (type.getSelectedItemPosition() == 5) {
+                    kind.setSelection(k6-t6);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+// TODO Auto-generated method stub
+            }
         });
 
 

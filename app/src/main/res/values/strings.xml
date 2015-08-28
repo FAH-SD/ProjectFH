@@ -53,6 +53,21 @@
         <item>油脂類</item>
     </string-array>
 
+    <string-array name="type2">
+        <item>五穀根莖類</item>
+        <item>奶類</item>
+        <item>水果類</item>
+        <item>油脂類</item>
+        <item>蔬菜類</item>
+        <item>蛋豆魚肉類</item>
+    </string-array>
+
+    <string-array name="sporttype">
+        <item>休閒運動</item>
+        <item>健康運動</item>
+        <item>球類運動</item>
+    </string-array>
+
     <string name="title_activity_newfood_camara">newfood_camara</string>
     <string name="title_activity_newfood_freezer">newfood_freezer</string>
     <string name="title_activity_newfood_fidge">newfood_fidge</string>
@@ -98,5 +113,5 @@
     <string name="title_activity_sport_detail">SportDetail</string>
     <string name="title_activity_dish_food">DishFood</string>
     <string name="title_activity_dish_detail">DishDetail</string>
-
+    <string name="title_activity_trace_ability">TraceAbility</string>
 </resources>

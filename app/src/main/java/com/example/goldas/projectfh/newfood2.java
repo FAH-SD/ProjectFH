@@ -5,13 +5,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -42,13 +43,13 @@ import java.util.Map;
 public class newfood2 extends Activity implements View.OnClickListener{
     private Activity mainactivity;
     private static EditText scan_content;
-    private static EditText trace_number;
     private Button scan_btn;
     private Button btn_gov;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newfood2);
+        final Intent intent = new Intent(this, traceAbility.class);
 
 
         ImageButton buttonback = (ImageButton)findViewById(R.id.btn_iback);
@@ -86,19 +87,18 @@ public class newfood2 extends Activity implements View.OnClickListener{
             @Override
             public void onClick(View v) {
                 String strInput = scan_content.getText().toString();
-                if("".equals(strInput)) {
-                    showAlert("錯誤資訊","尚未進行掃描");}
+//                if("".equals(strInput)) {
+//                    showAlert("錯誤資訊","尚未進行掃描");}
+//
+//                else if(strInput.contains("http://tqr.tw/?q=")){
+//                    new NetworkTask().execute();
 //                }else{
-//                    Intent intentS = new Intent(Intent.ACTION_VIEW);
-//                    intentS.setData(Uri.parse(strInput));
-//                    startActivity(intentS);
+//                    scan_content.setText("");
+//                    showAlert("錯誤資訊","該條碼不是產銷履歷碼");
 //                }
-                else if(strInput.contains("http://tqr.tw/?q=")){
-                    new NetworkTask().execute();
-                }else{
-                    scan_content.setText("");
-                    showAlert("錯誤資訊","該條碼不是產銷履歷碼");
-                }
+
+                intent.putExtra("abc", scan_content.getText().toString());
+                startActivity(intent);
             }
         });
 
@@ -234,7 +234,16 @@ private void showAlert(String title,String context){
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if(scanningResult!=null){
             String scanContent=scanningResult.getContents();
-            scan_content.setText(scanContent);
+                if("".equals(scanContent)) {
+                    showAlert("錯誤資訊","尚未進行掃描");}
+
+                else if(scanContent.contains("http://tqr.tw/?q=")){
+                    scan_content.setText(scanContent);
+                }else{
+                    scan_content.setText("");
+                    showAlert("錯誤資訊","該條碼不是產銷履歷碼");
+                }
+
         }else{
             Toast.makeText(getApplicationContext(), "nothing", Toast.LENGTH_SHORT).show();
         }
@@ -243,52 +252,51 @@ private void showAlert(String title,String context){
 
     private void init_view(){
         this.scan_content=(EditText)findViewById(R.id.editText3);
-        this.trace_number=(EditText)findViewById(R.id.editText2);
         this.mainactivity=this;
         this.scan_btn = (Button)findViewById(R.id.scan_btn);
         this.btn_gov = (Button)findViewById(R.id.btn_gov);
     }
 
-    class NetworkTask extends AsyncTask<String, Void, String>{
-        Document xmlDoc;
-        ProgressDialog dialog = new ProgressDialog(newfood2.this);
-        @Override
-        protected void onPreExecute(){
-            dialog.setTitle("讀取中...");
-            dialog.setMessage("正在讀取中...");
-            dialog.show();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            Log.d("newfood2","Parsing");
-            String strInput = scan_content.getText().toString();
-            Log.d("newfood2","strInput = " + strInput);
-            URL url = null;
-
-            try{
-                url = new URL(strInput);
-                xmlDoc = Jsoup.parse(url, 3000);
-            }catch(IOException e){
-                e.printStackTrace();
-                return null;
-            }
-
-            Elements span = xmlDoc.select("span");
-            String number = span.get(0).text();
-
-            return number;
-        }
-
-        @Override
-        protected void onPostExecute(String number){
-            dialog.cancel();
-            Log.d("newfood2", "before number = " + number);
-            number = number.replace("-(批次)","");
-            Log.d("newfood2","after number = "+number);
-            trace_number.setText(number);
-        }
-    }
+//    class NetworkTask extends AsyncTask<String, Void, String>{
+//        Document xmlDoc;
+//        ProgressDialog dialog = new ProgressDialog(newfood2.this);
+//        @Override
+//        protected void onPreExecute(){
+//            dialog.setTitle("讀取中...");
+//            dialog.setMessage("正在讀取中...");
+//            dialog.show();
+//        }
+//
+//        @Override
+//        protected String doInBackground(String... params) {
+//            Log.d("newfood2","Parsing");
+//            String strInput = scan_content.getText().toString();
+//            Log.d("newfood2","strInput = " + strInput);
+//            URL url = null;
+//
+//            try{
+//                url = new URL(strInput);
+//                xmlDoc = Jsoup.parse(url, 3000);
+//            }catch(IOException e){
+//                e.printStackTrace();
+//                return null;
+//            }
+//
+//            Elements span = xmlDoc.select("span");
+//            String number = span.get(0).text();
+//
+//            return number;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String number){
+//            dialog.cancel();
+//            Log.d("newfood2", "before number = " + number);
+//            number = number.replace("-(批次)","");
+//            Log.d("newfood2","after number = "+number);
+//            trace_number.setText(number);
+//        }
+//    }
 
 }
 

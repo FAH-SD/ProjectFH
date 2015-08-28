@@ -66,6 +66,7 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
 //    private ListView listData = null;
     private Spinner editkind;
     private Spinner edititem;
+    private Spinner type;
     private EditText quantity ;
     private TextView tv_buyday;
     private TextView tv_limitday;
@@ -92,8 +93,10 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_newfood1);
         dbhelper = new DBhelper(this);
         dbrw = dbhelper.getWritableDatabase();
+        new NetworkTask().execute();
 
         goToinit();
+
 
         Button buyDate = (Button) findViewById(R.id.buydate);
 
@@ -123,7 +126,7 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
         });
 
         Button buttonin1 = (Button)findViewById(R.id.btn_iin2);
-        buttonin1.setOnClickListener(new Button.OnClickListener(){
+        buttonin1.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent2 = new Intent();
@@ -133,7 +136,7 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
             }
         });
 
-            new NetworkTask().execute();
+
 
 
         // configure the SlidingMenu
@@ -247,6 +250,7 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
 //        listData = (ListView) findViewById(R.id.listView);
         editkind = (Spinner) findViewById(R.id.spinner);
         edititem = (Spinner) findViewById(R.id.spinner2);
+        type = (Spinner) findViewById(R.id.type);
         quantity = (EditText) findViewById(R.id.editText);
         tv_buyday = (TextView) findViewById(R.id.tv_buyday);
         tv_limitday = (TextView) findViewById(R.id.tv_limitday);
@@ -511,42 +515,146 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
         dataAdapter2.setDropDownViewResource(R.layout.spinnerlayout);
         edititem.setAdapter(dataAdapter2);
 
-        editkind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
+
+        type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,int position, long id)
-            {
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
 // TODO Auto-generated method stub
+                int k1 = 0,k2 = 0,k3 = 0,k4 = 0,k5 = 0,k6 = 0;
+                int t1=-1,t2=-1,t3=-1,t4=-1,t5=-1,t6 = -1;
+                for(int i=0;i<editkind.getCount();i++){
+                    String temp = roll_no[i];
+                    if(temp.contains("五穀")){
+                        k1 = i;
+                        t1++;
+                    }
+                    if(temp.contains("奶類")){
+                        k2 = i;
+                        t2++;
+                    }
+                    if(temp.contains("水果")){
+                        k3 = i;
+                        t3++;
+                    }
+                    if(temp.contains("油脂")){
+                        k4 = i;
+                        t4++;
+                    }
+                    if(temp.contains("蔬菜")){
+                        k5 = i;
+                        t5++;
+                    }
+                    if(temp.contains("蛋豆")){
+                        k6 = i;
+                        t6++;
+                    }
+                }
 
-                edititem.setSelection(position);
 
+
+                if (type.getSelectedItemPosition() == 0) {
+                    editkind.setSelection(k1-t1);
+                }
+                if (type.getSelectedItemPosition() == 1) {
+                    editkind.setSelection(k2-t2);
+                }
+                if (type.getSelectedItemPosition() == 2) {
+                    editkind.setSelection(k3-t3);
+                }
+                if (type.getSelectedItemPosition() == 3) {
+                    editkind.setSelection(k4-t4);
+                }
+                if (type.getSelectedItemPosition() == 4) {
+                    editkind.setSelection(k5-t5);
+                }
+                if (type.getSelectedItemPosition() == 5) {
+                    editkind.setSelection(k6-t6);
+                }
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> arg0)
-            {
+            public void onNothingSelected(AdapterView<?> arg0) {
+// TODO Auto-generated method stub
+            }
+        });
+
+        editkind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+// TODO Auto-generated method stub
+
+                String text = editkind.getSelectedItem().toString();
+                text = text.replace(" ","");
+                if (text.equals("五穀根莖類")) {
+                    type.setSelection(0);
+
+                }
+                if (text.equals("奶類")) {
+                    type.setSelection(1);
+                }
+                if (text.equals("水果類")) {
+                    type.setSelection(2);
+                }
+                if (text.equals("油脂類")) {
+                    type.setSelection(3);
+                }
+                if (text.equals("蔬菜類")) {
+                    type.setSelection(4);
+                }
+                if (text.equals("蛋豆魚肉類")) {
+                    type.setSelection(5);
+                }
+                edititem.setSelection(position);
+            }
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
 // TODO Auto-generated method stub
             }
 
         });
 
 
+
         edititem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,int position, long arg3) {
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
 // TODO Auto-generated method stub
 
                 editkind.setSelection(position);
 
                 liquid = edititem.getSelectedItem().toString();
-                if(liquid.contains("脂鮮乳")||liquid.contains("養樂多")||liquid.contains("優酪乳")||(liquid.contains("牛油")||liquid.contains("豬油")||liquid.contains("雞油")||liquid.contains("花生油")||liquid.contains("葵花油")||liquid.contains("玉米油")||liquid.contains("沙拉油")||liquid.contains("橄欖油")||liquid.contains("辣椒油")||liquid.contains("椰子油")|liquid.contains("芝麻油"))){
+                if (liquid.contains("脂鮮乳") || liquid.contains("養樂多") || liquid.contains("優酪乳") || (liquid.contains("牛油") || liquid.contains("豬油") || liquid.contains("雞油") || liquid.contains("花生油") || liquid.contains("葵花油") || liquid.contains("玉米油") || liquid.contains("沙拉油") || liquid.contains("橄欖油") || liquid.contains("辣椒油") || liquid.contains("椰子油") | liquid.contains("芝麻油"))) {
                     unit.setVisibility(View.GONE);
                     unit2.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     unit2.setVisibility(View.GONE);
                     unit.setVisibility(View.VISIBLE);
                 }
+
+//                String text = editkind.getSelectedItem().toString();
+//                text = text.replace(" ","");
+//                if (text.equals("五穀根莖類")) {
+//                    type.setSelection(0);
+//                }
+//                if (text.equals("蛋豆魚肉類")) {
+//                    type.setSelection(1);
+//                }
+//                if (text.equals("蔬菜類")) {
+//                    type.setSelection(2);
+//                }
+//                if (text.equals("水果類")) {
+//                    type.setSelection(3);
+//                }
+//                if (text.equals("奶類")) {
+//                    type.setSelection(4);
+//                }
+//                if (text.equals("油脂類")) {
+//                    type.setSelection(5);
+//                }
 
 
             }
@@ -558,8 +666,10 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
         });
 
     }
+
     class NetworkTask extends AsyncTask<String, Void, String> {
         ProgressDialog dialog = new ProgressDialog(iceboxdbcreate.this);
+
         @Override
         protected void onPreExecute() {
             dialog.setTitle("讀取中..");
@@ -567,6 +677,7 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
             dialog.show();
 //            dialog.show(newfood2.this,"讀取中..","正在讀取中..");
         }
+
         @Override
         protected String doInBackground(String... params) {
             try {
@@ -623,14 +734,13 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
                 }
 
 
-
             } catch (Exception e) {
 
                 Log.e("Fail 3", e.toString());
 //login.this.finish();
 
             }
-return null;
+            return null;
         }
 
 
