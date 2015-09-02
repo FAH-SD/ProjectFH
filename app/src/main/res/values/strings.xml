@@ -23,17 +23,11 @@
         <item>公克</item>
         <item>公斤</item>
         <item>台斤</item>
-        <item>磅</item>
-        <item>盎司</item>
-        <item>兩</item>
-        <item>錢</item>
     </string-array>
 
     <string-array name="unit2">
         <item>毫升</item>
         <item>公升</item>
-        <item>加侖</item>
-        <item>杯</item>
     </string-array>
 
     <string-array name="habit">
