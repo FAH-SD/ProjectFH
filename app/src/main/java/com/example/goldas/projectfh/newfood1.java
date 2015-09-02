@@ -57,16 +57,6 @@ public void onClick(View v) {
         newfood1.this.finish();
         }
         });
-        Button buttonin2 = (Button)findViewById(R.id.btn_iin2);
-        buttonin2.setOnClickListener(new Button.OnClickListener(){
-@Override
-public void onClick(View v) {
-        Intent intent2 = new Intent();
-        intent2.setClass(newfood1.this, newfood2.class);
-        startActivity(intent2);
-        newfood1.this.finish();
-        }
-        });
 
 
         // configure the SlidingMenu

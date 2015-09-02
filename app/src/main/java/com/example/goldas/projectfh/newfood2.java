@@ -56,23 +56,10 @@ public class newfood2 extends Activity implements View.OnClickListener{
         buttonback.setOnClickListener(new ImageButton.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent();
-                intent1.setClass(newfood2.this, icebox.class);
-                startActivity(intent1);
                 newfood2.this.finish();
             }
         });
 
-        Button buttonin1 = (Button)findViewById(R.id.btn_iin1);
-        buttonin1.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent2 = new Intent();
-                intent2.setClass(newfood2.this, iceboxdbcreate.class);
-                startActivity(intent2);
-                newfood2.this.finish();
-            }
-        });
         init_view();
         scan_btn.setOnClickListener(new View.OnClickListener() {
             @Override

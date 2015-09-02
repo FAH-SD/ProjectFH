@@ -33,7 +33,7 @@ public class DishFood extends Activity {
     private SimpleCursorAdapter adapter = null;
     String strtype = "全部";
     ListView foodlist;
-    String item, amount, unit;
+    String item, amount, unit, maxamount;
     EditText et_choose;
     String strbtn;
     String tv_member, tv_amount;
@@ -92,6 +92,8 @@ public class DishFood extends Activity {
                 try {
                     Cursor c2 = get(id);
                     item = c2.getString(1);
+                    maxamount = c2.getString(2);
+                    unit = c2.getString(3);
                     item = item.replace(" ", "");
                     showAlert();
                 } catch (SQLException e) {
@@ -181,9 +183,15 @@ public class DishFood extends Activity {
                 btn_true.setOnClickListener(new ImageButton.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        float a = Float.parseFloat(amount);
+                        float ma = Float.parseFloat(maxamount);
+                        if(a>ma){
+                            showAlert3("警告視窗", "輸入數量超過庫存，是否確定加入?");
+                        }
                         if (amount.equals("")) {
-                            showAlert2("錯誤資訊", "尚未輸入數量");
-                        } else {
+                            showAlert2("錯誤資訊", "數量尚未輸入");
+                        }
+                        if(a<=ma){
                             switch (strbtn) {
                                 case "1":
                                     tv_food1 = item;
@@ -284,7 +292,7 @@ public class DishFood extends Activity {
             }
 
             public Cursor get(long rowId) throws SQLException {
-                Cursor c = db.rawQuery("SELECT _id, item from icebox WHERE _id=" + rowId + " ORDER BY item", null);
+                Cursor c = db.rawQuery("SELECT _id, item,quantity,unit from icebox WHERE _id=" + rowId + " ORDER BY item", null);
                 if (c.getCount() > 0) {
                     c.moveToFirst();
                 }
@@ -316,15 +324,16 @@ public class DishFood extends Activity {
                 final View view1 = inflater.inflate(R.layout.amountview, null);
 
                 final EditText editText = (EditText) view1.findViewById(R.id.edittext);
-                final Spinner sp_unit = (Spinner) view1.findViewById(R.id.sp_unit);
-                final Spinner sp_unit2 = (Spinner) view1.findViewById(R.id.sp_unit2);
-                if (item.contains("脂鮮乳") || item.contains("養樂多") || item.contains("優酪乳") || (item.contains("牛油") || item.contains("豬油") || item.contains("雞油") || item.contains("花生油") || item.contains("葵花油") || item.contains("玉米油") || item.contains("沙拉油") || item.contains("橄欖油") || item.contains("辣椒油") || item.contains("椰子油") | item.contains("芝麻油"))) {
-                    sp_unit.setVisibility(View.GONE);
-                    sp_unit2.setVisibility(View.VISIBLE);
-                } else {
-                    sp_unit2.setVisibility(View.GONE);
-                    sp_unit.setVisibility(View.VISIBLE);
-                }
+                final TextView tv_unit = (TextView) view1.findViewById(R.id.tv_unit);
+                tv_unit.setText(unit);
+//                final Spinner sp_unit2 = (Spinner) view1.findViewById(R.id.sp_unit2);
+//                if (item.contains("脂鮮乳") || item.contains("養樂多") || item.contains("優酪乳") || (item.contains("牛油") || item.contains("豬油") || item.contains("雞油") || item.contains("花生油") || item.contains("葵花油") || item.contains("玉米油") || item.contains("沙拉油") || item.contains("橄欖油") || item.contains("辣椒油") || item.contains("椰子油") | item.contains("芝麻油"))) {
+//                    sp_unit.setVisibility(View.GONE);
+//                    sp_unit2.setVisibility(View.VISIBLE);
+//                } else {
+//                    sp_unit2.setVisibility(View.GONE);
+//                    sp_unit.setVisibility(View.VISIBLE);
+//                }
                 editText.addTextChangedListener(new TextWatcher() {
 
                     @Override
@@ -343,11 +352,11 @@ public class DishFood extends Activity {
 
                     @Override
                     public void afterTextChanged(Editable s) {
-                        if (sp_unit.getVisibility() == View.VISIBLE) {
-                            unit = sp_unit.getSelectedItem().toString();
-                        } else {
-                            unit = sp_unit2.getSelectedItem().toString();
-                        }
+//                        if (sp_unit.getVisibility() == View.VISIBLE) {
+//                            unit = sp_unit.getSelectedItem().toString();
+//                        } else {
+//                            unit = sp_unit2.getSelectedItem().toString();
+//                        }
                         if (editText.getText().toString() != ""
                                 && editText.getText().toString() != null) {
                             amount = editText.getText().toString();
@@ -360,70 +369,70 @@ public class DishFood extends Activity {
                     }
                 });
 
-                sp_unit.setOnItemSelectedListener(new OnItemSelectedListener() {
+//                sp_unit.setOnItemSelectedListener(new OnItemSelectedListener() {
+//
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view,
+//                                               int position, long id) {
+//                        if (sp_unit.getVisibility() == View.VISIBLE) {
+//                            unit = sp_unit.getSelectedItem().toString();
+//                        } else {
+//                            unit = sp_unit2.getSelectedItem().toString();
+//                        }
+//
+//                        if (editText.getText().toString() != ""
+//                                && editText.getText().toString() != null) {
+//                            amount = editText.getText().toString();
+//                        } else {
+//                            amount = "";
+//                        }
+//
+//                        String text = item + ", " + amount + unit;
+//                        et_choose.setText(text);
+//
+//                    }
+//
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//                        // TODO Auto-generated method stub
+//
+//                    }
+//                });
+//
+//                sp_unit2.setOnItemSelectedListener(new OnItemSelectedListener() {
+//
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view,
+//                                               int position, long id) {
+//                        if (sp_unit.getVisibility() == View.VISIBLE) {
+//                            unit = sp_unit.getSelectedItem().toString();
+//                        } else {
+//                            unit = sp_unit2.getSelectedItem().toString();
+//                        }
+//
+//                        if (editText.getText().toString() != ""
+//                                && editText.getText().toString() != null) {
+//                            amount = editText.getText().toString();
+//                        } else {
+//                            amount = "";
+//                        }
+//
+//                        String text = item + ", " + amount + unit;
+//                        et_choose.setText(text);
+//
+//                    }
+//
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//                        // TODO Auto-generated method stub
+//
+//                    }
+//                });
 
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view,
-                                               int position, long id) {
-                        if (sp_unit.getVisibility() == View.VISIBLE) {
-                            unit = sp_unit.getSelectedItem().toString();
-                        } else {
-                            unit = sp_unit2.getSelectedItem().toString();
-                        }
-
-                        if (editText.getText().toString() != ""
-                                && editText.getText().toString() != null) {
-                            amount = editText.getText().toString();
-                        } else {
-                            amount = "";
-                        }
-
-                        String text = item + ", " + amount + unit;
-                        et_choose.setText(text);
-
-                    }
-
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        // TODO Auto-generated method stub
-
-                    }
-                });
-
-                sp_unit2.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view,
-                                               int position, long id) {
-                        if (sp_unit.getVisibility() == View.VISIBLE) {
-                            unit = sp_unit.getSelectedItem().toString();
-                        } else {
-                            unit = sp_unit2.getSelectedItem().toString();
-                        }
-
-                        if (editText.getText().toString() != ""
-                                && editText.getText().toString() != null) {
-                            amount = editText.getText().toString();
-                        } else {
-                            amount = "";
-                        }
-
-                        String text = item + ", " + amount + unit;
-                        et_choose.setText(text);
-
-                    }
-
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        // TODO Auto-generated method stub
-
-                    }
-                });
-
-                new AlertDialog.Builder(DishFood.this).setTitle("選取" + item)
-                        .setMessage("請輸入數量").setView(view1)
+                new AlertDialog.Builder(DishFood.this).setTitle("選取" + item )
+                        .setMessage("請輸入數量  (目前庫存" + maxamount + unit +")").setView(view1)
                         .setPositiveButton("確定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -447,6 +456,112 @@ public class DishFood extends Activity {
                         });
                 alert.show();
             }
+
+    private void showAlert3(String title,String context) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(title);
+        alert.setMessage(context);
+        alert.setNegativeButton("取消",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                    }
+                });
+        alert.setPositiveButton("確定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                        switch (strbtn) {
+                            case "1":
+                                tv_food1 = item;
+                                tv_qfood1 = amount;
+                                tv_ufood1 = unit;
+                                break;
+                            case "2":
+                                tv_food2 = item;
+                                tv_qfood2 = amount;
+                                tv_ufood2 = unit;
+                                break;
+                            case "3":
+                                tv_food3 = item;
+                                tv_qfood3 = amount;
+                                tv_ufood3 = unit;
+                                break;
+                            case "4":
+                                tv_food4 = item;
+                                tv_qfood4 = amount;
+                                tv_ufood4 = unit;
+                                break;
+                            case "5":
+                                tv_food5 = item;
+                                tv_qfood5 = amount;
+                                tv_ufood5 = unit;
+                                break;
+                            case "6":
+                                tv_food6 = item;
+                                tv_qfood6 = amount;
+                                tv_ufood6 = unit;
+                                break;
+                            case "7":
+                                tv_food7 = item;
+                                tv_qfood7 = amount;
+                                tv_ufood7 = unit;
+                                break;
+                            case "8":
+                                tv_food8 = item;
+                                tv_qfood8 = amount;
+                                tv_ufood8 = unit;
+                                break;
+                            case "9":
+                                tv_food9 = item;
+                                tv_qfood9 = amount;
+                                tv_ufood9 = unit;
+                                break;
+                        }
+                        Bundle b1 = new Bundle();
+                        b1.putString("member", tv_member);
+                        b1.putString("amount", tv_amount);
+                        b1.putString("f1", tv_food1);
+                        b1.putString("qf1", tv_qfood1);
+                        b1.putString("uf1", tv_ufood1);
+                        b1.putString("f2", tv_food2);
+                        b1.putString("qf2", tv_qfood2);
+                        b1.putString("uf2", tv_ufood2);
+                        b1.putString("f3", tv_food3);
+                        b1.putString("qf3", tv_qfood3);
+                        b1.putString("uf3", tv_ufood3);
+                        b1.putString("f4", tv_food4);
+                        b1.putString("qf4", tv_qfood4);
+                        b1.putString("uf4", tv_ufood4);
+                        b1.putString("f5", tv_food5);
+                        b1.putString("qf5", tv_qfood5);
+                        b1.putString("uf5", tv_ufood5);
+                        b1.putString("f6", tv_food6);
+                        b1.putString("qf6", tv_qfood6);
+                        b1.putString("uf6", tv_ufood6);
+                        b1.putString("f7", tv_food7);
+                        b1.putString("qf7", tv_qfood7);
+                        b1.putString("uf7", tv_ufood7);
+                        b1.putString("f8", tv_food8);
+                        b1.putString("qf8", tv_qfood8);
+                        b1.putString("uf8", tv_ufood8);
+                        b1.putString("f9", tv_food9);
+                        b1.putString("qf9", tv_qfood9);
+                        b1.putString("uf9", tv_ufood9);
+                        b1.putString("strbtn", strbtn);
+                        Intent intent1 = new Intent();
+                        intent1.setClass(DishFood.this, newdish.class);
+                        intent1.putExtras(b1);
+                        startActivity(intent1);
+                        DishFood.this.finish();
+                    }
+                });
+        alert.show();
+    }
 
             // 點擊空白區域 自動隱藏鍵盤
             public boolean onTouchEvent(MotionEvent event) {

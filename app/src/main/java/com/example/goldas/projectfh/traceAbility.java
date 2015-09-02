@@ -44,22 +44,12 @@ public class traceAbility extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent();
-                intent1.setClass(traceAbility.this, icebox.class);
+                intent1.setClass(traceAbility.this, newfood2.class);
                 startActivity(intent1);
                 traceAbility.this.finish();
             }
         });
 
-        Button buttonin1 = (Button)findViewById(R.id.btn_iin1);
-        buttonin1.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent2 = new Intent();
-                intent2.setClass(traceAbility.this, newfood1.class);
-                startActivity(intent2);
-                traceAbility.this.finish();
-            }
-        });
         new NetworkTask().execute();
     }
     private void init_view(){

@@ -163,6 +163,7 @@ public class DishDetail extends Activity {
                 // TODO Auto-generated method stub
                 Intent intent1 = new Intent();
                 intent1.setClass(DishDetail.this, dish.class);
+                startActivity(intent1);
                 DishDetail.this.finish();
             }
         });

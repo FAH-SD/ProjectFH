@@ -48,69 +48,97 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="2dp">
+                android:layout_marginTop="2dp"
+                android:layout_weight="1">
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/family"
-                    android:background="@drawable/family_title"
-                    android:layout_gravity="center" />
+                    android:background="@drawable/icon_a1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="2dp" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/iceboxx"
-                    android:background="@drawable/icebox_title"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="2dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/dish"
-                    android:background="@drawable/dish_title"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="2dp" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/sport"
-                    android:background="@drawable/sport_title"
+                    android:background="@drawable/icon_b1"
                     android:layout_gravity="center"
                     android:layout_marginLeft="2dp"
-                    android:layout_marginTop="2dp" />
-
+                    android:layout_marginRight="2dp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1">
+
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/dish"
+                    android:background="@drawable/icon_c1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="2dp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/scan"
+                    android:background="@drawable/icon_f1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp" />
+
+
+            </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:layout_weight="1">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sport"
+                    android:background="@drawable/icon_d1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="2dp" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/set"
-                    android:background="@drawable/set_title"
+                    android:background="@drawable/icon_e1"
                     android:layout_gravity="center"
                     android:layout_marginTop="2dp" />
 
 
             </LinearLayout>
 
-
+            </LinearLayout>
 </LinearLayout>
     </LinearLayout>
 

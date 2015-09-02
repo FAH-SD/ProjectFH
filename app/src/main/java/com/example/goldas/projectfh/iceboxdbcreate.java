@@ -125,19 +125,6 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
             }
         });
 
-        Button buttonin1 = (Button)findViewById(R.id.btn_iin2);
-        buttonin1.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent2 = new Intent();
-                intent2.setClass(iceboxdbcreate.this, newfood2.class);
-                startActivity(intent2);
-                iceboxdbcreate.this.finish();
-            }
-        });
-
-
-
 
         // configure the SlidingMenu
         SlidingMenu menu = new SlidingMenu(this);
@@ -634,28 +621,6 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
                     unit2.setVisibility(View.GONE);
                     unit.setVisibility(View.VISIBLE);
                 }
-
-//                String text = editkind.getSelectedItem().toString();
-//                text = text.replace(" ","");
-//                if (text.equals("五穀根莖類")) {
-//                    type.setSelection(0);
-//                }
-//                if (text.equals("蛋豆魚肉類")) {
-//                    type.setSelection(1);
-//                }
-//                if (text.equals("蔬菜類")) {
-//                    type.setSelection(2);
-//                }
-//                if (text.equals("水果類")) {
-//                    type.setSelection(3);
-//                }
-//                if (text.equals("奶類")) {
-//                    type.setSelection(4);
-//                }
-//                if (text.equals("油脂類")) {
-//                    type.setSelection(5);
-//                }
-
 
             }
 

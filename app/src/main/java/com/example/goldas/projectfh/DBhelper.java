@@ -85,79 +85,79 @@ public class DBhelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         final String INIT_TABLE = "CREATE TABLE " + TABLE_NAME + " (" +
                 _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                KIND + " CHAR, " +
-                ITEM + " CHAR, " +
-                QUANTITY + " interger no null, " +
+                KIND + " CHAR(15), " +
+                ITEM + " CHAR(15), " +
+                QUANTITY + " float no null, " +
                 BUYINGDATE + " DATE no null, " +
                 LIMITDATE + " DATE no null, " +
-                STORAGEPLACE + " CHAR, " +
-                UNIT + " CHAR );";
+                STORAGEPLACE + " CHAR(5), " +
+                UNIT + " CHAR(5) );";
         db.execSQL(INIT_TABLE);
 
         final String INIT_TABLE1 = "CREATE TABLE " + FTABLE_NAME + " (" +
                 _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                NAME + " CHAR, " +
-                SEX + " CHAR, " +
+                NAME + " CHAR(30), " +
+                SEX + " CHAR(5), " +
                 WEIGHT + " interger no null, " +
                 HEIGHT + " interger no null, " +
                 BIRTHYEAR + " interger no null, "+
-                ALLERGY1 + " CHAR, "+
-                ALLERGY2 + " CHAR, "+
-                ALLERGY3 + " CHAR, "+
-                ALLERGY4 + " CHAR, "+
-                ALLERGY5 + " CHAR, "+
-                ALLERGY6 + " CHAR, "+
-                ALLERGY7 + " CHAR, "+
-                ALLERGY8 + " CHAR, "+
-                ALLERGY9 + " CHAR, "+
-                ALLERGY10 + " CHAR,"+
-                HABIT + " CHAR); ";
+                ALLERGY1 + " CHAR(2), "+
+                ALLERGY2 + " CHAR(2), "+
+                ALLERGY3 + " CHAR(2), "+
+                ALLERGY4 + " CHAR(2), "+
+                ALLERGY5 + " CHAR(2), "+
+                ALLERGY6 + " CHAR(2), "+
+                ALLERGY7 + " CHAR(2), "+
+                ALLERGY8 + " CHAR(2), "+
+                ALLERGY9 + " CHAR(2), "+
+                ALLERGY10 + " CHAR(2),"+
+                HABIT + " CHAR(10)); ";
         db.execSQL(INIT_TABLE1);
 
         final String INIT_TABLE2 = "CREATE TABLE " + STABLE_NAME + " (" +
                 _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                S_USERNAME + " CHAR, " +
+                S_USERNAME + " CHAR(30), " +
                 S_HEIGHT + " interger no null, " +
                 S_WEIGHT + " interger no null, " +
-                S_BMI + " CHAR, "+
-                S_SPORTNAME + " CHAR, "+
-                S_SPORTTIME + " CHAR, "+
-                S_CALORIES + " CHAR, "+
-                S_DATE + " CHAR); ";
+                S_BMI + " float no null, "+
+                S_SPORTNAME + " CHAR(15), "+
+                S_SPORTTIME + " float no null, "+
+                S_CALORIES + " float no null, "+
+                S_DATE + " DATE no null); ";
         db.execSQL(INIT_TABLE2);
 
         final String INIT_TABLE3 = "CREATE TABLE " + DTABLE_NAME + " (" +
                 _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                D_DISHNAME + " CHAR, " +
-                D_MEMBER + " CHAR, " +
-                D_MQUANTITY + " CHAR, " +
-                D_FOOD1 + " CHAR, " +
-                D_QFOOD1 + " CHAR, "+
-                D_UFOOD1 + " CHAR, "+
-                D_FOOD2 + " CHAR, " +
-                D_QFOOD2 + " CHAR, "+
-                D_UFOOD2 + " CHAR, "+
-                D_FOOD3 + " CHAR, " +
-                D_QFOOD3 + " CHAR, "+
-                D_UFOOD3 + " CHAR, "+
-                D_FOOD4 + " CHAR, " +
-                D_QFOOD4 + " CHAR, "+
-                D_UFOOD4 + " CHAR, "+
-                D_FOOD5 + " CHAR, " +
-                D_QFOOD5 + " CHAR, "+
-                D_UFOOD5 + " CHAR, "+
-                D_FOOD6 + " CHAR, " +
-                D_QFOOD6 + " CHAR, "+
-                D_UFOOD6 + " CHAR, "+
-                D_FOOD7 + " CHAR, " +
-                D_QFOOD7 + " CHAR, "+
-                D_UFOOD7 + " CHAR, "+
-                D_FOOD8 + " CHAR, " +
-                D_QFOOD8 + " CHAR, "+
-                D_UFOOD8 + " CHAR, "+
-                D_FOOD9 + " CHAR, " +
-                D_QFOOD9 + " CHAR, "+
-                D_UFOOD9 + " CHAR); ";
+                D_DISHNAME + " CHAR(30), " +
+                D_MEMBER + " CHAR(50), " +
+                D_MQUANTITY + " interger no null, " +
+                D_FOOD1 + " CHAR(15), " +
+                D_QFOOD1 + " float no null, "+
+                D_UFOOD1 + " CHAR(5), "+
+                D_FOOD2 + " CHAR(15), " +
+                D_QFOOD2 + " float no null, "+
+                D_UFOOD2 + " CHAR(5), "+
+                D_FOOD3 + " CHAR(15), " +
+                D_QFOOD3 + " float no null, "+
+                D_UFOOD3 + " CHAR(5), "+
+                D_FOOD4 + " CHAR(15), " +
+                D_QFOOD4 + " float no null, "+
+                D_UFOOD4 + " CHAR(5), "+
+                D_FOOD5 + " CHAR(15), " +
+                D_QFOOD5 + " float no null, "+
+                D_UFOOD5 + " CHAR(5), "+
+                D_FOOD6 + " CHAR(15), " +
+                D_QFOOD6 + " float no null, "+
+                D_UFOOD6 + " CHAR(5), "+
+                D_FOOD7 + " CHAR(15), " +
+                D_QFOOD7 + " float no null, "+
+                D_UFOOD7 + " CHAR(5), "+
+                D_FOOD8 + " CHAR(15), " +
+                D_QFOOD8 + " float no null, "+
+                D_UFOOD8 + " CHAR(5), "+
+                D_FOOD9 + " CHAR(15), " +
+                D_QFOOD9 + " float no null, "+
+                D_UFOOD9 + " CHAR(5)); ";
         db.execSQL(INIT_TABLE3);}
 
     @Override

@@ -34,16 +34,6 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/mylove"
-            android:textColor="#ffffffff"
-            android:background="@drawable/icon_love"
-            android:textSize="@dimen/abc_action_bar_stacked_max_height"
-            android:layout_gravity="center_vertical" />
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
             android:id="@+id/add"
             android:textColor="#ffffffff"
             android:background="@drawable/icon_add2"

@@ -90,6 +90,16 @@ public class homepage extends Activity implements View.OnClickListener{
             }
         });
 
+        Button scan = (Button) findViewById(R.id.scan);
+        scan.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent intent4 = new Intent();
+                intent4.setClass(homepage.this, newfood2.class);
+                startActivity(intent4);
+            }
+        });
         Button sport = (Button) findViewById(R.id.sport);
         sport.setOnClickListener(new Button.OnClickListener() {
             @Override
