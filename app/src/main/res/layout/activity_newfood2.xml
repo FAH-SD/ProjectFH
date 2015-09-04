@@ -96,12 +96,42 @@
                 android:background="#cd7493"
                 android:textSize="24dp" />
 
+
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="216dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="輸入產銷履歷追蹤碼"
+                android:layout_gravity="center"
+                android:textSize="24dp" />
+
+            <EditText
+                android:layout_width="197dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText2"
+                android:layout_gravity="center"
+                android:background="#ffffffff"
+                android:textSize="22dp"
+                android:inputType="number"
+                android:numeric="integer" />
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="OK"
+                android:id="@+id/btn_ok"
+                android:layout_gravity="center"
+                android:textColor="#ffffffff"
+                android:background="#cd7493"
+                android:textSize="24dp" />
+
 
         </LinearLayout>
     </LinearLayout>

@@ -2,9 +2,11 @@ package com.example.goldas.projectfh;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -47,6 +49,14 @@ public class traceAbility extends Activity {
                 intent1.setClass(traceAbility.this, newfood2.class);
                 startActivity(intent1);
                 traceAbility.this.finish();
+            }
+        });
+
+        Button btn_foodadd = (Button)findViewById(R.id.btn_foodadd);
+        btn_foodadd.setOnClickListener(new ImageButton.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                showAlert("確認視窗","是否確定新增此筆資料？");
             }
         });
 
@@ -96,16 +106,16 @@ public class traceAbility extends Activity {
                 Document doc = Jsoup.connect(url).get();
                 Elements span = doc.select("span");
                 Elements td = doc.select("td");
-                TT1 = span.get(0).text();
-                TT2 = td.get(0).text();
-                TT3 = td.get(1).text();
-                TT4 = td.get(2).text();
-                TT5 = td.get(3).text();
-                TT6 = td.get(4).text();
-                TT7 = td.get(5).text();
-                TT8 = td.get(6).text();
-                TT9 = td.get(7).text();
-                TT10 = td.get(8).text();
+                TT1 = span.get(1).text();
+                TT2 = td.get(2).text();
+                TT3 = td.get(3).text();
+                TT4 = td.get(4).text();
+                TT5 = td.get(5).text();
+                TT6 = td.get(6).text();
+                TT7 = td.get(7).text();
+                TT8 = td.get(8).text();
+                TT9 = td.get(9).text();
+                TT10 = td.get(10).text();
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -129,6 +139,35 @@ public class traceAbility extends Activity {
             T9.setText(TT9);
             T10.setText(TT10);
         }
+    }
+
+    private void showAlert(String title,String context)
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(title);
+        alert.setMessage(context);
+        alert.setPositiveButton("確定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                        Intent intent2 = new Intent();
+                        intent2.setClass(traceAbility.this, NewTracecode.class);
+                        intent2.putExtra("foodname", T5.getText().toString());
+                        startActivity(intent2);
+                        traceAbility.this.finish();
+                    }
+                });
+        alert.setNegativeButton("取消",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                    }
+                });
+        alert.show();
     }
 }
 

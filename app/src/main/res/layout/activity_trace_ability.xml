@@ -52,7 +52,7 @@
         android:background="#3effa6e2"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp">
 
         <LinearLayout
@@ -65,15 +65,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom|center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="追蹤碼："
-                    android:layout_gravity="left"
-                    android:id="@+id/textView"
-                    android:textColor="#ffff0073" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -300,5 +291,18 @@
         </LinearLayout>
 
             </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="加入至食材儲藏室"
+            android:id="@+id/btn_foodadd" />
+    </LinearLayout>
 
 </LinearLayout>

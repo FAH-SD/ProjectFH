@@ -5,14 +5,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,7 +22,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,29 +31,31 @@ import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
 import com.google.zxing.integration.android.*;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class newfood2 extends Activity implements View.OnClickListener{
+public class newfood2 extends Activity {
     private Activity mainactivity;
     private static EditText scan_content;
+    private static EditText trace_number;
     private Button scan_btn;
     private Button btn_gov;
+    private Button btn_ok;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newfood2);
-        final Intent intent = new Intent(this, traceAbility.class);
-
+        final Intent i = new Intent(this, traceAbility.class);
 
         ImageButton buttonback = (ImageButton)findViewById(R.id.btn_iback);
         buttonback.setOnClickListener(new ImageButton.OnClickListener(){
             @Override
             public void onClick(View v) {
+                Intent intent1 = new Intent();
                 newfood2.this.finish();
             }
         });
@@ -74,121 +74,44 @@ public class newfood2 extends Activity implements View.OnClickListener{
             @Override
             public void onClick(View v) {
                 String strInput = scan_content.getText().toString();
-//                if("".equals(strInput)) {
-//                    showAlert("錯誤資訊","尚未進行掃描");}
-//
-//                else if(strInput.contains("http://tqr.tw/?q=")){
-//                    new NetworkTask().execute();
+                if("".equals(strInput)) {
+                    showAlert("錯誤資訊","尚未進行掃描");}
 //                }else{
-//                    scan_content.setText("");
-//                    showAlert("錯誤資訊","該條碼不是產銷履歷碼");
+//                    Intent intentS = new Intent(Intent.ACTION_VIEW);
+//                    intentS.setData(Uri.parse(strInput));
+//                    startActivity(intentS);
 //                }
-
-                intent.putExtra("abc", scan_content.getText().toString());
-                startActivity(intent);
+                else if(strInput.contains("http://tqr.tw/?q=")){
+                    new NetworkTask().execute();
+                }else{
+                    scan_content.setText("");
+                    showAlert("錯誤資訊","該條碼不是產銷履歷碼");
+                }
             }
         });
 
-        // configure the SlidingMenu
-        SlidingMenu menu = new SlidingMenu(this);
-        menu.setMode(SlidingMenu.LEFT);
-        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
-        menu.setShadowWidthRes(R.dimen.shadow_width);
-        menu.setShadowDrawable(R.drawable.shadow);
-        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-        menu.setFadeDegree(0.35f);
-        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-        menu.setMenu(R.layout.activity_left_fragment);
-
-// 导航打开监听事件
-        menu.setOnOpenListener(new SlidingMenu.OnOpenListener() {
+        btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onOpen() {
+            public void onClick(View v) {
+                String strInput = scan_content.getText().toString();
+                if("".equals(trace_number.getText().toString().trim())) {
+                    showAlert("錯誤資訊", "產銷履歷碼尚未輸入");}
+
+
+                else{
+                    String strtn = trace_number.getText().toString();
+//                    if (strtn.length() != 11 || strtn.length() != 16){
+//                        showAlert("錯誤資訊", "產銷履歷碼輸入錯誤");
+//                    }else {
+                        String url = "http://tqr.tw/cn/cp.aspx?t=" + trace_number.getText().toString();
+                        i.putExtra("abc", url);
+                        startActivity(i);
+                    newfood2.this.finish();
+//                    }
+                }
             }
         });
-        // 导航关闭监听事件
-        menu.setOnClosedListener(new SlidingMenu.OnClosedListener() {
-
-            @Override
-            public void onClosed() {
-            }
-        });
-
-
-        ImageView lefthome = (ImageView)findViewById(R.id.lefthome);
-        lefthome.setOnClickListener(this);
-
-        ImageView leftfamily = (ImageView)findViewById(R.id.leftfamily);
-        leftfamily.setOnClickListener(this);
-
-        ImageView lefticebox = (ImageView)findViewById(R.id.lefticebox);
-        lefticebox.setOnClickListener(this);
-
-        ImageView leftdish = (ImageView)findViewById(R.id.leftdish);
-        leftdish.setOnClickListener(this);
-
-        ImageView leftsport = (ImageView)findViewById(R.id.leftsport);
-        leftsport.setOnClickListener(this);
-
-        ImageView leftset = (ImageView)findViewById(R.id.leftset);
-        leftset.setOnClickListener(this);
-
     }
-
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.lefthome:
-                this.finish();
-                break;
-            case R.id.leftfamily:
-                Intent intentfamily = new Intent();
-                intentfamily.setClass(this, family.class);
-                startActivity(intentfamily);
-                this.finish();
-                break;
-            case R.id.lefticebox:
-                Intent intenticebox = new Intent();
-                intenticebox.setClass(this, icebox.class);
-                startActivity(intenticebox);
-                this.finish();
-                break;
-            case R.id.leftdish:
-                Intent intentdish = new Intent();
-                intentdish.setClass(this, dish.class);
-                startActivity(intentdish);
-                this.finish();
-                break;
-            case R.id.leftsport:
-                Intent intentsport = new Intent();
-                intentsport.setClass(this, sport.class);
-                startActivity(intentsport);
-                this.finish();
-                break;
-            case R.id.leftset:
-                Intent intentset = new Intent();
-                intentset.setClass(this, set.class);
-                startActivity(intentset);
-                this.finish();
-                break;
-            default:
-                break;
-
-        }
-
-
-    }
-
-    // 點擊空白區域 自動隱藏鍵盤
-    public boolean onTouchEvent(MotionEvent event) {
-        if(null != this.getCurrentFocus()){
-
-            InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            return mInputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
-        }
-        return super .onTouchEvent(event);
-    }
-
 
     //    public static void Parsing() throws Exception {
 //
@@ -201,36 +124,27 @@ public class newfood2 extends Activity implements View.OnClickListener{
 //            trace_number.setText(number); //得到span tag的內容
 //
 //    }
-private void showAlert(String title,String context){
+    private void showAlert(String title,String context){
 
-    AlertDialog.Builder alert = new AlertDialog.Builder(this);
-    alert.setTitle(title);
-    alert.setMessage(context);
-    alert.setPositiveButton("OK",
-            new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    // TODO Auto-generated method stub
-                    //按下按鈕後執行的動作，沒寫則退出Dialog
-                }
-            });
-    alert.show();
-}
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(title);
+        alert.setMessage(context);
+        alert.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                    }
+                });
+        alert.show();
+    }
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent){
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if(scanningResult!=null){
             String scanContent=scanningResult.getContents();
-                if("".equals(scanContent)) {
-                    showAlert("錯誤資訊","尚未進行掃描");}
-
-                else if(scanContent.contains("http://tqr.tw/?q=")){
-                    scan_content.setText(scanContent);
-                }else{
-                    scan_content.setText("");
-                    showAlert("錯誤資訊","該條碼不是產銷履歷碼");
-                }
-
+            scan_content.setText(scanContent);
         }else{
             Toast.makeText(getApplicationContext(), "nothing", Toast.LENGTH_SHORT).show();
         }
@@ -239,53 +153,141 @@ private void showAlert(String title,String context){
 
     private void init_view(){
         this.scan_content=(EditText)findViewById(R.id.editText3);
+        this.trace_number=(EditText)findViewById(R.id.editText2);
         this.mainactivity=this;
         this.scan_btn = (Button)findViewById(R.id.scan_btn);
         this.btn_gov = (Button)findViewById(R.id.btn_gov);
+        this.btn_ok = (Button)findViewById(R.id.btn_ok);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mymenu, menu);
+        setIconEnable(menu, true);
+
+        return true;
+    }
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu)
+    {
+        // TODO Auto-generated method stub
+        return super.onPrepareOptionsMenu(menu);
     }
 
-//    class NetworkTask extends AsyncTask<String, Void, String>{
-//        Document xmlDoc;
-//        ProgressDialog dialog = new ProgressDialog(newfood2.this);
-//        @Override
-//        protected void onPreExecute(){
-//            dialog.setTitle("讀取中...");
-//            dialog.setMessage("正在讀取中...");
-//            dialog.show();
-//        }
-//
-//        @Override
-//        protected String doInBackground(String... params) {
-//            Log.d("newfood2","Parsing");
-//            String strInput = scan_content.getText().toString();
-//            Log.d("newfood2","strInput = " + strInput);
-//            URL url = null;
-//
-//            try{
-//                url = new URL(strInput);
-//                xmlDoc = Jsoup.parse(url, 3000);
-//            }catch(IOException e){
-//                e.printStackTrace();
-//                return null;
-//            }
-//
-//            Elements span = xmlDoc.select("span");
-//            String number = span.get(0).text();
-//
-//            return number;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String number){
-//            dialog.cancel();
-//            Log.d("newfood2", "before number = " + number);
-//            number = number.replace("-(批次)","");
-//            Log.d("newfood2","after number = "+number);
-//            trace_number.setText(number);
-//        }
-//    }
+    //enable为true时，菜单添加图标有效，enable为false时无效。4.0系统默认无效
+    private void setIconEnable(Menu menu, boolean enable)
+    {
+        try
+        {
+            Class<?> clazz = Class.forName("com.android.internal.view.menu.MenuBuilder");
+            Method m = clazz.getDeclaredMethod("setOptionalIconsVisible", boolean.class);
+            m.setAccessible(true);
+
+            //MenuBuilder实现Menu接口，创建菜单时，传进来的menu其实就是MenuBuilder对象(java的多态特征)
+            m.invoke(menu, enable);
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.homepage:
+                Intent intenthomepage = new Intent();
+                intenthomepage.setClass(this, homepage.class);
+                startActivity(intenthomepage);
+                this.finish();
+                break;
+            case R.id.family:
+                Intent intentfamily = new Intent();
+                intentfamily.setClass(this, family.class);
+                startActivity(intentfamily);
+                this.finish();
+                break;
+            case R.id.icebox:
+                Intent intenticebox = new Intent();
+                intenticebox.setClass(this, icebox.class);
+                startActivity(intenticebox);
+                this.finish();
+                break;
+            case R.id.dish:
+                Intent intentdish = new Intent();
+                intentdish.setClass(this, dish.class);
+                startActivity(intentdish);
+                this.finish();
+                break;
+
+            case R.id.set:
+                Intent intentset = new Intent();
+                intentset.setClass(this, set.class);
+                startActivity(intentset);
+                this.finish();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+
+        return  true;
+    }
+
+    class NetworkTask extends AsyncTask<String, Void, String>{
+        Document xmlDoc;
+        ProgressDialog dialog = new ProgressDialog(newfood2.this);
+        @Override
+        protected void onPreExecute(){
+            dialog.setTitle("讀取中...");
+            dialog.setMessage("正在讀取中...");
+            dialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            Log.d("newfood2","Parsing");
+            String strInput = scan_content.getText().toString();
+            Log.d("newfood2","strInput = " + strInput);
+            URL url = null;
+
+            try{
+                url = new URL(strInput);
+                xmlDoc = Jsoup.parse(url, 3000);
+            }catch(IOException e){
+                e.printStackTrace();
+                return null;
+            }
+
+            Elements span = xmlDoc.select("span");
+            String number = span.get(0).text();
+
+            return number;
+        }
+
+        @Override
+        protected void onPostExecute(String number){
+            dialog.cancel();
+            Log.d("newfood2", "before number = " + number);
+            number = number.replace("-(批次)","");
+            Log.d("newfood2","after number = "+number);
+            trace_number.setText(number);
+        }
+    }
+
+
+    // 點擊空白區域 自動隱藏鍵盤
+    public boolean onTouchEvent(MotionEvent event) {
+        if(null != this.getCurrentFocus()){
+
+            InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            return mInputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+        }
+        return super .onTouchEvent(event);
+    }
+
 
 }
+
 
 
 
