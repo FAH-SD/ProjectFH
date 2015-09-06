@@ -2,11 +2,15 @@ package com.example.goldas.projectfh;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -31,7 +35,7 @@ public class traceAbility extends Activity {
     private TextView T9;
     private TextView T10;
     String url = null;
-
+    String tracecode;
 
 
     @Override
@@ -40,7 +44,9 @@ public class traceAbility extends Activity {
         setContentView(R.layout.activity_trace_ability);
         init_view();
         Bundle bundle = this.getIntent().getExtras();
-        url = bundle.getString("abc");
+        url = bundle.getString("url");
+        tracecode = bundle.getString("tracecode");
+
         ImageButton buttonback = (ImageButton)findViewById(R.id.btn_iback);
         buttonback.setOnClickListener(new ImageButton.OnClickListener(){
             @Override
@@ -56,7 +62,11 @@ public class traceAbility extends Activity {
         btn_foodadd.setOnClickListener(new ImageButton.OnClickListener(){
             @Override
             public void onClick(View v) {
-                showAlert("確認視窗","是否確定新增此筆資料？");
+                if(isOnline()) {
+                    showAlert("確認視窗", "是否確定新增此筆資料？");
+                }else{
+                    showAlert3("錯誤資訊","尚未連線至網路");
+                }
             }
         });
 
@@ -75,7 +85,7 @@ public class traceAbility extends Activity {
         this.T10=(TextView)findViewById(R.id.textView13);
     }
     class NetworkTask extends AsyncTask<Void, Void, Void> {
-        String TT1;
+        boolean hasData = false;
         String TT2;
         String TT3;
         String TT4;
@@ -104,18 +114,22 @@ public class traceAbility extends Activity {
             try {
 
                 Document doc = Jsoup.connect(url).get();
-                Elements span = doc.select("span");
                 Elements td = doc.select("td");
-                TT1 = span.get(1).text();
-                TT2 = td.get(2).text();
-                TT3 = td.get(3).text();
-                TT4 = td.get(4).text();
-                TT5 = td.get(5).text();
-                TT6 = td.get(6).text();
-                TT7 = td.get(7).text();
-                TT8 = td.get(8).text();
-                TT9 = td.get(9).text();
-                TT10 = td.get(10).text();
+                if(td.size() != 3) {
+                    Log.d("traceAbility", "hasData");
+                    hasData = true;
+                    TT2 = td.get(2).text();
+                    TT3 = td.get(3).text();
+                    TT4 = td.get(4).text();
+                    TT5 = td.get(5).text();
+                    TT6 = td.get(6).text();
+                    TT7 = td.get(7).text();
+                    TT8 = td.get(8).text();
+                    TT9 = td.get(9).text();
+                    TT10 = td.get(10).text();
+                }
+
+
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -127,17 +141,20 @@ public class traceAbility extends Activity {
         @Override
         protected void onPostExecute(Void whatever) {
             dialog.cancel();
-            TT1 = TT1.replace("-(批次)","");
-            T1.setText(TT1);
-            T2.setText(TT2);
-            T3.setText(TT3);
-            T4.setText(TT4);
-            T5.setText(TT5);
-            T6.setText(TT6);
-            T7.setText(TT7);
-            T8.setText(TT8);
-            T9.setText(TT9);
-            T10.setText(TT10);
+            if(hasData) {
+                T1.setText(tracecode);
+                T2.setText(TT2);
+                T3.setText(TT3);
+                T4.setText(TT4);
+                T5.setText(TT5);
+                T6.setText(TT6);
+                T7.setText(TT7);
+                T8.setText(TT8);
+                T9.setText(TT9);
+                T10.setText(TT10);
+            } else {
+                showAlert2("錯誤資訊","履歷碼輸入錯誤");
+            }
         }
     }
 
@@ -154,7 +171,11 @@ public class traceAbility extends Activity {
                         //按下按鈕後執行的動作，沒寫則退出Dialog
                         Intent intent2 = new Intent();
                         intent2.setClass(traceAbility.this, NewTracecode.class);
-                        intent2.putExtra("foodname", T5.getText().toString());
+                        Bundle bundle = new Bundle();
+                        bundle.putString("url", url);
+                        bundle.putString("tracecode", tracecode);
+                        bundle.putString("foodname", T5.getText().toString());
+                        intent2.putExtras(bundle);
                         startActivity(intent2);
                         traceAbility.this.finish();
                     }
@@ -168,6 +189,49 @@ public class traceAbility extends Activity {
                     }
                 });
         alert.show();
+    }
+
+    private void showAlert2(String title,String context)
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(title);
+        alert.setMessage(context);
+        alert.setPositiveButton("確定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        Intent intent2 = new Intent();
+                        intent2.setClass(traceAbility.this, newfood2.class);
+                        startActivity(intent2);
+                        traceAbility.this.finish();
+                    }
+                });
+        alert.show();
+    }
+    private void showAlert3(String title,String context)
+    {
+        android.support.v7.app.AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(this);
+        alert.setTitle(title);
+        alert.setMessage(context);
+        alert.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                    }
+                });
+        alert.show();
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+        return false;
     }
 }
 

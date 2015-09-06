@@ -2,9 +2,13 @@ package com.example.goldas.projectfh;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -138,10 +142,14 @@ public class icebox_freeze extends Activity implements View.OnClickListener{
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
+                if(isOnline()) {
                 Intent intent1 = new Intent();
                 intent1.setClass(icebox_freeze.this, iceboxdbcreate.class);
                 startActivity(intent1);
-                icebox_freeze.this.finish();
+                icebox_freeze.this.finish();                }
+                else{
+                    showAlert("錯誤資訊", "尚未連線至網路");
+                }
             }});
         Button buttonall = (Button) findViewById(R.id.all);
         buttonall.setOnClickListener(new Button.OnClickListener() {
@@ -367,5 +375,30 @@ public class icebox_freeze extends Activity implements View.OnClickListener{
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
+    }
+
+    private void showAlert(String title,String context)
+    {
+        android.support.v7.app.AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(this);
+        alert.setTitle(title);
+        alert.setMessage(context);
+        alert.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                    }
+                });
+        alert.show();
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+        return false;
     }
 }

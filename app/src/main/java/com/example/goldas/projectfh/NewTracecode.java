@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -76,6 +79,7 @@ public class NewTracecode extends Activity {
 
     String[] roll_no,name;
     String strfood;
+    String url, tracecode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +87,40 @@ public class NewTracecode extends Activity {
         setContentView(R.layout.activity_new_tracecode);
         Bundle bundle = this.getIntent().getExtras();
         strfood = bundle.getString("foodname");
+        if(strfood.contains("玉女番茄")){
+            strfood = "聖女蕃茄";
+        }if(strfood.contains("番茄")){
+            strfood = "蕃茄";
+        }if(strfood.contains("茂谷柑")){
+            strfood = "柑橘";
+        }if(strfood.contains("橘子")){
+            strfood = "桔子";
+        }if(strfood.contains("青椒")){
+            strfood = "甜椒";
+        }if(strfood.contains("黃瓜")){
+            strfood = "胡瓜";
+        }if(strfood.contains("番石榴")){
+            strfood = "芭樂";
+        }if(strfood.contains("雪梨")){
+            strfood = "水梨";
+        }if(strfood.contains("A菜")){
+            strfood = "萵苣";
+        }if(strfood.contains("大豆")){
+            strfood = "黃豆";
+        }if(strfood.contains("青江白菜")){
+            strfood = "青江菜";
+        }if(strfood.contains("紅蘿蔔")){
+            strfood = "胡蘿蔔";
+        }if(strfood.contains("香芋")){
+            strfood = "芋頭";
+        }if(strfood.contains("地瓜") || strfood.contains("甘藷")){
+            strfood = "甘薯";
+        }if(strfood.contains("葉用甘藷") || strfood.contains("葉用甘薯") || strfood.contains("地瓜葉")){
+            strfood = "甘薯葉";
+        }
+        url = bundle.getString("url");
+        tracecode = bundle.getString("tracecode");
+
         findViews();
         setListeners();
         dbhelper = new DBhelper(this);
@@ -111,10 +149,19 @@ public class NewTracecode extends Activity {
         buttonback.setOnClickListener(new ImageButton.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent1 = new Intent();
+                intent1.setClass(NewTracecode.this, traceAbility.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("url", url);
+                bundle.putString("tracecode", tracecode);
+                intent1.putExtras(bundle);
+                startActivity(intent1);
                 NewTracecode.this.finish();
             }
         });
+
     }
+
 
     private void setListeners(){
         btnitrue.setOnClickListener(new itrue_ButtonClickListener());
@@ -313,65 +360,68 @@ public class NewTracecode extends Activity {
 
         @Override
         protected String doInBackground(String... params) {
-            try {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://163.13.201.82/test.php");
-                HttpResponse response = httpclient.execute(httppost);
-                Log.e("Fail 1", "3");
+            if(isOnline()) {
 
-                HttpEntity entity = response.getEntity();
-                Log.e("Fail 1", "4");
+                try {
+                    HttpClient httpclient = new DefaultHttpClient();
+                    HttpPost httppost = new HttpPost("http://163.13.201.82/test.php");
+                    HttpResponse response = httpclient.execute(httppost);
+                    Log.e("Fail 1", "3");
 
-                is = entity.getContent();
-                Log.e("Pass 1", "connection success ");
-            } catch (Exception e) {
-                Log.e("Fail 1", e.toString());
+                    HttpEntity entity = response.getEntity();
+                    Log.e("Fail 1", "4");
+
+                    is = entity.getContent();
+                    Log.e("Pass 1", "connection success ");
+                } catch (Exception e) {
+                    Log.e("Fail 1", e.toString());
 //                Toast.makeText(getApplicationContext(), "Invalid IP Address", Toast.LENGTH_LONG).show();
-                finish();
-            }
-
-
-            try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
-                StringBuilder sb = new StringBuilder();
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line + "\n");
+                    finish();
                 }
-                is.close();
-                result = sb.toString();
-            } catch (Exception e) {
-                Log.e("Fail 2", e.toString());
-            }
 
 
-            try {
-                JSONArray JA = new JSONArray(result);
-                JSONObject json = null;
-                roll_no = new String[JA.length()];
-                name = new String[JA.length()];
-
-                for (int i = 0; i < JA.length(); i++) {
-                    json = JA.getJSONObject(i);
-                    roll_no[i] = json.getString("nu_kind");
-                    name[i] = json.getString("nu_foodname");
-
+                try {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
+                    StringBuilder sb = new StringBuilder();
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+                    is.close();
+                    result = sb.toString();
+                } catch (Exception e) {
+                    Log.e("Fail 2", e.toString());
                 }
+
+
+                try {
+                    JSONArray JA = new JSONArray(result);
+                    JSONObject json = null;
+                    roll_no = new String[JA.length()];
+                    name = new String[JA.length()];
+
+                    for (int i = 0; i < JA.length(); i++) {
+                        json = JA.getJSONObject(i);
+                        roll_no[i] = json.getString("nu_kind");
+                        name[i] = json.getString("nu_foodname");
+
+                    }
 //                Toast.makeText(getApplicationContext(), "sss", Toast.LENGTH_LONG).show();
 
-                for (int i = 0; i < roll_no.length; i++) {
-                    List<String> list1 = new ArrayList<String>();
-                    List<String> list2 = new ArrayList<String>();
-                    list1.add(roll_no[i]);
-                    list2.add(name[i]);
+                    for (int i = 0; i < roll_no.length; i++) {
+                        List<String> list1 = new ArrayList<String>();
+                        List<String> list2 = new ArrayList<String>();
+                        list1.add(roll_no[i]);
+                        list2.add(name[i]);
 //                    Log.d("test", "roll_no = " + roll_no[i] + ", name = " + name[i]);
-                }
+                    }
 
 
-            } catch (Exception e) {
+                } catch (Exception e) {
 
-                Log.e("Fail 3", e.toString());
+                    Log.e("Fail 3", e.toString());
 //login.this.finish();
 
+                }
             }
             return null;
         }
@@ -470,4 +520,12 @@ public class NewTracecode extends Activity {
         alert.show();
     }
 
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+        return false;
+    }
 }

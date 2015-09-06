@@ -18,6 +18,34 @@
 
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="消耗卡路里：" android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/txtcal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" android:textSize="20sp"
+                    android:layout_marginLeft="2dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="大卡" android:textSize="20sp"/>
+            </LinearLayout>
+
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"

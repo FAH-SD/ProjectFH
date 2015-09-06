@@ -15,9 +15,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,16 +33,20 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -83,8 +84,9 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
     String result=null;
     String line=null;
     String liquid;
+    String[] food_info;
 
-    String[] roll_no,name;
+    String[] id,roll_no,name;
 
 
     @Override
@@ -621,6 +623,8 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
                     unit2.setVisibility(View.GONE);
                     unit.setVisibility(View.VISIBLE);
                 }
+                Log.d("iceboxdbcreate", "position = " + id[position]);
+                new NetworkTask2().execute(id[position]);
 
             }
 
@@ -679,22 +683,27 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
             try {
                 JSONArray JA = new JSONArray(result);
                 JSONObject json = null;
+
                 roll_no = new String[JA.length()];
                 name = new String[JA.length()];
+                id = new String[JA.length()];
 
                 for (int i = 0; i < JA.length(); i++) {
                     json = JA.getJSONObject(i);
                     roll_no[i] = json.getString("nu_kind");
                     name[i] = json.getString("nu_foodname");
-
+                    id[i] = json.getString("id");
                 }
 //                Toast.makeText(getApplicationContext(), "sss", Toast.LENGTH_LONG).show();
 
                 for (int i = 0; i < roll_no.length; i++) {
                     List<String> list1 = new ArrayList<String>();
                     List<String> list2 = new ArrayList<String>();
+                    List<String> list3 = new ArrayList<String>();
+
                     list1.add(roll_no[i]);
                     list2.add(name[i]);
+                    list3.add(id[i]);
 //                    Log.d("test", "roll_no = " + roll_no[i] + ", name = " + name[i]);
                 }
 
@@ -718,6 +727,65 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
     }
 
 
+
+    class NetworkTask2 extends AsyncTask<String, Void, String> {
+        ProgressDialog dialog = new ProgressDialog(iceboxdbcreate.this);
+
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setTitle("讀取中..");
+            dialog.setMessage("正在讀取中..");
+            dialog.show();
+//            dialog.show(newfood2.this,"讀取中..","正在讀取中..");
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            try
+            {
+                //連線到 url網址
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost method = new HttpPost("http://163.13.201.82/tes3t.php");
+
+                //傳值給PHP
+                List<NameValuePair> vars=new ArrayList< NameValuePair>();
+                vars.add(new BasicNameValuePair("id",params[0]));
+                method.setEntity(new UrlEncodedFormEntity(vars, HTTP.UTF_8));
+
+                //接收PHP回傳的資料
+                HttpResponse response = httpclient.execute(method);
+                HttpEntity entity = response.getEntity();
+                String value = EntityUtils.toString(entity, "utf-8");
+
+                food_info = new String [12];
+                String []column = {"nu_caloric", "nu_water", "nu_prote", "nu_fat", "nu_carbon", "nu_na", "nu_k", "nu_ca", "nu_mg", "nu_p", "nu_fe", "nu_zn"};
+
+//                JSONObject jsonObject = new JSONObject(value);
+
+//                String nu_caloric = jsonObject.getString("nu_caloric");
+                if(entity != null){
+                    for(int i=0; i<column.length; i++) {
+                        food_info[i] = new JSONArray(value).getJSONObject(0).getString(column[i]);
+                        Log.d("iceboxdbcreate", column[i] + "=" + food_info[i]);
+                    }
+                }
+                else{
+                    Log.d("iceboxdbcreate", "value = null");
+                }
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(String number) {
+            dialog.cancel();
+        }
+    }
 
 }
 

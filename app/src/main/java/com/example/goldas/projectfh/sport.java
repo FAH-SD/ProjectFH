@@ -3,10 +3,13 @@ package com.example.goldas.projectfh;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -154,18 +157,22 @@ public class sport extends Activity implements View.OnClickListener{
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Bundle bundle = new Bundle();
-                bundle.putInt("userid", userid);
-                bundle.putString("name", stringname);
-                bundle.putString("height", height.getText().toString());
-                bundle.putString("weight", weight.getText().toString());
-                bundle.putString("BMI", BMI.getText().toString());
-                bundle.putString("level", level.getText().toString());
-                Intent intent1 = new Intent();
-                intent1.setClass(sport.this, newsport1.class);
-                intent1.putExtras(bundle);
-                startActivity(intent1);
-                sport.this.finish();
+                if(isOnline()) {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("userid", userid);
+                    bundle.putString("name", stringname);
+                    bundle.putString("height", height.getText().toString());
+                    bundle.putString("weight", weight.getText().toString());
+                    bundle.putString("BMI", BMI.getText().toString());
+                    bundle.putString("level", level.getText().toString());
+                    Intent intent1 = new Intent();
+                    intent1.setClass(sport.this, newsport1.class);
+                    intent1.putExtras(bundle);
+                    startActivity(intent1);
+                    sport.this.finish();
+                }else{
+                    showAlert("錯誤資訊","尚未連線至網路");
+                }
             }
         });
 
@@ -370,7 +377,30 @@ public class sport extends Activity implements View.OnClickListener{
         return c;
 
     }
+    private void showAlert(String title,String context)
+    {
+        android.support.v7.app.AlertDialog.Builder alert = new android.support.v7.app.AlertDialog.Builder(this);
+        alert.setTitle(title);
+        alert.setMessage(context);
+        alert.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                    }
+                });
+        alert.show();
+    }
 
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+        return false;
+    }
 }
 
 

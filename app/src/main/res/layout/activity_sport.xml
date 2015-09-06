@@ -224,7 +224,7 @@
     <Button
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:text="輸入欲消耗卡洛里，找出運動建議"
+        android:text="輸入欲消耗卡路里，找出運動建議"
         android:id="@+id/button4"
         android:textSize="20dp"
         android:layout_gravity="center"

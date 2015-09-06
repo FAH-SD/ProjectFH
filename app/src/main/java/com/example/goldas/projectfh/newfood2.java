@@ -6,8 +6,11 @@ import java.net.URL;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -93,21 +96,29 @@ public class newfood2 extends Activity {
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String strInput = scan_content.getText().toString();
-                if("".equals(trace_number.getText().toString().trim())) {
-                    showAlert("錯誤資訊", "產銷履歷碼尚未輸入");}
-
-
-                else{
-                    String strtn = trace_number.getText().toString();
+                Log.d("newfood2", "ok click");
+                if(isOnline()) {
+                    Log.d("newfood2", "have network");
+                    String strInput = scan_content.getText().toString();
+                    if ("".equals(trace_number.getText().toString().trim())) {
+                        showAlert("錯誤資訊", "產銷履歷碼尚未輸入");
+                    } else {
+                        String strtn = trace_number.getText().toString();
 //                    if (strtn.length() != 11 || strtn.length() != 16){
 //                        showAlert("錯誤資訊", "產銷履歷碼輸入錯誤");
 //                    }else {
                         String url = "http://tqr.tw/cn/cp.aspx?t=" + trace_number.getText().toString();
-                        i.putExtra("abc", url);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("url", url);
+                        bundle.putString("tracecode", trace_number.getText().toString());
+                        i.putExtras(bundle);
                         startActivity(i);
-                    newfood2.this.finish();
+                        newfood2.this.finish();
 //                    }
+                    }
+                }
+                else{
+                    showAlert("錯誤資訊","尚未連線至網路");
                 }
             }
         });
@@ -285,7 +296,14 @@ public class newfood2 extends Activity {
         return super .onTouchEvent(event);
     }
 
-
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+        return false;
+    }
 }
 
 

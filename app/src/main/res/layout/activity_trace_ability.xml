@@ -70,6 +70,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="產銷履歷碼："
+                    android:textColor="#ffff0073" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/textView2"
                     android:textColor="#ffff0073" />
             </LinearLayout>

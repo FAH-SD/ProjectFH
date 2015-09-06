@@ -15,6 +15,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.NetworkRequest;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -155,10 +157,15 @@ public class icebox extends Activity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
+                if(isOnline()) {
                     Intent intent1 = new Intent();
                     intent1.setClass(icebox.this, iceboxdbcreate.class);
                     startActivity(intent1);
                     icebox.this.finish();
+                }
+                else{
+                    showAlert("錯誤資訊", "尚未連線至網路");
+                }
             }
         });
         Button buttonfreeze = (Button) findViewById(R.id.freezer);
@@ -404,5 +411,15 @@ public class icebox extends Activity implements View.OnClickListener {
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
+    }
+
+
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+        return false;
     }
 }

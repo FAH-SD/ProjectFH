@@ -168,7 +168,9 @@
         </activity>
         <activity
             android:name=".NewTracecode"
-            android:label="@string/title_activity_new_tracecode" >
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_activity_new_tracecode"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden">
         </activity>
     </application>
 

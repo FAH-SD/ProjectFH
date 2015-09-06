@@ -39,8 +39,8 @@ public class SportRecord extends Activity {
         level.setText(bundle2.getString("level"));
 
         db=(new DBhelper(getApplicationContext()).getWritableDatabase());
-        cursor= db.rawQuery("SELECT _id, s_sportname, s_date from sport WHERE s_username = '" + name.getText().toString()+ "' " , null);
-        adapter = new SimpleCursorAdapter(this, R.layout.sport_record_list, cursor, new String[]{"s_sportname","s_date"}, new int[]{ R.id.txtsport, R.id.txtrdate});
+        cursor= db.rawQuery("SELECT _id, s_sportname, s_calories, s_date from sport WHERE s_username = '" + name.getText().toString()+ "' " , null);
+        adapter = new SimpleCursorAdapter(this, R.layout.sport_record_list, cursor, new String[]{"s_sportname","s_calories","s_date"}, new int[]{ R.id.txtsport,R.id.txtcal, R.id.txtrdate});
         ListView sportview = (ListView)findViewById(R.id.sportRecordList);
         sportview.setAdapter(adapter);
 
