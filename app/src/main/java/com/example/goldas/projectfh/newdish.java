@@ -123,6 +123,7 @@ public class newdish extends Activity implements View.OnClickListener{
         Bundle bundle2 = this.getIntent().getExtras();
         tv_member.setText(bundle2.getString("member"));
         tv_amount.setText(bundle2.getString("amount"));
+        dishname.setText(bundle2.getString("dishname"));
 
         tv_food1.setText(bundle2.getString("f1"));
         tv_qfood1.setText(bundle2.getString("qf1"));
@@ -242,42 +243,8 @@ public class newdish extends Activity implements View.OnClickListener{
             @Override
             public void onClick(View v) {
 
-                Intent intent1 = new Intent();
-                intent1.setClass(newdish.this, dish.class);
-                Bundle b = new Bundle();
-                b.putString("member",tv_amount.getText().toString());
-                b.putString("amount", tv_amount.getText().toString());
-                b.putString("f1", tv_food1.getText().toString());
-                b.putString("qf1",tv_qfood1.getText().toString());
-                b.putString("uf1",tv_ufood1.getText().toString());
-                b.putString("f2", tv_food2.getText().toString());
-                b.putString("qf2",tv_qfood2.getText().toString());
-                b.putString("uf2",tv_ufood2.getText().toString());
-                b.putString("f3", tv_food3.getText().toString());
-                b.putString("qf3",tv_qfood3.getText().toString());
-                b.putString("uf3",tv_ufood3.getText().toString());
-                b.putString("f4", tv_food4.getText().toString());
-                b.putString("qf4",tv_qfood4.getText().toString());
-                b.putString("uf4",tv_ufood4.getText().toString());
-                b.putString("f5", tv_food5.getText().toString());
-                b.putString("qf5",tv_qfood5.getText().toString());
-                b.putString("uf5",tv_ufood5.getText().toString());
-                b.putString("f6", tv_food6.getText().toString());
-                b.putString("qf6",tv_qfood6.getText().toString());
-                b.putString("uf6",tv_ufood6.getText().toString());
-                b.putString("f7", tv_food7.getText().toString());
-                b.putString("qf7",tv_qfood7.getText().toString());
-                b.putString("uf7",tv_ufood7.getText().toString());
-                b.putString("f8", tv_food8.getText().toString());
-                b.putString("qf8",tv_qfood8.getText().toString());
-                b.putString("uf8",tv_ufood8.getText().toString());
-                b.putString("f9", tv_food9.getText().toString());
-                b.putString("qf9",tv_qfood9.getText().toString());
-                b.putString("uf9",tv_ufood9.getText().toString());
-                b.putString("strbtn", strbtn);
-                intent1.putExtras(b);
-                startActivity(intent1);
-                newdish.this.finish();
+                backAlert("警告視窗","菜單尚未編輯完成，是否確定離開？");
+
             }
         });
 
@@ -288,6 +255,7 @@ public class newdish extends Activity implements View.OnClickListener{
                 Bundle b1 = new Bundle();
                 b1.putString("member",tv_member.getText().toString());
                 b1.putString("amount", tv_amount.getText().toString());
+                b1.putString("dishname", dishname.getText().toString());
                 b1.putString("f1", tv_food1.getText().toString());
                 b1.putString("qf1",tv_qfood1.getText().toString());
                 b1.putString("uf1",tv_ufood1.getText().toString());
@@ -332,6 +300,7 @@ public class newdish extends Activity implements View.OnClickListener{
                 strbtn = "1";
                 b1.putString("member",tv_member.getText().toString());
                 b1.putString("amount", tv_amount.getText().toString());
+                b1.putString("dishname", dishname.getText().toString());
                 b1.putString("f1", tv_food1.getText().toString());
                 b1.putString("qf1",tv_qfood1.getText().toString());
                 b1.putString("uf1",tv_ufood1.getText().toString());
@@ -376,6 +345,7 @@ public class newdish extends Activity implements View.OnClickListener{
                 strbtn = "2";
                 b2.putString("member",tv_member.getText().toString());
                 b2.putString("amount", tv_amount.getText().toString());
+                b2.putString("dishname", dishname.getText().toString());
                 b2.putString("f1", tv_food1.getText().toString());
                 b2.putString("qf1",tv_qfood1.getText().toString());
                 b2.putString("uf1",tv_ufood1.getText().toString());
@@ -420,6 +390,7 @@ public class newdish extends Activity implements View.OnClickListener{
                 strbtn = "3";
                 b2.putString("member",tv_member.getText().toString());
                 b2.putString("amount", tv_amount.getText().toString());
+                b2.putString("dishname", dishname.getText().toString());
                 b2.putString("f1", tv_food1.getText().toString());
                 b2.putString("qf1",tv_qfood1.getText().toString());
                 b2.putString("uf1",tv_ufood1.getText().toString());
@@ -464,6 +435,7 @@ public class newdish extends Activity implements View.OnClickListener{
                 strbtn = "4";
                 b2.putString("member",tv_member.getText().toString());
                 b2.putString("amount", tv_amount.getText().toString());
+                b2.putString("dishname", dishname.getText().toString());
                 b2.putString("f1", tv_food1.getText().toString());
                 b2.putString("qf1",tv_qfood1.getText().toString());
                 b2.putString("uf1",tv_ufood1.getText().toString());
@@ -508,6 +480,7 @@ public class newdish extends Activity implements View.OnClickListener{
                 strbtn = "5";
                 b2.putString("member",tv_member.getText().toString());
                 b2.putString("amount", tv_amount.getText().toString());
+                b2.putString("dishname", dishname.getText().toString());
                 b2.putString("f1", tv_food1.getText().toString());
                 b2.putString("qf1",tv_qfood1.getText().toString());
                 b2.putString("uf1",tv_ufood1.getText().toString());
@@ -552,6 +525,7 @@ public class newdish extends Activity implements View.OnClickListener{
                 strbtn = "6";
                 b2.putString("member",tv_member.getText().toString());
                 b2.putString("amount", tv_amount.getText().toString());
+                b2.putString("dishname", dishname.getText().toString());
                 b2.putString("f1", tv_food1.getText().toString());
                 b2.putString("qf1",tv_qfood1.getText().toString());
                 b2.putString("uf1",tv_ufood1.getText().toString());
@@ -596,6 +570,7 @@ public class newdish extends Activity implements View.OnClickListener{
                 strbtn = "7";
                 b2.putString("member",tv_member.getText().toString());
                 b2.putString("amount", tv_amount.getText().toString());
+                b2.putString("dishname", dishname.getText().toString());
                 b2.putString("f1", tv_food1.getText().toString());
                 b2.putString("qf1",tv_qfood1.getText().toString());
                 b2.putString("uf1",tv_ufood1.getText().toString());
@@ -640,6 +615,7 @@ public class newdish extends Activity implements View.OnClickListener{
                 strbtn = "8";
                 b2.putString("member",tv_member.getText().toString());
                 b2.putString("amount", tv_amount.getText().toString());
+                b2.putString("dishname", dishname.getText().toString());
                 b2.putString("f1", tv_food1.getText().toString());
                 b2.putString("qf1",tv_qfood1.getText().toString());
                 b2.putString("uf1",tv_ufood1.getText().toString());
@@ -684,6 +660,7 @@ public class newdish extends Activity implements View.OnClickListener{
                 strbtn = "9";
                 b2.putString("member",tv_member.getText().toString());
                 b2.putString("amount", tv_amount.getText().toString());
+                b2.putString("dishname", dishname.getText().toString());
                 b2.putString("f1", tv_food1.getText().toString());
                 b2.putString("qf1",tv_qfood1.getText().toString());
                 b2.putString("uf1",tv_ufood1.getText().toString());
@@ -825,6 +802,68 @@ public class newdish extends Activity implements View.OnClickListener{
         alert.setTitle(title);
         alert.setMessage(context);
         alert.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                    }
+                });
+        alert.show();
+    }
+
+    private void backAlert(String title,String context)
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(title);
+        alert.setMessage(context);
+        alert.setPositiveButton("確定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                        Intent intent1 = new Intent();
+                        intent1.setClass(newdish.this, dish.class);
+                        Bundle b = new Bundle();
+                        b.putString("member", tv_amount.getText().toString());
+                        b.putString("amount", tv_amount.getText().toString());
+                        b.putString("dishname", dishname.getText().toString());
+                        b.putString("f1", tv_food1.getText().toString());
+                        b.putString("qf1", tv_qfood1.getText().toString());
+                        b.putString("uf1", tv_ufood1.getText().toString());
+                        b.putString("f2", tv_food2.getText().toString());
+                        b.putString("qf2", tv_qfood2.getText().toString());
+                        b.putString("uf2", tv_ufood2.getText().toString());
+                        b.putString("f3", tv_food3.getText().toString());
+                        b.putString("qf3", tv_qfood3.getText().toString());
+                        b.putString("uf3", tv_ufood3.getText().toString());
+                        b.putString("f4", tv_food4.getText().toString());
+                        b.putString("qf4", tv_qfood4.getText().toString());
+                        b.putString("uf4", tv_ufood4.getText().toString());
+                        b.putString("f5", tv_food5.getText().toString());
+                        b.putString("qf5", tv_qfood5.getText().toString());
+                        b.putString("uf5", tv_ufood5.getText().toString());
+                        b.putString("f6", tv_food6.getText().toString());
+                        b.putString("qf6", tv_qfood6.getText().toString());
+                        b.putString("uf6", tv_ufood6.getText().toString());
+                        b.putString("f7", tv_food7.getText().toString());
+                        b.putString("qf7", tv_qfood7.getText().toString());
+                        b.putString("uf7", tv_ufood7.getText().toString());
+                        b.putString("f8", tv_food8.getText().toString());
+                        b.putString("qf8", tv_qfood8.getText().toString());
+                        b.putString("uf8", tv_ufood8.getText().toString());
+                        b.putString("f9", tv_food9.getText().toString());
+                        b.putString("qf9", tv_qfood9.getText().toString());
+                        b.putString("uf9", tv_ufood9.getText().toString());
+                        b.putString("strbtn", strbtn);
+                        intent1.putExtras(b);
+                        startActivity(intent1);
+                        newdish.this.finish();
+                    }
+                });
+
+        alert.setNegativeButton("取消",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

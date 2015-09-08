@@ -164,13 +164,22 @@
         </activity>
         <activity
             android:name=".traceAbility"
-            android:label="@string/title_activity_trace_ability" >
+            android:label="@string/title_activity_trace_ability"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".NewTracecode"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_new_tracecode"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden">
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".DishFood2"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_activity_dish_food2"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

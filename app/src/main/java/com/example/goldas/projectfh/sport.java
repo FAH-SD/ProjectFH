@@ -86,11 +86,14 @@ public class sport extends Activity implements View.OnClickListener{
         weight.setText(bundle2.getString("weight"));
         BMI.setText(bundle2.getString("BMI"));
         long id = (name.getSelectedItemId());
-        try {
-            Cursor c = get(id);
-            stringname = c.getString(1);
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+        if (cursor != null && cursor.getCount() >= 0) {
+            try {
+                Cursor c = get(id);
+                stringname = c.getString(1);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
 

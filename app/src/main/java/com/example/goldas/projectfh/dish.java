@@ -104,6 +104,7 @@ public class dish extends Activity implements View.OnClickListener{
                 Bundle bundle = new Bundle();
                 bundle.putString("member","尚未選取成員");
                 bundle.putString("amount", "0");
+                bundle.putString("dishname", "");
                 bundle.putString("f1", "");
                 bundle.putString("qf1","");
                 bundle.putString("uf1","");

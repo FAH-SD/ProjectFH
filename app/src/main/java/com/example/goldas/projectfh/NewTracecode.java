@@ -497,8 +497,12 @@ public class NewTracecode extends Activity {
                         //按下按鈕後執行的動作，沒寫則退出Dialog
                         SQLiteDatabase db = dbhelper.getWritableDatabase();
                         ContentValues values = new ContentValues();
-                        values.put(KIND, editkind.getSelectedItem().toString());
-                        values.put(ITEM, edititem.getSelectedItem().toString());
+                        String strkind =  editkind.getSelectedItem().toString();
+                        strkind = strkind.replace(" ","");
+                        values.put(KIND, strkind);
+                        String stritem = edititem.getSelectedItem().toString();
+                        stritem = stritem.replace(" ","");
+                        values.put(ITEM, stritem);
                         values.put(QUANTITY, quantity.getText().toString());
                         values.put(BUYINGDATE, tv_buyday.getText().toString());
                         values.put(LIMITDATE, tv_limitday.getText().toString());

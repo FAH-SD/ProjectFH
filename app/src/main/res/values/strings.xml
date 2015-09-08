@@ -110,4 +110,5 @@
     <string name="title_activity_trace_ability">TraceAbility</string>
     <string name="title_activity_splash">splash</string>
     <string name="title_activity_new_tracecode">NewTracecode</string>
+    <string name="title_activity_dish_food2">DishFood2</string>
 </resources>

@@ -38,6 +38,7 @@ public class DishMember extends Activity {
     private int index = 0;
     int index2 = 0;
     String strindex;
+    String dishname;
     String[] strmember;
     String tv_food1, tv_food2, tv_food3, tv_food4, tv_food5, tv_food6, tv_food7, tv_food8, tv_food9;
     String tv_qfood1, tv_qfood2, tv_qfood3, tv_qfood4, tv_qfood5, tv_qfood6, tv_qfood7, tv_qfood8, tv_qfood9;
@@ -59,6 +60,7 @@ public class DishMember extends Activity {
 
         et_member.setText(bundle2.getString("member"));
         et_amount.setText(bundle2.getString("amount"));
+        dishname = bundle2.getString("dishname");
         tv_food1 = bundle2.getString("f1");
         tv_qfood1 = bundle2.getString("qf1");
         tv_ufood1 = bundle2.getString("uf1");
@@ -122,6 +124,7 @@ public class DishMember extends Activity {
                 Bundle bundle = new Bundle();
                 bundle.putString("member","尚未選取成員");
                 bundle.putString("amount", "0");
+                bundle.putString("dishname", dishname);
                 bundle.putString("f1", tv_food1);
                 bundle.putString("qf1",tv_qfood1);
                 bundle.putString("uf1",tv_ufood1);
@@ -166,6 +169,7 @@ public class DishMember extends Activity {
                 Bundle bundle = new Bundle();
                 bundle.putString("member", et_member.getText().toString());
                 bundle.putString("amount", et_amount.getText().toString());
+                bundle.putString("dishname", dishname);
                 bundle.putString("f1", tv_food1);
                 bundle.putString("qf1",tv_qfood1);
                 bundle.putString("uf1",tv_ufood1);

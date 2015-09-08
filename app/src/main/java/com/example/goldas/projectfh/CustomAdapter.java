@@ -13,10 +13,12 @@ import android.widget.TextView;
 public class CustomAdapter extends ArrayAdapter {
     public static final int TYPE_FRESH = 0;
     public static final int TYPE_EXPIRED = 1;
+    public static final int TYPE_DISHLIST = 2;
+    public static final int TYPE_DISHLIST2 = 3;
     private ListViewItem[] objects;
     @Override
     public int getViewTypeCount() {
-        return 2;
+        return 4;
     }
     @Override
     public int getItemViewType(int position) {
@@ -34,8 +36,12 @@ public class CustomAdapter extends ArrayAdapter {
         if (convertView == null) {
             if (listViewItemType == TYPE_FRESH) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.teest, null);
-            } else if (listViewItemType == TYPE_EXPIRED) {
+            }if (listViewItemType == TYPE_EXPIRED) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.foodexpired, null);
+            }if (listViewItemType == TYPE_DISHLIST) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.dishfoodlist, null);
+            }if (listViewItemType == TYPE_DISHLIST2) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.dishfoodlist2, null);
             }
             TextView txtitem = (TextView) convertView.findViewById(R.id.txtitem);
                 TextView txtquan = (TextView) convertView.findViewById(R.id.txtquan);
