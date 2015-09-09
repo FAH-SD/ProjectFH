@@ -75,7 +75,11 @@ public class DishFood2 extends Activity {
     Cursor cursor;
     String strtype = "全部";
     ListView foodlist;
+    Button btn_ok;
+    Button btn_search;
     EditText et_choose;
+    Spinner sp_type;
+    EditText et_item;
     String strbtn;
     String item, amount, unit;
     String tv_member, tv_amount, dishname;
@@ -90,7 +94,9 @@ public class DishFood2 extends Activity {
     String[] food_info;
 
     String[] id,roll_no,name;
+    String[] a1, a2, a3, a4, a5, a6;
 
+    int b1 = 0,b2 = 0,b3 = 0,b4 = 0,b5 = 0,b6 = 0;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,8 +136,11 @@ public class DishFood2 extends Activity {
         tv_ufood9 = bundle2.getString("uf9");
         strbtn = bundle2.getString("strbtn");
 
-
+        sp_type = (Spinner) findViewById(R.id.type);
         foodlist = (ListView) findViewById(R.id.listView4);
+        btn_ok = (Button) findViewById(R.id.btn_ok);
+        btn_search = (Button) findViewById(R.id.btn_search);
+        et_item = (EditText) findViewById(R.id.et_item);
         new NetworkTask().execute();
 
 
@@ -308,11 +317,11 @@ public class DishFood2 extends Activity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                        if (sp_unit.getVisibility() == View.VISIBLE) {
-                            unit = sp_unit.getSelectedItem().toString();
-                        } else {
-                            unit = sp_unit2.getSelectedItem().toString();
-                        }
+                if (sp_unit.getVisibility() == View.VISIBLE) {
+                    unit = sp_unit.getSelectedItem().toString();
+                } else {
+                    unit = sp_unit2.getSelectedItem().toString();
+                }
                 if (editText.getText().toString() != ""
                         && editText.getText().toString() != null) {
                     amount = editText.getText().toString();
@@ -427,6 +436,166 @@ public class DishFood2 extends Activity {
         });
 
 
+
+        btn_ok.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int tchose = sp_type.getSelectedItemPosition();
+
+                switch (tchose) {
+                    case 0:
+                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(),
+                                R.layout.dishfoodlist3, name);
+                        dataAdapter.setDropDownViewResource(R.layout.spinnerlayout);
+                        foodlist.setAdapter(dataAdapter);
+                        break;
+                    case 1:
+                        for (int i = 0; i < name.length; i++) {
+                            if (roll_no[i].contains("五穀")) {
+                                b1++;
+                            }
+                        }
+                        a1 = new String[b1];
+                        b1 = 0;
+                        for (int i = 0; i < name.length; i++) {
+                            if (roll_no[i].contains("五穀")) {
+                                a1[b1] = name[i];
+                                b1++;
+                            }
+                        }
+                        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(getApplicationContext(),
+                                R.layout.dishfoodlist3, a1);
+                        dataAdapter1.setDropDownViewResource(R.layout.spinnerlayout);
+                        foodlist.setAdapter(dataAdapter1);
+                        break;
+                    case 2:
+                        for (int i = 0; i < name.length; i++) {
+                            if (roll_no[i].contains("蛋豆")) {
+                                b2++;
+                            }
+                        }
+                        a2 = new String[b2];
+                        b2 = 0;
+                        for (int i = 0; i < name.length; i++) {
+                            if (roll_no[i].contains("蛋豆")) {
+                                a2[b2] = name[i];
+                                b2++;
+                            }
+                        }
+                        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(getApplicationContext(),
+                                R.layout.dishfoodlist3, a2);
+                        dataAdapter2.setDropDownViewResource(R.layout.spinnerlayout);
+                        foodlist.setAdapter(dataAdapter2);
+                        break;
+                    case 3:
+                        for (int i = 0; i < name.length; i++) {
+                            if (roll_no[i].contains("蔬菜")) {
+                                b3++;
+                            }
+                        }
+                        a3 = new String[b3];
+                        b3 = 0;
+                        for (int i = 0; i < name.length; i++) {
+                            if (roll_no[i].contains("蔬菜")) {
+                                a3[b3] = name[i];
+                                b3++;
+                            }
+                        }
+                        ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(getApplicationContext(),
+                                R.layout.dishfoodlist3, a3);
+                        dataAdapter3.setDropDownViewResource(R.layout.spinnerlayout);
+                        foodlist.setAdapter(dataAdapter3);
+                        break;
+                    case 4:
+                        for (int i = 0; i < name.length; i++) {
+                            if (roll_no[i].contains("水果")) {
+                                b4++;
+                            }
+                        }
+                        a4 = new String[b4];
+                        b4 = 0;
+                        for (int i = 0; i < name.length; i++) {
+                            if (roll_no[i].contains("水果")) {
+                                a4[b4] = name[i];
+                                b4++;
+                            }
+                        }
+                        ArrayAdapter<String> dataAdapter4 = new ArrayAdapter<String>(getApplicationContext(),
+                                R.layout.dishfoodlist3, a4);
+                        dataAdapter4.setDropDownViewResource(R.layout.spinnerlayout);
+                        foodlist.setAdapter(dataAdapter4);
+                        break;
+                    case 5:
+                        for (int i = 0; i < name.length; i++) {
+                            if (roll_no[i].contains("奶類")) {
+                                b5++;
+                            }
+                        }
+                        a5 = new String[b5];
+                        b5 = 0;
+                        for (int i = 0; i < name.length; i++) {
+                            if (roll_no[i].contains("奶類")) {
+                                a5[b5] = name[i];
+                                b5++;
+                            }
+                        }
+                        ArrayAdapter<String> dataAdapter5 = new ArrayAdapter<String>(getApplicationContext(),
+                                R.layout.dishfoodlist3, a5);
+                        dataAdapter5.setDropDownViewResource(R.layout.spinnerlayout);
+                        foodlist.setAdapter(dataAdapter5);
+                        break;
+                    case 6:
+                        for (int i = 0; i < name.length; i++) {
+                            if (roll_no[i].contains("油脂")) {
+                                b6++;
+                            }
+                        }
+                        a6 = new String[b6];
+                        b6 = 0;
+                        for (int i = 0; i < name.length; i++) {
+                            if (roll_no[i].contains("油脂")) {
+                                a6[b6] = name[i];
+                                b6++;
+                            }
+                        }
+                        ArrayAdapter<String> dataAdapter6 = new ArrayAdapter<String>(getApplicationContext(),
+                                R.layout.dishfoodlist3, a6);
+                        dataAdapter6.setDropDownViewResource(R.layout.spinnerlayout);
+                        foodlist.setAdapter(dataAdapter6);
+                        break;
+                }
+            }
+        });
+
+        btn_search.setOnClickListener(new ImageButton.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int c = 0;
+                for (int i = 0; i < name.length; i++) {
+                    if (name[i].contains(et_item.getText().toString())) {
+                        c++;
+                    }
+                }
+                if (c > 0) {
+                    String d[] = new String[c];
+                    c = 0;
+                    for (int i = 0; i < name.length; i++) {
+                        if (name[i].contains(et_item.getText().toString())) {
+                            d[c] = name[i];
+                            c++;
+                        }
+                    }
+                    ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(),
+                            R.layout.dishfoodlist3, d);
+                    dataAdapter.setDropDownViewResource(R.layout.spinnerlayout);
+                    foodlist.setAdapter(dataAdapter);
+                } else {
+                    showAlert2("錯誤資訊","找不到此項目");
+                }
+
+            }
+        });
+
     }
 
     class NetworkTask extends AsyncTask<String, Void, String> {
@@ -481,6 +650,7 @@ public class DishFood2 extends Activity {
                 name = new String[JA.length()];
                 id = new String[JA.length()];
 
+
                 for (int i = 0; i < JA.length(); i++) {
                     json = JA.getJSONObject(i);
                     roll_no[i] = json.getString("nu_kind");
@@ -518,6 +688,5 @@ public class DishFood2 extends Activity {
 
         }
     }
-
 
 }
