@@ -150,7 +150,7 @@
 
         <fragment
             android:id="@+id/right_fragment"
-            android:name="com.example.goldas.projectfh.rightFragment"
+            android:name="com.tku.goldas.projectfh.rightFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout="@layout/activity_right_fragment" />
