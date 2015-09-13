@@ -1,6 +1,5 @@
 package com.tku.goldas.projectfh;
 
-        import static android.provider.BaseColumns._ID;
         import static com.tku.goldas.projectfh.FDBconstant.ALLERGY1;
         import static com.tku.goldas.projectfh.FDBconstant.ALLERGY10;
         import static com.tku.goldas.projectfh.FDBconstant.ALLERGY2;
@@ -22,25 +21,18 @@ package com.tku.goldas.projectfh;
         import android.content.ContentValues;
         import android.content.DialogInterface;
         import android.content.Intent;
-        import android.database.Cursor;
         import android.database.sqlite.SQLiteDatabase;
         import android.os.Bundle;
         import android.support.v7.app.AlertDialog;
-        import android.view.Menu;
-        import android.view.MenuInflater;
         import android.view.MenuItem;
         import android.view.MotionEvent;
         import android.view.View;
-        import android.view.Window;
-        import android.view.WindowManager;
         import android.view.View.OnClickListener;
         import android.view.inputmethod.InputMethodManager;
-        import android.widget.Button;
         import android.widget.CheckBox;
         import android.widget.EditText;
         import android.widget.ImageButton;
         import android.widget.ImageView;
-        import android.widget.RadioButton;
         import android.widget.Spinner;
         import android.widget.Toast;
 
@@ -140,9 +132,13 @@ public class familycreate extends Activity  implements View.OnClickListener {
             case R.id.leftsport:
                 Intent intentsport = new Intent();
                 intentsport.setClass(this, sport.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt("userid", 0);
+                bundle1.putString("height", "");
+                bundle1.putString("weight", "");
+                bundle1.putString("BMI", "");
+                intentsport.putExtras(bundle1);
                 startActivity(intentsport);
-                this.finish();
-                break;
             case R.id.leftset:
                 Intent intentset = new Intent();
                 intentset.setClass(this, set.class);

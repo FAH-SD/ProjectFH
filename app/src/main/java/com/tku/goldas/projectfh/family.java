@@ -2,34 +2,20 @@ package com.tku.goldas.projectfh;
 
 
 
-import com.tku.goldas.projectfh.R;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.ListActivity;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.view.View.OnClickListener;
-import android.view.ContextMenu.ContextMenuInfo;
 
 import java.sql.SQLException;
 
@@ -193,9 +179,13 @@ public class family extends Activity implements View.OnClickListener{
             case R.id.leftsport:
                 Intent intentsport = new Intent();
                 intentsport.setClass(this, sport.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt("userid", 0);
+                bundle1.putString("height", "");
+                bundle1.putString("weight", "");
+                bundle1.putString("BMI", "");
+                intentsport.putExtras(bundle1);
                 startActivity(intentsport);
-                this.finish();
-                break;
             case R.id.leftset:
                 Intent intentset = new Intent();
                 intentset.setClass(this, set.class);

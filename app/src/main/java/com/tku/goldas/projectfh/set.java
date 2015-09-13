@@ -14,6 +14,8 @@ import android.widget.ImageView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
+import java.lang.reflect.Method;
+
 
 public class set extends Activity implements View.OnClickListener{
 
@@ -105,9 +107,13 @@ public class set extends Activity implements View.OnClickListener{
             case R.id.leftsport:
                 Intent intentsport = new Intent();
                 intentsport.setClass(this, sport.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt("userid", 0);
+                bundle1.putString("height", "");
+                bundle1.putString("weight", "");
+                bundle1.putString("BMI", "");
+                intentsport.putExtras(bundle1);
                 startActivity(intentsport);
-                this.finish();
-                break;
             case R.id.leftset:
                 Intent intentset = new Intent();
                 intentset.setClass(this, set.class);

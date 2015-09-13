@@ -2,7 +2,6 @@ package com.tku.goldas.projectfh;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -10,60 +9,44 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import static com.tku.goldas.projectfh.BDBconstant.BTABLE_NAME;
+import static com.tku.goldas.projectfh.BDBconstant.B_ITEM;
+import static com.tku.goldas.projectfh.BDBconstant.B_QUANTITY;
+import static com.tku.goldas.projectfh.BDBconstant.B_UNIT;
+import static com.tku.goldas.projectfh.BDBconstant.B_DATE;
+
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import static com.tku.goldas.projectfh.DBconstant.BUYINGDATE;
-import static com.tku.goldas.projectfh.DBconstant.ITEM;
-import static com.tku.goldas.projectfh.DBconstant.KIND;
-import static com.tku.goldas.projectfh.DBconstant.LIMITDATE;
-import static com.tku.goldas.projectfh.DBconstant.QUANTITY;
-import static com.tku.goldas.projectfh.DBconstant.STORAGEPLACE;
-import static com.tku.goldas.projectfh.DBconstant.TABLE_NAME;
-import static com.tku.goldas.projectfh.DBconstant.UNIT;
 
 public class DishFood2 extends Activity {
 
@@ -81,22 +64,34 @@ public class DishFood2 extends Activity {
     String tv_food1, tv_food2, tv_food3, tv_food4, tv_food5, tv_food6, tv_food7, tv_food8, tv_food9;
     String tv_qfood1, tv_qfood2, tv_qfood3, tv_qfood4, tv_qfood5, tv_qfood6, tv_qfood7, tv_qfood8, tv_qfood9;
     String tv_ufood1, tv_ufood2, tv_ufood3, tv_ufood4, tv_ufood5, tv_ufood6, tv_ufood7, tv_ufood8, tv_ufood9;
-
+    String itv_ufood1,itv_ufood2,itv_ufood3,itv_ufood4,itv_ufood5,itv_ufood6,itv_ufood7,itv_ufood8,itv_ufood9;
     InputStream is=null;
     String result=null;
     String line=null;
     String liquid;
     String[] food_info;
+    String aid;
 
-    String[] id,roll_no,name;
+    String[] iid,roll_no,name;
     String[] a1, a2, a3, a4, a5, a6;
 
     int b1 = 0,b2 = 0,b3 = 0,b4 = 0,b5 = 0,b6 = 0;
+
+    //定義時間格式
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    Date dt=new Date();
+    final String dts=sdf.format(dt);
+
+    SQLiteDatabase dbrw;
+    DBhelper dbhelper;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dish_food2);
         et_choose = (EditText) findViewById(R.id.et_choose);
+        dbhelper = new DBhelper(this);
+        dbrw = dbhelper.getWritableDatabase();
+
         Bundle bundle2 = this.getIntent().getExtras();
         tv_member = bundle2.getString("member");
         tv_amount = bundle2.getString("amount");
@@ -105,30 +100,39 @@ public class DishFood2 extends Activity {
         tv_food1 = bundle2.getString("f1");
         tv_qfood1 = bundle2.getString("qf1");
         tv_ufood1 = bundle2.getString("uf1");
+        itv_ufood1 = bundle2.getString("idf1");
         tv_food2 = bundle2.getString("f2");
         tv_qfood2 = bundle2.getString("qf2");
         tv_ufood2 = bundle2.getString("uf2");
+        itv_ufood2 = bundle2.getString("idf2");
         tv_food3 = bundle2.getString("f3");
         tv_qfood3 = bundle2.getString("qf3");
         tv_ufood3 = bundle2.getString("uf3");
+        itv_ufood3 = bundle2.getString("idf3");
         tv_food4 = bundle2.getString("f4");
         tv_qfood4 = bundle2.getString("qf4");
         tv_ufood4 = bundle2.getString("uf4");
+        itv_ufood4 = bundle2.getString("idf4");
         tv_food5 = bundle2.getString("f5");
         tv_qfood5 = bundle2.getString("qf5");
         tv_ufood5 = bundle2.getString("uf5");
+        itv_ufood5 = bundle2.getString("idf5");
         tv_food6 = bundle2.getString("f6");
         tv_qfood6 = bundle2.getString("qf6");
         tv_ufood6 = bundle2.getString("uf6");
+        itv_ufood6 = bundle2.getString("idf6");
         tv_food7 = bundle2.getString("f7");
         tv_qfood7 = bundle2.getString("qf7");
         tv_ufood7 = bundle2.getString("uf7");
+        itv_ufood7 = bundle2.getString("idf7");
         tv_food8 = bundle2.getString("f8");
         tv_qfood8 = bundle2.getString("qf8");
         tv_ufood8 = bundle2.getString("uf8");
+        itv_ufood8 = bundle2.getString("idf8");
         tv_food9 = bundle2.getString("f9");
         tv_qfood9 = bundle2.getString("qf9");
         tv_ufood9 = bundle2.getString("uf9");
+        itv_ufood9 = bundle2.getString("idf9");
         strbtn = bundle2.getString("strbtn");
 
         sp_type = (Spinner) findViewById(R.id.type);
@@ -150,30 +154,39 @@ public class DishFood2 extends Activity {
                 b1.putString("f1", tv_food1);
                 b1.putString("qf1", tv_qfood1);
                 b1.putString("uf1", tv_ufood1);
+                b1.putString("idf1",itv_ufood1);
                 b1.putString("f2", tv_food2);
                 b1.putString("qf2", tv_qfood2);
                 b1.putString("uf2", tv_ufood2);
+                b1.putString("idf2", itv_ufood2);
                 b1.putString("f3", tv_food3);
                 b1.putString("qf3", tv_qfood3);
                 b1.putString("uf3", tv_ufood3);
+                b1.putString("idf3", itv_ufood3);
                 b1.putString("f4", tv_food4);
                 b1.putString("qf4", tv_qfood4);
                 b1.putString("uf4", tv_ufood4);
+                b1.putString("idf4", itv_ufood4);
                 b1.putString("f5", tv_food5);
                 b1.putString("qf5", tv_qfood5);
                 b1.putString("uf5", tv_ufood5);
+                b1.putString("idf5", itv_ufood5);
                 b1.putString("f6", tv_food6);
                 b1.putString("qf6", tv_qfood6);
                 b1.putString("uf6", tv_ufood6);
+                b1.putString("idf6", itv_ufood6);
                 b1.putString("f7", tv_food7);
                 b1.putString("qf7", tv_qfood7);
                 b1.putString("uf7", tv_ufood7);
+                b1.putString("idf7", itv_ufood7);
                 b1.putString("f8", tv_food8);
                 b1.putString("qf8", tv_qfood8);
                 b1.putString("uf8", tv_ufood8);
+                b1.putString("idf8", itv_ufood8);
                 b1.putString("f9", tv_food9);
                 b1.putString("qf9", tv_qfood9);
                 b1.putString("uf9", tv_ufood9);
+                b1.putString("idf9", itv_ufood9);
                 b1.putString("strbtn", strbtn);
                 Intent intent1 = new Intent();
                 intent1.setClass(DishFood2.this, DishFood.class);
@@ -190,89 +203,7 @@ public class DishFood2 extends Activity {
                 if (amount.equals("")) {
                     showAlert2("錯誤資訊", "數量尚未輸入");
                 }else{
-                    switch (strbtn) {
-                        case "1":
-                            tv_food1 = item;
-                            tv_qfood1 = amount;
-                            tv_ufood1 = unit;
-                            break;
-                        case "2":
-                            tv_food2 = item;
-                            tv_qfood2 = amount;
-                            tv_ufood2 = unit;
-                            break;
-                        case "3":
-                            tv_food3 = item;
-                            tv_qfood3 = amount;
-                            tv_ufood3 = unit;
-                            break;
-                        case "4":
-                            tv_food4 = item;
-                            tv_qfood4 = amount;
-                            tv_ufood4 = unit;
-                            break;
-                        case "5":
-                            tv_food5 = item;
-                            tv_qfood5 = amount;
-                            tv_ufood5 = unit;
-                            break;
-                        case "6":
-                            tv_food6 = item;
-                            tv_qfood6 = amount;
-                            tv_ufood6 = unit;
-                            break;
-                        case "7":
-                            tv_food7 = item;
-                            tv_qfood7 = amount;
-                            tv_ufood7 = unit;
-                            break;
-                        case "8":
-                            tv_food8 = item;
-                            tv_qfood8 = amount;
-                            tv_ufood8 = unit;
-                            break;
-                        case "9":
-                            tv_food9 = item;
-                            tv_qfood9 = amount;
-                            tv_ufood9 = unit;
-                            break;
-                    }
-                    Bundle b1 = new Bundle();
-                    b1.putString("member", tv_member);
-                    b1.putString("amount", tv_amount);
-                    b1.putString("f1", tv_food1);
-                    b1.putString("qf1", tv_qfood1);
-                    b1.putString("uf1", tv_ufood1);
-                    b1.putString("f2", tv_food2);
-                    b1.putString("qf2", tv_qfood2);
-                    b1.putString("uf2", tv_ufood2);
-                    b1.putString("f3", tv_food3);
-                    b1.putString("qf3", tv_qfood3);
-                    b1.putString("uf3", tv_ufood3);
-                    b1.putString("f4", tv_food4);
-                    b1.putString("qf4", tv_qfood4);
-                    b1.putString("uf4", tv_ufood4);
-                    b1.putString("f5", tv_food5);
-                    b1.putString("qf5", tv_qfood5);
-                    b1.putString("uf5", tv_ufood5);
-                    b1.putString("f6", tv_food6);
-                    b1.putString("qf6", tv_qfood6);
-                    b1.putString("uf6", tv_ufood6);
-                    b1.putString("f7", tv_food7);
-                    b1.putString("qf7", tv_qfood7);
-                    b1.putString("uf7", tv_ufood7);
-                    b1.putString("f8", tv_food8);
-                    b1.putString("qf8", tv_qfood8);
-                    b1.putString("uf8", tv_ufood8);
-                    b1.putString("f9", tv_food9);
-                    b1.putString("qf9", tv_qfood9);
-                    b1.putString("uf9", tv_ufood9);
-                    b1.putString("strbtn", strbtn);
-                    Intent intent1 = new Intent();
-                    intent1.setClass(DishFood2.this, newdish.class);
-                    intent1.putExtras(b1);
-                    startActivity(intent1);
-                    DishFood2.this.finish();
+                    addAlert("確認視窗","是否要將" + item + amount + unit +"加入至今日購買清單?");
                 }
 
             }
@@ -404,6 +335,140 @@ public class DishFood2 extends Activity {
                 });
         alert.show();
     }
+
+    private void addAlert(String title,String context)
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(title);
+        alert.setMessage(context);
+        alert.setNegativeButton("取消",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                    }
+                });
+        alert.setPositiveButton("確定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        //按下按鈕後執行的動作，沒寫則退出Dialog
+                        SQLiteDatabase db = dbhelper.getWritableDatabase();
+                        ContentValues values = new ContentValues();
+                        values.put(B_ITEM, item);
+                        values.put(B_QUANTITY, amount);
+                        values.put(B_UNIT, unit);
+                        values.put(B_DATE, dts);
+                        db.insert(BTABLE_NAME, null, values);
+//                        切換頁面
+                        switch (strbtn) {
+                            case "1":
+                                tv_food1 = item;
+                                tv_qfood1 = amount;
+                                tv_ufood1 = unit;
+                                itv_ufood1=aid;
+                                break;
+                            case "2":
+                                tv_food2 = item;
+                                tv_qfood2 = amount;
+                                tv_ufood2 = unit;
+                                itv_ufood2=aid;
+                                break;
+                            case "3":
+                                tv_food3 = item;
+                                tv_qfood3 = amount;
+                                tv_ufood3 = unit;
+                                itv_ufood3=aid;
+                                break;
+                            case "4":
+                                tv_food4 = item;
+                                tv_qfood4 = amount;
+                                tv_ufood4 = unit;
+                                itv_ufood4=aid;
+                                break;
+                            case "5":
+                                tv_food5 = item;
+                                tv_qfood5 = amount;
+                                tv_ufood5 = unit;
+                                itv_ufood5=aid;
+                                break;
+                            case "6":
+                                tv_food6 = item;
+                                tv_qfood6 = amount;
+                                tv_ufood6 = unit;
+                                itv_ufood6=aid;
+                                break;
+                            case "7":
+                                tv_food7 = item;
+                                tv_qfood7 = amount;
+                                tv_ufood7 = unit;
+                                itv_ufood7=aid;
+                                break;
+                            case "8":
+                                tv_food8 = item;
+                                tv_qfood8 = amount;
+                                tv_ufood8 = unit;
+                                itv_ufood8=aid;
+                                break;
+                            case "9":
+                                tv_food9 = item;
+                                tv_qfood9 = amount;
+                                tv_ufood9 = unit;
+                                itv_ufood9 = aid;
+                                break;
+                        }
+                        Bundle b1 = new Bundle();
+                        b1.putString("member", tv_member);
+                        b1.putString("amount", tv_amount);
+                        b1.putString("dishname", dishname);
+                        b1.putString("f1", tv_food1);
+                        b1.putString("qf1", tv_qfood1);
+                        b1.putString("uf1", tv_ufood1);
+                        b1.putString("idf1",itv_ufood1);
+                        b1.putString("f2", tv_food2);
+                        b1.putString("qf2", tv_qfood2);
+                        b1.putString("uf2", tv_ufood2);
+                        b1.putString("idf2", itv_ufood2);
+                        b1.putString("f3", tv_food3);
+                        b1.putString("qf3", tv_qfood3);
+                        b1.putString("uf3", tv_ufood3);
+                        b1.putString("idf3", itv_ufood3);
+                        b1.putString("f4", tv_food4);
+                        b1.putString("qf4", tv_qfood4);
+                        b1.putString("uf4", tv_ufood4);
+                        b1.putString("idf4", itv_ufood4);
+                        b1.putString("f5", tv_food5);
+                        b1.putString("qf5", tv_qfood5);
+                        b1.putString("uf5", tv_ufood5);
+                        b1.putString("idf5", itv_ufood5);
+                        b1.putString("f6", tv_food6);
+                        b1.putString("qf6", tv_qfood6);
+                        b1.putString("uf6", tv_ufood6);
+                        b1.putString("idf6", itv_ufood6);
+                        b1.putString("f7", tv_food7);
+                        b1.putString("qf7", tv_qfood7);
+                        b1.putString("uf7", tv_ufood7);
+                        b1.putString("idf7", itv_ufood7);
+                        b1.putString("f8", tv_food8);
+                        b1.putString("qf8", tv_qfood8);
+                        b1.putString("uf8", tv_ufood8);
+                        b1.putString("idf8", itv_ufood8);
+                        b1.putString("f9", tv_food9);
+                        b1.putString("qf9", tv_qfood9);
+                        b1.putString("uf9", tv_ufood9);
+                        b1.putString("idf9", itv_ufood9);
+                        b1.putString("strbtn", strbtn);
+                        Intent intent1 = new Intent();
+                        intent1.setClass(DishFood2.this, newdish.class);
+                        intent1.putExtras(b1);
+                        startActivity(intent1);
+                        DishFood2.this.finish();
+                    }
+                });
+        alert.show();
+    }
     // 點擊空白區域 自動隱藏鍵盤
     public boolean onTouchEvent(MotionEvent event) {
         if(null != this.getCurrentFocus()){
@@ -426,6 +491,13 @@ public class DishFood2 extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 item = foodlist.getItemAtPosition(position).toString();
+                item = item.replace(" ", "");
+                for (int i = 0; i < name.length; i++) {
+                    if (name[i].equals(item)) {
+                        aid = iid[i];
+                        Log.d("id=", aid);
+                    }
+                }
                 showAlert();
             }
         });
@@ -585,7 +657,7 @@ public class DishFood2 extends Activity {
                     dataAdapter.setDropDownViewResource(R.layout.spinnerlayout);
                     foodlist.setAdapter(dataAdapter);
                 } else {
-                    showAlert2("錯誤資訊","找不到此項目");
+                    showAlert2("錯誤資訊", "找不到此項目");
                 }
 
             }
@@ -643,14 +715,14 @@ public class DishFood2 extends Activity {
 
                 roll_no = new String[JA.length()];
                 name = new String[JA.length()];
-                id = new String[JA.length()];
+                iid = new String[JA.length()];
 
 
                 for (int i = 0; i < JA.length(); i++) {
                     json = JA.getJSONObject(i);
                     roll_no[i] = json.getString("nu_kind");
                     name[i] = json.getString("nu_foodname");
-                    id[i] = json.getString("id");
+                    iid[i] = json.getString("id");
                 }
 //                Toast.makeText(getApplicationContext(), "sss", Toast.LENGTH_LONG).show();
 
@@ -661,7 +733,7 @@ public class DishFood2 extends Activity {
 
                     list1.add(roll_no[i]);
                     list2.add(name[i]);
-                    list3.add(id[i]);
+                    list3.add(iid[i]);
 //                    Log.d("test", "roll_no = " + roll_no[i] + ", name = " + name[i]);
                 }
 

@@ -1,75 +1,91 @@
 package com.tku.goldas.projectfh;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+        import android.content.Context;
+        import android.database.sqlite.SQLiteDatabase;
+        import android.database.sqlite.SQLiteOpenHelper;
 
-import static android.provider.BaseColumns._ID;
-import static com.tku.goldas.projectfh.DBconstant.BUYINGDATE;
-import static com.tku.goldas.projectfh.DBconstant.ITEM;
-import static com.tku.goldas.projectfh.DBconstant.KIND;
-import static com.tku.goldas.projectfh.DBconstant.LIMITDATE;
-import static com.tku.goldas.projectfh.DBconstant.QUANTITY;
-import static com.tku.goldas.projectfh.DBconstant.STORAGEPLACE;
-import static com.tku.goldas.projectfh.DBconstant.TABLE_NAME;
-import static com.tku.goldas.projectfh.DBconstant.UNIT;
-import static com.tku.goldas.projectfh.FDBconstant.ALLERGY1;
-import static com.tku.goldas.projectfh.FDBconstant.ALLERGY2;
-import static com.tku.goldas.projectfh.FDBconstant.ALLERGY3;
-import static com.tku.goldas.projectfh.FDBconstant.ALLERGY4;
-import static com.tku.goldas.projectfh.FDBconstant.ALLERGY5;
-import static com.tku.goldas.projectfh.FDBconstant.ALLERGY6;
-import static com.tku.goldas.projectfh.FDBconstant.ALLERGY7;
-import static com.tku.goldas.projectfh.FDBconstant.ALLERGY8;
-import static com.tku.goldas.projectfh.FDBconstant.ALLERGY9;
-import static com.tku.goldas.projectfh.FDBconstant.ALLERGY10;
-import static com.tku.goldas.projectfh.FDBconstant.BIRTHYEAR;
-import static com.tku.goldas.projectfh.FDBconstant.FTABLE_NAME;
-import static com.tku.goldas.projectfh.FDBconstant.HABIT;
-import static com.tku.goldas.projectfh.FDBconstant.HEIGHT;
-import static com.tku.goldas.projectfh.FDBconstant.NAME;
-import static com.tku.goldas.projectfh.FDBconstant.SEX;
-import static com.tku.goldas.projectfh.FDBconstant.WEIGHT;
-import static com.tku.goldas.projectfh.SDBconstant.S_USERNAME;
-import static com.tku.goldas.projectfh.SDBconstant.S_HEIGHT;
-import static com.tku.goldas.projectfh.SDBconstant.S_WEIGHT;
-import static com.tku.goldas.projectfh.SDBconstant.S_BMI;
-import static com.tku.goldas.projectfh.SDBconstant.S_SPORTNAME;
-import static com.tku.goldas.projectfh.SDBconstant.S_SPORTTIME;
-import static com.tku.goldas.projectfh.SDBconstant.S_CALORIES;
-import static com.tku.goldas.projectfh.SDBconstant.S_DATE;
-import static com.tku.goldas.projectfh.SDBconstant.STABLE_NAME;
-import static com.tku.goldas.projectfh.DDBconstant.DTABLE_NAME;
-import static com.tku.goldas.projectfh.DDBconstant.D_DISHNAME;
-import static com.tku.goldas.projectfh.DDBconstant.D_MQUANTITY;
-import static com.tku.goldas.projectfh.DDBconstant.D_MEMBER;
-import static com.tku.goldas.projectfh.DDBconstant.D_FOOD1;
-import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD1;
-import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD1;
-import static com.tku.goldas.projectfh.DDBconstant.D_FOOD2;
-import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD2;
-import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD2;
-import static com.tku.goldas.projectfh.DDBconstant.D_FOOD3;
-import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD3;
-import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD3;
-import static com.tku.goldas.projectfh.DDBconstant.D_FOOD4;
-import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD4;
-import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD4;
-import static com.tku.goldas.projectfh.DDBconstant.D_FOOD5;
-import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD5;
-import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD5;
-import static com.tku.goldas.projectfh.DDBconstant.D_FOOD6;
-import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD6;
-import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD6;
-import static com.tku.goldas.projectfh.DDBconstant.D_FOOD7;
-import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD7;
-import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD7;
-import static com.tku.goldas.projectfh.DDBconstant.D_FOOD8;
-import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD8;
-import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD8;
-import static com.tku.goldas.projectfh.DDBconstant.D_FOOD9;
-import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD9;
-import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD9;
+        import static android.provider.BaseColumns._ID;
+        import static com.tku.goldas.projectfh.DBconstant.BUYINGDATE;
+        import static com.tku.goldas.projectfh.DBconstant.ITEM;
+        import static com.tku.goldas.projectfh.DBconstant.KIND;
+        import static com.tku.goldas.projectfh.DBconstant.LIMITDATE;
+        import static com.tku.goldas.projectfh.DBconstant.QUANTITY;
+        import static com.tku.goldas.projectfh.DBconstant.STORAGEPLACE;
+        import static com.tku.goldas.projectfh.DBconstant.TABLE_NAME;
+        import static com.tku.goldas.projectfh.DBconstant.UNIT;
+        import static com.tku.goldas.projectfh.DBconstant.AID;
+        import static com.tku.goldas.projectfh.DDBconstant.ID_UFOOD1;
+        import static com.tku.goldas.projectfh.DDBconstant.ID_UFOOD2;
+        import static com.tku.goldas.projectfh.DDBconstant.ID_UFOOD3;
+        import static com.tku.goldas.projectfh.DDBconstant.ID_UFOOD4;
+        import static com.tku.goldas.projectfh.DDBconstant.ID_UFOOD5;
+        import static com.tku.goldas.projectfh.DDBconstant.ID_UFOOD6;
+        import static com.tku.goldas.projectfh.DDBconstant.ID_UFOOD7;
+        import static com.tku.goldas.projectfh.DDBconstant.ID_UFOOD8;
+        import static com.tku.goldas.projectfh.DDBconstant.ID_UFOOD9;
+        import static com.tku.goldas.projectfh.FDBconstant.ALLERGY1;
+        import static com.tku.goldas.projectfh.FDBconstant.ALLERGY2;
+        import static com.tku.goldas.projectfh.FDBconstant.ALLERGY3;
+        import static com.tku.goldas.projectfh.FDBconstant.ALLERGY4;
+        import static com.tku.goldas.projectfh.FDBconstant.ALLERGY5;
+        import static com.tku.goldas.projectfh.FDBconstant.ALLERGY6;
+        import static com.tku.goldas.projectfh.FDBconstant.ALLERGY7;
+        import static com.tku.goldas.projectfh.FDBconstant.ALLERGY8;
+        import static com.tku.goldas.projectfh.FDBconstant.ALLERGY9;
+        import static com.tku.goldas.projectfh.FDBconstant.ALLERGY10;
+        import static com.tku.goldas.projectfh.FDBconstant.BIRTHYEAR;
+        import static com.tku.goldas.projectfh.FDBconstant.FTABLE_NAME;
+        import static com.tku.goldas.projectfh.FDBconstant.HABIT;
+        import static com.tku.goldas.projectfh.FDBconstant.HEIGHT;
+        import static com.tku.goldas.projectfh.FDBconstant.NAME;
+        import static com.tku.goldas.projectfh.FDBconstant.SEX;
+        import static com.tku.goldas.projectfh.FDBconstant.WEIGHT;
+        import static com.tku.goldas.projectfh.SDBconstant.S_USERNAME;
+        import static com.tku.goldas.projectfh.SDBconstant.S_HEIGHT;
+        import static com.tku.goldas.projectfh.SDBconstant.S_WEIGHT;
+        import static com.tku.goldas.projectfh.SDBconstant.S_BMI;
+        import static com.tku.goldas.projectfh.SDBconstant.S_SPORTNAME;
+        import static com.tku.goldas.projectfh.SDBconstant.S_SPORTTIME;
+        import static com.tku.goldas.projectfh.SDBconstant.S_CALORIES;
+        import static com.tku.goldas.projectfh.SDBconstant.S_DATE;
+        import static com.tku.goldas.projectfh.SDBconstant.STABLE_NAME;
+        import static com.tku.goldas.projectfh.DDBconstant.DTABLE_NAME;
+        import static com.tku.goldas.projectfh.DDBconstant.D_DISHNAME;
+        import static com.tku.goldas.projectfh.DDBconstant.D_MQUANTITY;
+        import static com.tku.goldas.projectfh.DDBconstant.D_MEMBER;
+        import static com.tku.goldas.projectfh.DDBconstant.D_FOOD1;
+        import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD1;
+        import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD1;
+        import static com.tku.goldas.projectfh.DDBconstant.D_FOOD2;
+        import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD2;
+        import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD2;
+        import static com.tku.goldas.projectfh.DDBconstant.D_FOOD3;
+        import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD3;
+        import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD3;
+        import static com.tku.goldas.projectfh.DDBconstant.D_FOOD4;
+        import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD4;
+        import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD4;
+        import static com.tku.goldas.projectfh.DDBconstant.D_FOOD5;
+        import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD5;
+        import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD5;
+        import static com.tku.goldas.projectfh.DDBconstant.D_FOOD6;
+        import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD6;
+        import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD6;
+        import static com.tku.goldas.projectfh.DDBconstant.D_FOOD7;
+        import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD7;
+        import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD7;
+        import static com.tku.goldas.projectfh.DDBconstant.D_FOOD8;
+        import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD8;
+        import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD8;
+        import static com.tku.goldas.projectfh.DDBconstant.D_FOOD9;
+        import static com.tku.goldas.projectfh.DDBconstant.D_QFOOD9;
+        import static com.tku.goldas.projectfh.DDBconstant.D_UFOOD9;
+        import static com.tku.goldas.projectfh.DDBconstant.D_DATE;
+        import static com.tku.goldas.projectfh.BDBconstant.BTABLE_NAME;
+        import static com.tku.goldas.projectfh.BDBconstant.B_ITEM;
+        import static com.tku.goldas.projectfh.BDBconstant.B_QUANTITY;
+        import static com.tku.goldas.projectfh.BDBconstant.B_UNIT;
+        import static com.tku.goldas.projectfh.BDBconstant.B_DATE;
 
 
 public class DBhelper extends SQLiteOpenHelper {
@@ -91,7 +107,9 @@ public class DBhelper extends SQLiteOpenHelper {
                 BUYINGDATE + " DATE no null, " +
                 LIMITDATE + " DATE no null, " +
                 STORAGEPLACE + " CHAR(5), " +
-                UNIT + " CHAR(5) );";
+                UNIT + " CHAR(5),"+
+                AID + " interger no null); ";
+
         db.execSQL(INIT_TABLE);
 
         final String INIT_TABLE1 = "CREATE TABLE " + FTABLE_NAME + " (" +
@@ -134,31 +152,51 @@ public class DBhelper extends SQLiteOpenHelper {
                 D_FOOD1 + " CHAR(15), " +
                 D_QFOOD1 + " float no null, "+
                 D_UFOOD1 + " CHAR(5), "+
+                ID_UFOOD1 + " interger, "+
                 D_FOOD2 + " CHAR(15), " +
                 D_QFOOD2 + " float no null, "+
                 D_UFOOD2 + " CHAR(5), "+
+                ID_UFOOD2 + " interger, "+
                 D_FOOD3 + " CHAR(15), " +
                 D_QFOOD3 + " float no null, "+
                 D_UFOOD3 + " CHAR(5), "+
+                ID_UFOOD3+" interger, "+
                 D_FOOD4 + " CHAR(15), " +
                 D_QFOOD4 + " float no null, "+
                 D_UFOOD4 + " CHAR(5), "+
+                ID_UFOOD4+" interger, "+
                 D_FOOD5 + " CHAR(15), " +
                 D_QFOOD5 + " float no null, "+
                 D_UFOOD5 + " CHAR(5), "+
+                ID_UFOOD5+" interger, "+
                 D_FOOD6 + " CHAR(15), " +
                 D_QFOOD6 + " float no null, "+
                 D_UFOOD6 + " CHAR(5), "+
+                ID_UFOOD6+" interger, "+
                 D_FOOD7 + " CHAR(15), " +
                 D_QFOOD7 + " float no null, "+
                 D_UFOOD7 + " CHAR(5), "+
+                ID_UFOOD7+" interger, "+
                 D_FOOD8 + " CHAR(15), " +
                 D_QFOOD8 + " float no null, "+
                 D_UFOOD8 + " CHAR(5), "+
+                ID_UFOOD8+" interger, "+
                 D_FOOD9 + " CHAR(15), " +
                 D_QFOOD9 + " float no null, "+
-                D_UFOOD9 + " CHAR(5)); ";
-        db.execSQL(INIT_TABLE3);}
+                D_UFOOD9 + " CHAR(5),"+
+                ID_UFOOD9+" interger, "+
+                D_DATE + " DATE no null); ";
+
+        db.execSQL(INIT_TABLE3);
+
+            final String INIT_TABLE4 = "CREATE TABLE " + BTABLE_NAME + " (" +
+                    _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    B_ITEM + " CHAR(15), " +
+                    B_QUANTITY + " float no null, " +
+                    B_UNIT + " CHAR(5),"+
+                    B_DATE + " DATE no null); ";
+
+            db.execSQL(INIT_TABLE4);}
 
     @Override
     public void onOpen(SQLiteDatabase db){
@@ -171,6 +209,12 @@ public class DBhelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         final String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
         db.execSQL(DROP_TABLE);
+        final String DROP_TABLE3 = "DROP TABLE IF EXISTS " + DTABLE_NAME;
+        db.execSQL(DROP_TABLE3);
+        final String DROP_TABLE2 = "DROP TABLE IF EXISTS " + STABLE_NAME;
+        db.execSQL(DROP_TABLE2);
+        final String DROP_TABLE1 = "DROP TABLE IF EXISTS " + FTABLE_NAME;
+        db.execSQL(DROP_TABLE1);
         onCreate(db);
     }
 }

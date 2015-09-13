@@ -6,13 +6,15 @@ package com.tku.goldas.projectfh;
 import android.provider.BaseColumns;
 
 public interface DBconstant extends BaseColumns {
-    public static final String TABLE_NAME = "icebox";
+    public static  String TABLE_NAME = "icebox";
 
-    public static final String KIND = "kind";
-    public static final String ITEM = "item";
-    public static final String QUANTITY = "quantity";
-    public static final String LIMITDATE = "limitdate";
-    public static final String BUYINGDATE = "buyingdate";
-    public static final String STORAGEPLACE = "storage";
-    public static final String UNIT = "unit";
+    public static  String AID = "aid";
+    public static  String KIND = "kind";
+    public static  String ITEM = "item";
+    public static  String QUANTITY = "quantity";
+    public static  String LIMITDATE = "limitdate";
+    public static  String BUYINGDATE = "buyingdate";
+    public static  String STORAGEPLACE = "storage";
+    public static  String UNIT = "unit";
+
 }

@@ -1,6 +1,5 @@
 package com.tku.goldas.projectfh;
 
-import static android.provider.BaseColumns._ID;
 import static com.tku.goldas.projectfh.SDBconstant.S_USERNAME;
 import static com.tku.goldas.projectfh.SDBconstant.S_HEIGHT;
 import static com.tku.goldas.projectfh.SDBconstant.S_WEIGHT;
@@ -15,15 +14,12 @@ import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -33,8 +29,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -274,9 +268,13 @@ public class newsport1 extends Activity implements View.OnClickListener {
             case R.id.leftsport:
                 Intent intentsport = new Intent();
                 intentsport.setClass(this, sport.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt("userid", 0);
+                bundle1.putString("height", "");
+                bundle1.putString("weight", "");
+                bundle1.putString("BMI", "");
+                intentsport.putExtras(bundle1);
                 startActivity(intentsport);
-                this.finish();
-                break;
             case R.id.leftset:
                 Intent intentset = new Intent();
                 intentset.setClass(this, set.class);
@@ -472,8 +470,8 @@ public class newsport1 extends Activity implements View.OnClickListener {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
 // TODO Auto-generated method stub
-                int k1 = 0,k2 = 0,k3 = 0,k4 = 0,k5 = 0,k6 = 0;
-                int t1=-1,t2=-1,t3=-1,t4=-1,t5=-1,t6 = -1;
+                int k1 = 0,k2 = 0,k3 = 0;
+                int t1=-1,t2=-1,t3=-1;
                 for(int i=0;i<kind.getCount();i++){
                     String temp = sport_kind[i];
                     if(temp.contains("休閒")){
@@ -488,21 +486,8 @@ public class newsport1 extends Activity implements View.OnClickListener {
                         k3 = i;
                         t3++;
                     }
-                    if(temp.contains("油脂")){
-                        k4 = i;
-                        t4++;
-                    }
-                    if(temp.contains("蔬菜")){
-                        k5 = i;
-                        t5++;
-                    }
-                    if(temp.contains("蛋豆")){
-                        k6 = i;
-                        t6++;
-                    }
+
                 }
-
-
 
                 if (type.getSelectedItemPosition() == 0) {
                     kind.setSelection(k1-t1);
@@ -512,15 +497,6 @@ public class newsport1 extends Activity implements View.OnClickListener {
                 }
                 if (type.getSelectedItemPosition() == 2) {
                     kind.setSelection(k3-t3);
-                }
-                if (type.getSelectedItemPosition() == 3) {
-                    kind.setSelection(k4-t4);
-                }
-                if (type.getSelectedItemPosition() == 4) {
-                    kind.setSelection(k5-t5);
-                }
-                if (type.getSelectedItemPosition() == 5) {
-                    kind.setSelection(k6-t6);
                 }
             }
 

@@ -5,7 +5,6 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.MotionEvent;
@@ -29,12 +28,9 @@ import static com.tku.goldas.projectfh.FDBconstant.ALLERGY6;
 import static com.tku.goldas.projectfh.FDBconstant.ALLERGY7;
 import static com.tku.goldas.projectfh.FDBconstant.ALLERGY8;
 import static com.tku.goldas.projectfh.FDBconstant.ALLERGY9;
-import static com.tku.goldas.projectfh.FDBconstant.BIRTHYEAR;
-import static com.tku.goldas.projectfh.FDBconstant.FTABLE_NAME;
 import static com.tku.goldas.projectfh.FDBconstant.HABIT;
 import static com.tku.goldas.projectfh.FDBconstant.HEIGHT;
 import static com.tku.goldas.projectfh.FDBconstant.NAME;
-import static com.tku.goldas.projectfh.FDBconstant.SEX;
 import static com.tku.goldas.projectfh.FDBconstant.WEIGHT;
 
 
@@ -332,9 +328,13 @@ public class familydetail extends Activity implements View.OnClickListener {
             case R.id.leftsport:
                 Intent intentsport = new Intent();
                 intentsport.setClass(this, sport.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt("userid", 0);
+                bundle1.putString("height", "");
+                bundle1.putString("weight", "");
+                bundle1.putString("BMI", "");
+                intentsport.putExtras(bundle1);
                 startActivity(intentsport);
-                this.finish();
-                break;
             case R.id.leftset:
                 Intent intentset = new Intent();
                 intentset.setClass(this, set.class);

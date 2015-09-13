@@ -1,7 +1,6 @@
 package com.tku.goldas.projectfh;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,11 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -228,7 +223,7 @@ public class icebox_fridge extends Activity implements View.OnClickListener{
     }
 
     public Cursor get(long rowId) throws SQLException{
-        Cursor c = db.rawQuery("SELECT _id,kind,item,quantity,limitdate,buyingdate,storage,unit from icebox WHERE _id="+ rowId + " ORDER BY item", null);
+        Cursor c = db.rawQuery("SELECT _id,kind,item,quantity,limitdate,buyingdate,storage,unit from icebox,aid WHERE _id="+ rowId + " ORDER BY item", null);
         if(c.getCount()>0){
             c.moveToFirst();
         }
@@ -238,12 +233,12 @@ public class icebox_fridge extends Activity implements View.OnClickListener{
     }
     public Cursor getAll(){ // 查詢所有資料
 
-        Cursor c = db.rawQuery("SELECT _id, kind, item, quantity, limitdate, buyingdate, storage, unit from icebox WHERE storage = '冷藏'   ORDER BY item", null);
+        Cursor c = db.rawQuery("SELECT _id, kind, item, quantity, limitdate, buyingdate, storage, unit,aid from icebox WHERE storage = '冷藏'   ORDER BY item", null);
         return c;
     }
 
     public Cursor getKind(String strkind){ // 查詢Kind
-        Cursor c = db.rawQuery("SELECT _id, kind, item, quantity, limitdate, buyingdate, storage, unit FROM icebox WHERE kind LIKE '%" + strkind + "%' AND storage = '冷藏'   ORDER BY item", null);
+        Cursor c = db.rawQuery("SELECT _id, kind, item, quantity, limitdate, buyingdate, storage, unit,aid FROM icebox WHERE kind LIKE '%" + strkind + "%' AND storage = '冷藏'   ORDER BY item", null);
         return c;
     }
 
@@ -258,7 +253,7 @@ public class icebox_fridge extends Activity implements View.OnClickListener{
 
                 for(int i=0; i<rows_num; i++) {
                     String ld = cursor.getString(4);
-                    results.add(new Food(cursor.getInt(0), cursor.getString(1), cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7)));
+                    results.add(new Food(cursor.getInt(0), cursor.getString(1), cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7), cursor.getString(8)));
                     try {
                         if("".equals(ld)) {
                             day2 = Long.valueOf(0);
@@ -327,9 +322,13 @@ public class icebox_fridge extends Activity implements View.OnClickListener{
             case R.id.leftsport:
                 Intent intentsport = new Intent();
                 intentsport.setClass(this, sport.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt("userid", 0);
+                bundle1.putString("height", "");
+                bundle1.putString("weight", "");
+                bundle1.putString("BMI", "");
+                intentsport.putExtras(bundle1);
                 startActivity(intentsport);
-                this.finish();
-                break;
             case R.id.leftset:
                 Intent intentset = new Intent();
                 intentset.setClass(this, set.class);

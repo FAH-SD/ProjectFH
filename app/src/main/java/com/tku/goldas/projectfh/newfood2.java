@@ -1,6 +1,7 @@
 package com.tku.goldas.projectfh;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import android.app.Activity;
@@ -35,6 +36,8 @@ import org.jsoup.select.Elements;
 import com.google.zxing.integration.android.*;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class newfood2 extends Activity {
@@ -166,79 +169,6 @@ public class newfood2 extends Activity {
         this.scan_btn = (Button)findViewById(R.id.scan_btn);
         this.btn_gov = (Button)findViewById(R.id.btn_gov);
         this.btn_ok = (Button)findViewById(R.id.btn_ok);
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.mymenu, menu);
-        setIconEnable(menu, true);
-
-        return true;
-    }
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu)
-    {
-        // TODO Auto-generated method stub
-        return super.onPrepareOptionsMenu(menu);
-    }
-
-    //enable为true时，菜单添加图标有效，enable为false时无效。4.0系统默认无效
-    private void setIconEnable(Menu menu, boolean enable)
-    {
-        try
-        {
-            Class<?> clazz = Class.forName("com.android.internal.view.menu.MenuBuilder");
-            Method m = clazz.getDeclaredMethod("setOptionalIconsVisible", boolean.class);
-            m.setAccessible(true);
-
-            //MenuBuilder实现Menu接口，创建菜单时，传进来的menu其实就是MenuBuilder对象(java的多态特征)
-            m.invoke(menu, enable);
-
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()){
-            case R.id.homepage:
-                Intent intenthomepage = new Intent();
-                intenthomepage.setClass(this, homepage.class);
-                startActivity(intenthomepage);
-                this.finish();
-                break;
-            case R.id.family:
-                Intent intentfamily = new Intent();
-                intentfamily.setClass(this, family.class);
-                startActivity(intentfamily);
-                this.finish();
-                break;
-            case R.id.icebox:
-                Intent intenticebox = new Intent();
-                intenticebox.setClass(this, icebox.class);
-                startActivity(intenticebox);
-                this.finish();
-                break;
-            case R.id.dish:
-                Intent intentdish = new Intent();
-                intentdish.setClass(this, dish.class);
-                startActivity(intentdish);
-                this.finish();
-                break;
-
-            case R.id.set:
-                Intent intentset = new Intent();
-                intentset.setClass(this, set.class);
-                startActivity(intentset);
-                this.finish();
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
-
-        }
-
-        return  true;
     }
 
     class NetworkTask extends AsyncTask<String, Void, String>{

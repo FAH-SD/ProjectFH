@@ -2,44 +2,29 @@ package com.tku.goldas.projectfh;
 
 
 
-import com.tku.goldas.projectfh.R;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-
-import android.accounts.NetworkErrorException;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.NetworkRequest;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.NetworkOnMainThreadException;
-import android.view.ContextMenu;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.view.View.OnClickListener;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -130,6 +115,7 @@ public class icebox extends Activity implements View.OnClickListener {
                     bundle1.putString("foodlimitday", c.getString(4));
                     bundle1.putString("foodstorage", c.getString(6));
                     bundle1.putString("foodunit", c.getString(7));
+                    bundle1.putString("faid",c.getString(8));
                     Intent i = new Intent(icebox.this, foodDetail.class);
                     i.putExtras(bundle1);
                     startActivity(i);
@@ -248,7 +234,7 @@ public class icebox extends Activity implements View.OnClickListener {
     }
 
     public Cursor get(long rowId) throws SQLException{
-        Cursor c = db.rawQuery("SELECT _id,kind,item,quantity,limitdate,buyingdate,storage,unit from icebox WHERE _id="+ rowId+" ORDER BY item", null);
+        Cursor c = db.rawQuery("SELECT _id,kind,item,quantity,limitdate,buyingdate,storage,unit,aid from icebox WHERE _id="+ rowId+" ORDER BY item", null);
         if(c.getCount()>0){
             c.moveToFirst();
         }
@@ -259,12 +245,12 @@ public class icebox extends Activity implements View.OnClickListener {
 
     public Cursor getAll(){ // 查詢所有資料
 
-        Cursor c = db.rawQuery("SELECT _id, kind, item, quantity, limitdate, buyingdate, storage, unit from icebox ORDER BY item", null);
+        Cursor c = db.rawQuery("SELECT _id, kind, item, quantity, limitdate, buyingdate, storage, unit, aid from icebox ORDER BY item", null);
         return c;
     }
 
     public Cursor getKind(String strkind){ // 查詢Kind
-        Cursor c = db.rawQuery("SELECT _id, kind, item, quantity, limitdate, buyingdate, storage, unit FROM icebox WHERE kind LIKE '%" + strkind + "%'  ORDER BY item", null);
+        Cursor c = db.rawQuery("SELECT _id, kind, item, quantity, limitdate, buyingdate, storage, unit, aid FROM icebox WHERE kind LIKE '%" + strkind + "%'  ORDER BY item", null);
         return c;
     }
 
@@ -279,7 +265,7 @@ public class icebox extends Activity implements View.OnClickListener {
 
                 for(int i=0; i<rows_num; i++) {
                     String ld = cursor.getString(4);
-                    results.add(new Food(cursor.getInt(0), cursor.getString(1), cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7)));
+                    results.add(new Food(cursor.getInt(0), cursor.getString(1), cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7), cursor.getString(8)));
                     try {
                         if("".equals(ld)) {
                             day2 = Long.valueOf(0);
@@ -348,9 +334,13 @@ public class icebox extends Activity implements View.OnClickListener {
             case R.id.leftsport:
                 Intent intentsport = new Intent();
                 intentsport.setClass(this, sport.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt("userid", 0);
+                bundle1.putString("height", "");
+                bundle1.putString("weight", "");
+                bundle1.putString("BMI", "");
+                intentsport.putExtras(bundle1);
                 startActivity(intentsport);
-                this.finish();
-                break;
             case R.id.leftset:
                 Intent intentset = new Intent();
                 intentset.setClass(this, set.class);

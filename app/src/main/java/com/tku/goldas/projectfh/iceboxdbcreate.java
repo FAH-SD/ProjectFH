@@ -59,6 +59,7 @@ import static com.tku.goldas.projectfh.DBconstant.QUANTITY;
 import static com.tku.goldas.projectfh.DBconstant.STORAGEPLACE;
 import static com.tku.goldas.projectfh.DBconstant.TABLE_NAME;
 import static com.tku.goldas.projectfh.DBconstant.UNIT;
+import static com.tku.goldas.projectfh.DBconstant.AID;
 
 public class iceboxdbcreate extends Activity implements View.OnClickListener{
     private int bYear, bMonth, bDay;
@@ -67,6 +68,7 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
 //    private ListView listData = null;
     private Spinner editkind;
     private Spinner edititem;
+    private Spinner nothing;
     private Spinner type;
     private EditText quantity ;
     private TextView tv_buyday;
@@ -96,7 +98,6 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
         dbhelper = new DBhelper(this);
         dbrw = dbhelper.getWritableDatabase();
         new NetworkTask().execute();
-
 
         goToinit();
 
@@ -202,9 +203,13 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
             case R.id.leftsport:
                 Intent intentsport = new Intent();
                 intentsport.setClass(this, sport.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt("userid", 0);
+                bundle1.putString("height", "");
+                bundle1.putString("weight", "");
+                bundle1.putString("BMI", "");
+                intentsport.putExtras(bundle1);
                 startActivity(intentsport);
-                this.finish();
-                break;
             case R.id.leftset:
                 Intent intentset = new Intent();
                 intentset.setClass(this, set.class);
@@ -248,6 +253,7 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
         btnitrue = (ImageButton) findViewById(R.id.btn_itrue);
         unit = (Spinner) findViewById(R.id.sp_iunit);
         unit2 = (Spinner) findViewById(R.id.sp_iunit2);
+        nothing =(Spinner)findViewById(R.id.spinner3);
         //btnUpdate = (Button) findViewById(R.id.btnUpdate);
 //        btnitrue.setOnClickListener(this);
         //btnDel.setOnClickListener(this);
@@ -467,16 +473,13 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
                         //按下按鈕後執行的動作，沒寫則退出Dialog
                         SQLiteDatabase db = dbhelper.getWritableDatabase();
                         ContentValues values = new ContentValues();
-                        String strkind = editkind.getSelectedItem().toString();
-                        strkind = strkind.replace(" ","");
-                        values.put(KIND, strkind);
-                        String stritem = edititem.getSelectedItem().toString();
-                        stritem = stritem.replace(" ","");
-                        values.put(ITEM, stritem);
+                        values.put(KIND, editkind.getSelectedItem().toString());
+                        values.put(ITEM, edititem.getSelectedItem().toString());
                         values.put(QUANTITY, quantity.getText().toString());
                         values.put(BUYINGDATE, tv_buyday.getText().toString());
                         values.put(LIMITDATE, tv_limitday.getText().toString());
                         values.put(STORAGEPLACE, editstorage.getSelectedItem().toString());
+                        values.put(AID,nothing.getSelectedItem().toString());
                         if(unit.getVisibility() == View.VISIBLE ) {
                             values.put(UNIT, unit.getSelectedItem().toString());
                         }else{
@@ -509,61 +512,65 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
         dataAdapter2.setDropDownViewResource(R.layout.spinnerlayout);
         edititem.setAdapter(dataAdapter2);
 
+        ArrayAdapter<String> dataAdapter3 = new ArrayAdapter<String>(getApplicationContext(),
+                R.layout.spinnerlayout, id);
+        dataAdapter3.setDropDownViewResource(R.layout.spinnerlayout);
+        nothing.setAdapter(dataAdapter3);
+
 
         type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
 // TODO Auto-generated method stub
-                int k1 = 0,k2 = 0,k3 = 0,k4 = 0,k5 = 0,k6 = 0;
-                int t1=-1,t2=-1,t3=-1,t4=-1,t5=-1,t6 = -1;
-                for(int i=0;i<editkind.getCount();i++){
+                int k1 = 0, k2 = 0, k3 = 0, k4 = 0, k5 = 0, k6 = 0;
+                int t1 = -1, t2 = -1, t3 = -1, t4 = -1, t5 = -1, t6 = -1;
+                for (int i = 0; i < editkind.getCount(); i++) {
                     String temp = roll_no[i];
-                    if(temp.contains("五穀")){
+                    if (temp.contains("五穀")) {
                         k1 = i;
                         t1++;
                     }
-                    if(temp.contains("奶類")){
+                    if (temp.contains("奶類")) {
                         k2 = i;
                         t2++;
                     }
-                    if(temp.contains("水果")){
+                    if (temp.contains("水果")) {
                         k3 = i;
                         t3++;
                     }
-                    if(temp.contains("油脂")){
+                    if (temp.contains("油脂")) {
                         k4 = i;
                         t4++;
                     }
-                    if(temp.contains("蔬菜")){
+                    if (temp.contains("蔬菜")) {
                         k5 = i;
                         t5++;
                     }
-                    if(temp.contains("蛋豆")){
+                    if (temp.contains("蛋豆")) {
                         k6 = i;
                         t6++;
                     }
                 }
 
 
-
                 if (type.getSelectedItemPosition() == 0) {
-                    editkind.setSelection(k1-t1);
+                    editkind.setSelection(k1 - t1);
                 }
                 if (type.getSelectedItemPosition() == 1) {
-                    editkind.setSelection(k2-t2);
+                    editkind.setSelection(k2 - t2);
                 }
                 if (type.getSelectedItemPosition() == 2) {
-                    editkind.setSelection(k3-t3);
+                    editkind.setSelection(k3 - t3);
                 }
                 if (type.getSelectedItemPosition() == 3) {
-                    editkind.setSelection(k4-t4);
+                    editkind.setSelection(k4 - t4);
                 }
                 if (type.getSelectedItemPosition() == 4) {
-                    editkind.setSelection(k5-t5);
+                    editkind.setSelection(k5 - t5);
                 }
                 if (type.getSelectedItemPosition() == 5) {
-                    editkind.setSelection(k6-t6);
+                    editkind.setSelection(k6 - t6);
                 }
             }
 
@@ -619,6 +626,7 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
 // TODO Auto-generated method stub
 
                 editkind.setSelection(position);
+                nothing.setSelection(position);
 
                 liquid = edititem.getSelectedItem().toString();
                 if (liquid.contains("脂鮮乳") || liquid.contains("養樂多") || liquid.contains("優酪乳") || (liquid.contains("牛油") || liquid.contains("豬油") || liquid.contains("雞油") || liquid.contains("花生油") || liquid.contains("葵花油") || liquid.contains("玉米油") || liquid.contains("沙拉油") || liquid.contains("橄欖油") || liquid.contains("辣椒油") || liquid.contains("椰子油") | liquid.contains("芝麻油"))) {
@@ -638,6 +646,25 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
 // TODO Auto-generated method stub
             }
         });
+
+        nothing.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
+// TODO Auto-generated method stub
+
+
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+// TODO Auto-generated method stub
+            }
+        });
+
+
 
     }
 
@@ -772,6 +799,7 @@ public class iceboxdbcreate extends Activity implements View.OnClickListener{
                 if(entity != null){
                     for(int i=0; i<column.length; i++) {
                         food_info[i] = new JSONArray(value).getJSONObject(0).getString(column[i]);
+
                         Log.d("iceboxdbcreate", column[i] + "=" + food_info[i]);
                     }
                 }

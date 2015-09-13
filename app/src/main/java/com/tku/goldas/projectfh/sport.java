@@ -39,7 +39,12 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class sport extends Activity implements View.OnClickListener{
@@ -74,20 +79,26 @@ public class sport extends Activity implements View.OnClickListener{
         level = (EditText)findViewById(R.id.et_slevel);
 
 
-        Bundle bundle2=this.getIntent().getExtras();
-        userid = bundle2.getInt("userid");
-        name.setSelection(userid);
-        height.setText(bundle2.getString("height"));
-        weight.setText(bundle2.getString("weight"));
-        BMI.setText(bundle2.getString("BMI"));
-        long id = (name.getSelectedItemId());
-
         if (cursor != null && cursor.getCount() >= 0) {
-            try {
-                Cursor c = get(id);
-                stringname = c.getString(1);
-            } catch (SQLException e) {
-                e.printStackTrace();
+            int rows_num = cursor.getCount();
+            if(rows_num != 0) {
+                //將指標移至第一筆資料
+                cursor.moveToFirst();
+                try {
+                    Bundle bundle2 = this.getIntent().getExtras();
+                    userid = bundle2.getInt("userid");
+                    name.setSelection(userid);
+                    height.setText(bundle2.getString("height"));
+                    weight.setText(bundle2.getString("weight"));
+                    BMI.setText(bundle2.getString("BMI"));
+                    long id = (name.getSelectedItemId());
+                    Cursor c = get(id);
+                    stringname = c.getString(1);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                //將指標移至下一筆資料
+                cursor.moveToNext();
             }
         }
 
@@ -328,9 +339,13 @@ public class sport extends Activity implements View.OnClickListener{
             case R.id.leftsport:
                 Intent intentsport = new Intent();
                 intentsport.setClass(this, sport.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt("userid", 0);
+                bundle1.putString("height", "");
+                bundle1.putString("weight", "");
+                bundle1.putString("BMI", "");
+                intentsport.putExtras(bundle1);
                 startActivity(intentsport);
-                this.finish();
-                break;
             case R.id.leftset:
                 Intent intentset = new Intent();
                 intentset.setClass(this, set.class);

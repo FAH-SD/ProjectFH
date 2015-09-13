@@ -28,6 +28,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.SQLException;
+
 public class DishMember extends Activity {
     private SQLiteDatabase db = null;
     private Cursor cursor = null;

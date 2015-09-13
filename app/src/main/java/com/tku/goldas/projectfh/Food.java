@@ -12,8 +12,9 @@ public class Food {
     private String foodbd;
     private String foodStor;
     private String foodUnit;
+    private String faid;
 
-    public Food(int id, String foodKind, String foodName, String foodQuan, String foodld, String foodbd, String foodStor, String foodUnit) {
+    public Food(int id, String foodKind, String foodName, String foodQuan, String foodld, String foodbd, String foodStor, String foodUnit, String faid) {
         this.id = id;
         this.foodKind = foodKind;
         this.foodName = foodName;
@@ -22,6 +23,7 @@ public class Food {
         this.foodbd = foodbd;
         this.foodStor = foodStor;
         this.foodUnit = foodUnit;
+        this.faid = faid;
     }
 
     public int getId(){

@@ -54,7 +54,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#ffe9e9e9">
+                android:background="#ffdace">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -76,32 +76,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffdace">
 
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="成員"-->
-                    <!--android:textSize="22dp"-->
-                    <!--android:layout_gravity="center_vertical"-->
-                    <!--android:textStyle="bold"/>-->
-
-                <!--<TextView-->
-                    <!--android:layout_width="100dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:id="@+id/et_member"-->
-                    <!--android:layout_marginLeft="10dp"-->
-                    <!--android:textSize="22dp"-->
-                    <!--android:enabled="false"-->
-                    <!--android:editable="false"-->
-                    <!--android:gravity="center"-->
-                    <!--android:textColor="#000000"/>-->
-
-            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -136,12 +111,37 @@
                     android:layout_gravity="center"/>
 
             </LinearLayout>
-
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#ffdace">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="日期"
+                    android:textSize="22dp"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_date"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="22dp"
+                    android:enabled="false"
+                    android:editable="false"
+                    android:gravity="center"
+                    android:textColor="#000000"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -178,6 +178,45 @@
                     android:textSize="20dp"
                     android:visibility="visible"
                     android:text=""/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/n1"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="熱量"
+                    android:textSize="22dp"
+                    android:id="@+id/t1"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_cal1"
+                    android:textSize="20dp"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:id="@+id/tt1"
+                    android:text="大卡"/>
 
             </LinearLayout>
 
@@ -185,7 +224,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#ffe9e9e9">
+                android:background="#ffdace">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -216,6 +255,7 @@
                     android:text=""/>
 
 
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -223,6 +263,48 @@
                     android:textSize="20dp"
                     android:visibility="gone"
                     android:text=""/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/n2"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="熱量"
+                    android:textSize="22dp"
+                    android:visibility="gone"
+                    android:id="@+id/t2"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_cal2"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:textSize="20dp"
+                    android:id="@+id/tt2"
+                    android:text="大卡"/>
 
             </LinearLayout>
 
@@ -265,6 +347,48 @@
                     android:textSize="20dp"
                     android:visibility="gone"
                     android:text=""/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/n3"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="熱量"
+                    android:textSize="22dp"
+                    android:visibility="gone"
+                    android:id="@+id/t3"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_cal3"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:textSize="20dp"
+                    android:id="@+id/tt3"
+                    android:text="大卡"/>
 
             </LinearLayout>
 
@@ -272,7 +396,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#ffe9e9e9">
+                android:background="#ffdace">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -307,6 +431,48 @@
                     android:visibility="gone"
                     android:textSize="20dp"
                     android:text=""/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/n4"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="熱量"
+                    android:textSize="22dp"
+                    android:visibility="gone"
+                    android:id="@+id/t4"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_cal4"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:id="@+id/tt4"
+                    android:textSize="20dp"
+                    android:text="大卡"/>
 
             </LinearLayout>
 
@@ -348,13 +514,56 @@
                     android:textSize="20dp"
                     android:visibility="gone"
                     android:text=""/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/n5"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="熱量"
+                    android:textSize="22dp"
+                    android:visibility="gone"
+                    android:id="@+id/t5"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_cal5"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:textSize="20dp"
+                    android:id="@+id/tt5"
+                    android:text="大卡"/>
+
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#ffe9e9e9">
+                android:background="#ffdace">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -389,6 +598,48 @@
                     android:textSize="20dp"
                     android:visibility="gone"
                     android:text=""/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/n6"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="熱量"
+                    android:textSize="22dp"
+                    android:visibility="gone"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/t6"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_cal6"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:textSize="20dp"
+                    android:id="@+id/tt6"
+                    android:text="大卡"/>
 
             </LinearLayout>
 
@@ -433,6 +684,48 @@
                     android:visibility="gone"
                     android:textSize="20dp"
                     android:text=""/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/n7"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="熱量"
+                    android:textSize="22dp"
+                    android:visibility="gone"
+                    android:id="@+id/t7"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_cal7"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:id="@+id/tt7"
+                    android:textSize="20dp"
+                    android:text="大卡"/>
 
             </LinearLayout>
 
@@ -467,6 +760,14 @@
                     android:visibility="gone"
                     android:textSize="20dp"
                     android:text=""/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/n8"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -475,6 +776,40 @@
                     android:visibility="gone"
                     android:textSize="20dp"
                     android:text=""/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffdace">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="熱量"
+                    android:textSize="22dp"
+                    android:visibility="gone"
+                    android:id="@+id/t8"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_cal8"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:id="@+id/tt8"
+                    android:textSize="20dp"
+                    android:text="大卡"/>
+
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
@@ -516,9 +851,64 @@
                     android:visibility="gone"
                     android:textSize="20dp"
                     android:text=""/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/n9"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="熱量"
+                    android:textSize="22dp"
+                    android:id="@+id/t9"
+                    android:visibility="gone"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_cal9"
+                    android:textSize="20dp"
+                    android:visibility="gone"
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:id="@+id/tt9"
+                    android:textSize="20dp"
+                    android:text="大卡"/>
+
             </LinearLayout>
 
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="查看本日需購買清單"
+                android:id="@+id/btn_slist" />
         </LinearLayout>
 
     </LinearLayout>

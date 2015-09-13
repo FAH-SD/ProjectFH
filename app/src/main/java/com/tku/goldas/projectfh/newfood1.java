@@ -2,38 +2,12 @@ package com.tku.goldas.projectfh;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.ImageButton;
-import static android.provider.BaseColumns._ID;
-import static com.tku.goldas.projectfh.DBconstant.ITEM;
-import static com.tku.goldas.projectfh.DBconstant.KIND;
-import static com.tku.goldas.projectfh.DBconstant.QUANTITY;
-import static com.tku.goldas.projectfh.DBconstant.TABLE_NAME;
-import static com.tku.goldas.projectfh.DBconstant.BUYINGDATE;
-import static com.tku.goldas.projectfh.DBconstant.LIMITDATE;
-import static com.tku.goldas.projectfh.DBconstant.STORAGEPLACE;
-import android.app.Activity;
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
@@ -141,9 +115,13 @@ public void onClick(View v) {
             case R.id.leftsport:
                 Intent intentsport = new Intent();
                 intentsport.setClass(this, sport.class);
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt("userid", 0);
+                bundle1.putString("height", "");
+                bundle1.putString("weight", "");
+                bundle1.putString("BMI", "");
+                intentsport.putExtras(bundle1);
                 startActivity(intentsport);
-                this.finish();
-                break;
             case R.id.leftset:
                 Intent intentset = new Intent();
                 intentset.setClass(this, set.class);

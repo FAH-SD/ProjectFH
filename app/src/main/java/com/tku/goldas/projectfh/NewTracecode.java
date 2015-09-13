@@ -12,11 +12,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -77,7 +74,7 @@ public class NewTracecode extends Activity {
     String line=null;
     String liquid;
 
-    String[] roll_no,name;
+    String[] iid,roll_no,name;
     String strfood;
     String url, tracecode;
 
@@ -360,68 +357,71 @@ public class NewTracecode extends Activity {
 
         @Override
         protected String doInBackground(String... params) {
-            if(isOnline()) {
+            try {
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost("http://163.13.201.82/test.php");
+                HttpResponse response = httpclient.execute(httppost);
+                Log.e("Fail 1", "3");
 
-                try {
-                    HttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httppost = new HttpPost("http://163.13.201.82/test.php");
-                    HttpResponse response = httpclient.execute(httppost);
-                    Log.e("Fail 1", "3");
+                HttpEntity entity = response.getEntity();
+                Log.e("Fail 1", "4");
 
-                    HttpEntity entity = response.getEntity();
-                    Log.e("Fail 1", "4");
-
-                    is = entity.getContent();
-                    Log.e("Pass 1", "connection success ");
-                } catch (Exception e) {
-                    Log.e("Fail 1", e.toString());
+                is = entity.getContent();
+                Log.e("Pass 1", "connection success ");
+            } catch (Exception e) {
+                Log.e("Fail 1", e.toString());
 //                Toast.makeText(getApplicationContext(), "Invalid IP Address", Toast.LENGTH_LONG).show();
-                    finish();
+                finish();
+            }
+
+
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
+                StringBuilder sb = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line + "\n");
                 }
+                is.close();
+                result = sb.toString();
+            } catch (Exception e) {
+                Log.e("Fail 2", e.toString());
+            }
 
 
-                try {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
-                    StringBuilder sb = new StringBuilder();
-                    while ((line = reader.readLine()) != null) {
-                        sb.append(line + "\n");
-                    }
-                    is.close();
-                    result = sb.toString();
-                } catch (Exception e) {
-                    Log.e("Fail 2", e.toString());
+            try {
+                JSONArray JA = new JSONArray(result);
+                JSONObject json = null;
+
+                roll_no = new String[JA.length()];
+                name = new String[JA.length()];
+                iid = new String[JA.length()];
+
+
+                for (int i = 0; i < JA.length(); i++) {
+                    json = JA.getJSONObject(i);
+                    roll_no[i] = json.getString("nu_kind");
+                    name[i] = json.getString("nu_foodname");
+                    iid[i] = json.getString("id");
                 }
-
-
-                try {
-                    JSONArray JA = new JSONArray(result);
-                    JSONObject json = null;
-                    roll_no = new String[JA.length()];
-                    name = new String[JA.length()];
-
-                    for (int i = 0; i < JA.length(); i++) {
-                        json = JA.getJSONObject(i);
-                        roll_no[i] = json.getString("nu_kind");
-                        name[i] = json.getString("nu_foodname");
-
-                    }
 //                Toast.makeText(getApplicationContext(), "sss", Toast.LENGTH_LONG).show();
 
-                    for (int i = 0; i < roll_no.length; i++) {
-                        List<String> list1 = new ArrayList<String>();
-                        List<String> list2 = new ArrayList<String>();
-                        list1.add(roll_no[i]);
-                        list2.add(name[i]);
+                for (int i = 0; i < roll_no.length; i++) {
+                    List<String> list1 = new ArrayList<String>();
+                    List<String> list2 = new ArrayList<String>();
+                    List<String> list3 = new ArrayList<String>();
+
+                    list1.add(roll_no[i]);
+                    list2.add(name[i]);
+                    list3.add(iid[i]);
 //                    Log.d("test", "roll_no = " + roll_no[i] + ", name = " + name[i]);
-                    }
+                }
 
 
-                } catch (Exception e) {
+            } catch (Exception e) {
 
-                    Log.e("Fail 3", e.toString());
+                Log.e("Fail 3", e.toString());
 //login.this.finish();
 
-                }
             }
             return null;
         }
