@@ -188,37 +188,7 @@
                     android:layout_marginLeft="10dp" />
 
             </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffe9e9e9">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="熱量"
-                    android:textSize="22dp"
-                    android:id="@+id/t1"
-                    android:layout_gravity="center_vertical"
-                    android:textStyle="bold"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_cal1"
-                    android:textSize="20dp"
-                    android:text=""
-                    android:layout_marginLeft="10dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:id="@+id/tt1"
-                    android:text="大卡"/>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -273,40 +243,7 @@
                     android:layout_marginLeft="10dp" />
 
             </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffe9e9e9">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="熱量"
-                    android:textSize="22dp"
-                    android:visibility="gone"
-                    android:id="@+id/t2"
-                    android:layout_gravity="center_vertical"
-                    android:textStyle="bold"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_cal2"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""
-                    android:layout_marginLeft="10dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:textSize="20dp"
-                    android:id="@+id/tt2"
-                    android:text="大卡"/>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -357,40 +294,7 @@
                     android:layout_marginLeft="10dp" />
 
             </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffe9e9e9">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="熱量"
-                    android:textSize="22dp"
-                    android:visibility="gone"
-                    android:id="@+id/t3"
-                    android:layout_gravity="center_vertical"
-                    android:textStyle="bold"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_cal3"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""
-                    android:layout_marginLeft="10dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:textSize="20dp"
-                    android:id="@+id/tt3"
-                    android:text="大卡"/>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -441,40 +345,9 @@
                     android:layout_marginLeft="10dp" />
 
             </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffe9e9e9">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="熱量"
-                    android:textSize="22dp"
-                    android:visibility="gone"
-                    android:id="@+id/t4"
-                    android:layout_gravity="center_vertical"
-                    android:textStyle="bold"
-                    />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_cal4"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""
-                    android:layout_marginLeft="10dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:id="@+id/tt4"
-                    android:textSize="20dp"
-                    android:text="大卡"/>
 
-            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -524,40 +397,7 @@
                     android:text=""
                     android:layout_marginLeft="10dp" />
             </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffe9e9e9">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="熱量"
-                    android:textSize="22dp"
-                    android:visibility="gone"
-                    android:id="@+id/t5"
-                    android:layout_gravity="center_vertical"
-                    android:textStyle="bold"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_cal5"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""
-                    android:layout_marginLeft="10dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:textSize="20dp"
-                    android:id="@+id/tt5"
-                    android:text="大卡"/>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -608,40 +448,7 @@
                     android:layout_marginLeft="10dp" />
 
             </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffe9e9e9">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="熱量"
-                    android:textSize="22dp"
-                    android:visibility="gone"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/t6"
-                    android:textStyle="bold"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_cal6"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""
-                    android:layout_marginLeft="10dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:textSize="20dp"
-                    android:id="@+id/tt6"
-                    android:text="大卡"/>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -694,40 +501,7 @@
                     android:layout_marginLeft="10dp" />
 
             </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffe9e9e9">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="熱量"
-                    android:textSize="22dp"
-                    android:visibility="gone"
-                    android:id="@+id/t7"
-                    android:layout_gravity="center_vertical"
-                    android:textStyle="bold"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_cal7"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""
-                    android:layout_marginLeft="10dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:id="@+id/tt7"
-                    android:textSize="20dp"
-                    android:text="大卡"/>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -777,40 +551,7 @@
                     android:textSize="20dp"
                     android:text=""/>
             </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffdace">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="熱量"
-                    android:textSize="22dp"
-                    android:visibility="gone"
-                    android:id="@+id/t8"
-                    android:layout_gravity="center_vertical"
-                    android:textStyle="bold"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_cal8"
-                    android:textSize="20dp"
-                    android:visibility="gone"
-                    android:text=""
-                    android:layout_marginLeft="10dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:id="@+id/tt8"
-                    android:textSize="20dp"
-                    android:text="大卡"/>
-
-            </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -864,15 +605,14 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#ffe9e9e9">
+                android:background="#ffdace">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="熱量"
-                    android:textSize="22dp"
+                    android:textSize="20dp"
                     android:id="@+id/t9"
-                    android:visibility="gone"
                     android:layout_gravity="center_vertical"
                     android:textStyle="bold"
                     />
@@ -881,19 +621,147 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_cal9"
-                    android:textSize="20dp"
-                    android:visibility="gone"
+                    android:textSize="18dp"
+
                     android:text=""
                     android:layout_marginLeft="10dp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:id="@+id/tt9"
-                    android:textSize="20dp"
+                    android:textSize="18dp"
                     android:text="大卡"/>
 
             </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="水分"
+                    android:textSize="18dp"
+                    android:id="@+id/t1"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_water"
+                    android:textSize="16dp"
+
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tt1"
+                    android:textSize="16dp"
+                    android:text="公克"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffdace">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="蛋白質"
+                    android:textSize="18dp"
+                    android:id="@+id/t2"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_prot"
+                    android:textSize="16dp"
+
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tt2"
+                    android:textSize="16dp"
+                    android:text="公克"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffe9e9e9">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="脂質"
+                    android:textSize="18dp"
+                    android:id="@+id/t3"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_fat"
+                    android:textSize="16dp"
+
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tt3"
+                    android:textSize="16dp"
+                    android:text="公克"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffdace">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="碳水化合物"
+                    android:textSize="18dp"
+                    android:id="@+id/t4"
+                    android:layout_gravity="center_vertical"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_carbon"
+                    android:textSize="16dp"
+
+                    android:text=""
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tt4"
+                    android:textSize="16dp"
+                    android:text="公克"/>
+
+            </LinearLayout>
+
 
 
         </LinearLayout>

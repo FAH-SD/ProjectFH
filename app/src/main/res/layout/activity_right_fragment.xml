@@ -39,107 +39,116 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="15dp"
                 android:layout_weight="1">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/family"
-                    android:background="@drawable/icon_a1"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="2dp" />
 
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/iceboxx"
-                    android:background="@drawable/icon_b1"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:id="@+id/family"
+                    android:background="@drawable/a01"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="30dp" />
+
+                <Button
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:id="@+id/iceboxx"
+                    android:background="@drawable/b01"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="6dp" />
 
             </LinearLayout>
 
+        </LinearLayout>
+
+
             <LinearLayout
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="2dp"
                     android:layout_weight="1">
 
 
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
                     android:id="@+id/dish"
-                    android:background="@drawable/icon_c1"
+                    android:background="@drawable/c01"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="2dp" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="6dp" />
 
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
                     android:id="@+id/scan"
-                    android:background="@drawable/icon_f1"
+                    android:background="@drawable/d01"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="6dp" />
 
 
             </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1">
 
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
                     android:id="@+id/sport"
-                    android:background="@drawable/icon_d1"
+                    android:background="@drawable/e01"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginRight="2dp" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginRight="5dp" />
 
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
                     android:id="@+id/set"
-                    android:background="@drawable/icon_e1"
+                    android:background="@drawable/f01"
                     android:layout_gravity="center"
-                    android:layout_marginTop="2dp" />
+                    android:layout_marginTop="6dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp" />
 
 
             </LinearLayout>
 
             </LinearLayout>
-</LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>

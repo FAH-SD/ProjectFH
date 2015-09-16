@@ -153,6 +153,7 @@
             android:name="com.tku.goldas.projectfh.rightFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             tools:layout="@layout/activity_right_fragment" />
 
 
